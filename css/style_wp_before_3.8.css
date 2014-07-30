@@ -1,0 +1,518 @@
+#adminmenu #menu-posts-vacancy:hover div.wp-menu-image:before,
+#adminmenu #menu-posts-vacancy.wp-has-current-submenu div.wp-menu-image:before,
+#adminmenu #menu-posts-vacancy div.wp-menu-image:before {
+	background: url("../images/jbbrd_icon_01.png") no-repeat scroll center 8px rgba(0, 0, 0, 0);
+	content: "";
+	opacity: 0.7;
+}
+#adminmenu #menu-posts-vacancy.wp-has-current-submenu div.wp-menu-image:before {
+	opacity: 1;
+}
+/* Styles for Job Vacancy Manager */
+#jbbrd_table_information {
+	width: 100%;
+}
+.jbbrd_admin_form_table {
+	font-weight: 600;
+	line-height: 1.3;
+	padding: 20px 10px 20px 0;
+	text-align: left;
+	vertical-align: top;
+	width: 200px;
+}
+.jbbrd_demand_field,
+.jbbrd_personal_field {
+	font-size: 14px;
+}
+.jbbrd_row {
+	width: 300px;
+	margin-right: 20px;
+}
+.jbbrd_admin_options_notice {
+	color: #888;
+	font-size: 10px;
+}
+.jbbrd_frontend_input {
+	width: 200px !important;
+}
+th#jbbrd_location,
+th#jbbrd_organization,
+th#jbbrd_salary,
+th#jbbrd_employment,
+td.column-jbbrd_employment,
+th.column-jbbrd_employment {
+	width: 10%;
+}
+th#jbbrd_vacancy-categorie {
+	width: 15%;
+}
+th#jbbrd_archive {
+	width: 7%;
+}
+/* Add new vacancy styles*/
+#jbbrd_requirements {
+	width: 58%;
+	float: left;
+	margin-right: 2%;
+}
+#jbbrd_metaboxes {
+	width: 300px;
+	float: left;
+}
+#jbbrd_requirements_metaboxes_clear {
+	clear: both;
+}
+.jbbrd_table_demand {
+	width: 70%;
+}
+.jbbrd_table_data {
+	width: 30%;
+}
+.jbbrd_table_inside,
+.jbbrd_demand_input {
+	width: 100%;
+}
+.jbbrd_personal_input input,
+.jbbrd_demand_input textarea {
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+	padding: 2px;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.07) inset;
+}
+.jbbrd_demand_input textarea {
+	min-width: 100%;
+	max-width: 100%;
+	height: 180px;
+}
+input#jbbrd_salary_input {
+	width: 50px;
+	margin-right: 5px;
+}
+#jbbrd_archive_checkbox {
+	margin-left: 5px;
+}
+/* Frontend table */
+#jbbrd_frontend_table,
+#jbbrd_frontend_table td {
+	border: 0px;
+	text-align: left;
+}
+#jbbrd_frontend_form tbody,
+#jbbrd_registration_form tbody {
+	border: 0px !important;
+}
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail,
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail td,
+#jbbrd_registration_form .jbbrd_frontend_table_sendmail,
+#jbbrd_registration_form .jbbrd_frontend_table_sendmail td {
+	border: 0px !important;
+	text-align: left;
+	width: 50%;
+	margin-bottom: 0px;
+}
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail tr {
+	border: 0px !important;
+}
+#jbbrd_frontend_form .jbbrd_frontend_table_div,
+#jbbrd_registration_form .jbbrd_frontend_table_div {
+	float: left;
+	width: 49%;
+	min-width: 200px !important;
+}
+#jbbrd_loginform {
+	width: 49%;
+	min-width: 200px !important;
+	max-width: 240px !important;
+	font-size: 1em !important;
+	display: block;
+}
+#jbbrd_loginform p {
+	margin: 5px 0;
+}
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail tr,
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail td {
+	width: 100%;
+	padding: 0px;
+}
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail tr,
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail td,
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail_box tr,
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail_box td {
+	max-width: 240px !important;
+}
+#jbbrd_frontend_form hr,
+.jbbrd_frontend_table_div hr {
+	margin: 15px 0 15px 0 !important;
+}
+#jbbrd_frontend_table_savesearch_box,
+#jbbrd_frontend_table_savesearch_box tr,
+#jbbrd_frontend_table_savesearch_box td,
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail_box,
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail_box tr,
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail_box td {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0px !important;
+	text-align: left;
+	vertical-align: top;
+}
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail_box td {
+	padding-right: 5px;
+	font-size: 1em !important;
+	min-width: 200px !important;
+}
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail_box label,
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail_box tr {
+	font-size: 1em !important;
+}
+.jbbrd_vacancy div p.submit {
+	margin: 0px;
+	padding: 0px;
+}
+.jbbrd_logo p {
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+}
+#jbbrd_frontend_input_salary_from,
+#jbbrd_frontend_input_salary_to {
+	width: 55px !important;
+	margin-right: 10px !important;
+}
+#jbbrd_frontend_submit {
+	display: inline-block !important;
+	margin-top: 10px !important;
+	min-width: 200px !important;
+}
+#jbbrd_frontend_input_salary_to {
+	margin-left: 10px !important;
+}
+#jbbrd_frontend_salary div.left {
+	float: left !important;
+}
+.jbbrd_logo img {
+	padding: 0;
+	width: 150px;
+	margin-bottom: 0px !important;
+}
+#jbbrd_frontend_form p,
+.jbbrd_frontend_table_div p {
+	margin: 0;
+	vertical-align: bottom;
+	min-width: 208px;
+}
+/* slider width */
+#jbbrd_frontend_salary #jbbrd_slider {
+	width: 160px;
+	float: left;
+	margin-top: 15px;
+}
+/* slider container */
+#jbbrd_frontend_salary .ui-slider {
+	position: relative;
+}
+/* slider */
+#jbbrd_frontend_salary .ui-slider .ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	width: 12px;
+	height: 12px;
+	border: 1px solid #9C9C9C;
+	border-radius: 8px;
+	background: #CFCFCF;
+	cursor: pointer
+}
+#jbbrd_frontend_salary .ui-slider .ui-slider-range {
+	position: absolute;
+	z-index: 1;
+	font-size: 0.7em;
+	display: block;
+	border: 0;
+	overflow: hidden;
+}
+#jbbrd_frontend_salary .ui-slider-horizontal {
+	height: 4px; /* slider row height */
+}
+/* sliders positions */
+#jbbrd_frontend_salary .ui-slider-horizontal .ui-slider-handle { 
+	top: -5px;
+	margin-left: -6px;
+}
+#jbbrd_frontend_salary .ui-slider-horizontal .ui-slider-range {
+	top: 0;
+	height: 100%;
+}
+#jbbrd_frontend_salary .ui-slider-horizontal .ui-slider-range-min { 
+	left: 0;
+}
+#jbbrd_frontend_salary .ui-slider-horizontal .ui-slider-range-max {
+	right: 0;
+}
+/* slider row */
+#jbbrd_frontend_salary .ui-widget-content { 
+	border: 1px solid #696969;
+	background: #fff;
+}
+/* slider row active */
+#jbbrd_frontend_salary .ui-widget-header { 
+	border: 1px solid #696969;
+	background: #9C9C9C;
+}
+/* slider row round */
+#jbbrd_frontend_salary .ui-corner-all {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+/* Datapicker styles */
+.post-type-vacancy .ui-helper-clearfix:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+.post-type-vacancy .ui-datepicker {
+	padding: 0.2em 0.2em 0;
+	width: 17em;
+}
+.post-type-vacancy .ui-datepicker table {
+	border-collapse: collapse;
+	font-size: 0.9em;
+	margin: 0 0 0.4em;
+	width: 100%;
+}
+.post-type-vacancy .ui-datepicker th {
+	border: 0 none;
+	font-weight: bold;
+	padding: 0.7em 0.3em;
+	text-align: center;
+}
+.post-type-vacancy .ui-corner-all {
+	border-radius: 4px;
+}
+.post-type-vacancy .ui-widget-content {
+	background: #FFF;
+	border: 1px solid #AAA;
+	color: #222;
+}
+.post-type-vacancy .ui-widget {
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 1.1em;
+}
+.post-type-vacancy .ui-helper-clearfix {
+	display: block;
+}
+.post-type-vacancy .ui-datepicker .ui-datepicker-header {
+	padding: 0.2em 0;
+	position: relative;
+}
+.post-type-vacancy .ui-state-default, 
+.post-type-vacancy .ui-widget-content .ui-state-default, 
+.post-type-vacancy .ui-widget-header .ui-state-default {
+	background: #E6E6E6;
+	border: 1px solid #D3D3D3;
+	color: #555;
+	font-weight: normal;
+}
+.post-type-vacancy .ui-state-hover, 
+.post-type-vacancy .ui-widget-content .ui-state-hover, 
+.post-type-vacancy .ui-widget-header .ui-state-hover, 
+.post-type-vacancy .ui-state-focus, 
+.post-type-vacancy .ui-widget-content .ui-state-focus, 
+.post-type-vacancy .ui-widget-header .ui-state-focus { 
+	border: 1px solid #999; 
+	background: #dadada; 
+	font-weight: normal; color: #212121; 
+}
+.post-type-vacancy .ui-state-hover a, 
+.post-type-vacancy .ui-state-hover a:hover { 
+	color: #212121; 
+	text-decoration: none; 
+}
+.post-type-vacancy .ui-state-active, 
+.post-type-vacancy .ui-widget-content .ui-state-active, 
+.post-type-vacancy .ui-widget-header .ui-state-active { 
+	border: 1px solid #aaa; 
+	background: #fff; 
+	font-weight: normal; 
+	color: #212121; 
+}
+.post-type-vacancy .ui-state-default.ui-state-highlight {
+	background: #FFFACD; 
+}
+.post-type-vacancy .ui-state-active a, 
+.post-type-vacancy .ui-state-active a:link, 
+.post-type-vacancy .ui-state-active a:visited { 
+	color: #212121; 
+	text-decoration: none; 
+}
+.post-type-vacancy .ui-datepicker .ui-datepicker-prev {
+	left: 2px;
+}
+.post-type-vacancy .ui-datepicker .ui-datepicker-next {
+	right: 2px;
+}
+.post-type-vacancy .ui-datepicker .ui-datepicker-prev, 
+.post-type-vacancy .ui-datepicker .ui-datepicker-next {
+	height: 1.8em;
+	position: absolute;
+	top: 2px;
+	width: 1.8em;
+	border: 1px #AAA solid;
+}
+.post-type-vacancy .ui-icon-circle-triangle-e { 
+	background-position: 0px 0px; 
+}
+.post-type-vacancy .ui-icon-circle-triangle-w { 
+	background-position: -32px 0px; 
+}
+.post-type-vacancy .ui-icon {
+	background-image: url("../images/jbbrd_ui_bg.png");
+	height: 16px;
+	width: 16px;
+}
+.post-type-vacancy .ui-icon {
+	background-repeat: no-repeat;
+	display: block;
+	overflow: hidden;
+	text-indent: -99999px;
+}
+.post-type-vacancy .ui-datepicker .ui-datepicker-prev span, 
+.post-type-vacancy .ui-datepicker .ui-datepicker-next span {
+	display: block;
+	left: 50%;
+	margin-left: -8px;
+	margin-top: -8px;
+	position: absolute;
+	top: 50%;
+}
+.post-type-vacancy .ui-datepicker .ui-datepicker-title {
+	line-height: 1.8em;
+	margin: 0 2.3em;
+	text-align: center;
+}
+.post-type-vacancy .ui-datepicker td span, 
+.post-type-vacancy .ui-datepicker td a {
+	display: block;
+	padding: 0.2em;
+	text-align: right;
+	text-decoration: none;
+}
+.post-type-vacancy .ui-widget-header {
+	background: #CCC;
+	border: 1px solid #AAA;
+	color: #222;
+	font-weight: bold;
+}
+/* Make admin table responsive */
+@media screen and ( max-width: 1300px ) {
+	#jbbrd_requirements {
+		width: 98%;
+		float: left;
+		margin-right: 2%;
+	}	
+	#jbbrd_metaboxes {
+		width: 300px;
+		float: left;
+	}
+	#jbbrd_requirements_metaboxes_clear {
+		clear: both;
+	}
+}
+@media screen and ( max-width: 980px ) {
+	#jbbrd_businesses_header,
+	#jbbrd_archive_header,
+	#jbbrd_employment_header {
+		display: none;
+	}
+	th#jbbrd_location,
+	td.column-jbbrd_location,
+	th.column-jbbrd_location {
+		width: 15%;
+	}
+	th#jbbrd_organization,
+	td.column-jbbrd_organization,
+	th.column-jbbrd_organization {
+		opacity: 0;
+		width: 0%;
+		white-space: nowrap; 
+		height: 20px
+	}
+	th#jbbrd_employment,
+	td.column-jbbrd_employment,
+	th.column-jbbrd_employment {
+		width: 15%;
+	}
+	th#jbbrd_vacancy-categorie,
+	td.column-jbbrd_vacancy-categorie,
+	th.column-jbbrd_vacancy-categorie {
+		width: 15%;
+	}
+	th#jbbrd_salary,
+	td.column-jbbrd_salary,
+	th.column-jbbrd_salary {
+		opacity: 0;
+		width: 0%;
+		white-space: nowrap; 
+		height: 20px
+	}
+	th#jbbrd_archive,
+	td.column-jbbrd_archive,
+	th.column-jbbrd_archive {
+		width: 10%;
+	}
+}
+@media screen and ( max-width: 768px ) {
+	th#jbbrd_location,
+	td.column-jbbrd_location,
+	th.column-jbbrd_location {
+		width: 30%;
+	}
+	th#jbbrd_employment,
+	td.column-jbbrd_employment,
+	th.column-jbbrd_employment {
+		opacity: 0;
+		width: 0%;
+		white-space: nowrap; 
+		height: 20px;
+	}
+	th#jbbrd_vacancy-categorie,
+	td.column-jbbrd_vacancy-categorie,
+	th.column-jbbrd_vacancy-categorie {
+		width: 30%;
+	}
+	th#jbbrd_archive,
+	td.column-jbbrd_archive,
+	th.column-jbbrd_archive {
+		opacity: 0;
+		width: 0%;
+		white-space: nowrap; 
+		height: 20px
+	}
+}
+@media screen and ( max-width: 360px ) {
+	th#jbbrd_location,
+	td.column-jbbrd_location {
+		opacity: 0;
+		width: 0%;
+		white-space: nowrap; 
+		height: 20px
+	}
+	th#jbbrd_vacancy-categorie,
+	td.column-jbbrd_vacancy-categorie {
+		width: 30%;
+	}
+	th#jbbrd_archive,
+	td.column-jbbrd_archive {
+		opacity: 0;
+		width: 0%;
+		white-space: nowrap; 
+		height: 20px
+	}
+	td.jbbrd_personal_field,
+	td.jbbrd_demand_field {
+		opacity: 0;
+		max-width: 0px;
+		width: 0px;
+	}
+}
