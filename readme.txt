@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: plugin, wordpress, jobs, vacancy, job-manager, job-board, job, job offer, job bord, djob board, dgob bord, CV, upload CV, add job offer, apply for a job, vacancy application, job candidate role, manage vacancies, job offer list, save search conditions, job offer categories, search by job category, search by salary, search by organization, post job offer, vacancy archive.  
 Requires at least: 3.5
-Tested up to: 3.9.1
-Stable tag: 1.0.0
+Tested up to: 3.9.2
+Stable tag: 1.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -115,11 +115,17 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.0.1 - 08.08.2014 =
+* Bugfix : Security Exploit was fixed.
+
 = V1.0.0 - 18.07.2014 = 
 * Bugfix : Login/registration form bugs were fixed.
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.0.1 =
+Security Exploit was fixed.
 
 = V1.0.0 =
 Login/registration form bugs were fixed. Session bugs were fixed.

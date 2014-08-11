@@ -4,7 +4,7 @@ Plugin Name: Job board
 Plugin URI: http://bestwebsoft.com/plugin/
 Description: Plugin for adding to site possibility to create job offers page with custom search, send CV and subscribing for similar jobs.
 Author: BestWebSoft
-Version: 1.0.0
+Version: 1.0.1
 Author URI: http://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -622,7 +622,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 
 			/* Set time period unit. */
 			if ( ( isset( $_POST['vacancy_reply_text'] ) ) && ( '' != $_POST['vacancy_reply_text'] ) )
-				$jbbrd_options['vacancy_reply_text'] = $_POST['vacancy_reply_text'];
+				$jbbrd_options['vacancy_reply_text'] = stripslashes( esc_html( $_POST['vacancy_reply_text'] ) );
 
 			/* Set archieving period. */
 			if ( ( isset( $_POST['archieving_period'] ) ) && ( '' != $_POST['archieving_period'] ) && ( is_numeric( $_POST['archieving_period'] ) ) )
@@ -1576,7 +1576,7 @@ if ( ! function_exists( 'jbbrd_save_post' ) ) {
 				if ( isset( $_POST[ $key ] ) ) {
 					/* Change date format if fild is 'expiry_date'. */
 					if ( $key == 'expiry_date' ) {
-						$date_compl = $_POST[ $key ];
+						$date_compl = stripslashes( esc_html( $_POST[ $key ] ) );
 						/* Set 30 days period if date field is empty. */
 						if ( '' == $date_compl ) {
 							$jbbrd_default_time = $jbbrd_options['archieving_period'];
@@ -1591,7 +1591,7 @@ if ( ! function_exists( 'jbbrd_save_post' ) ) {
 							$value				= date( $format, strtotime( $date_compl[1] . "-" . $date_compl[0] . '-' . $date_compl[2] ) );
 						}
 					} else {
-						$value =  $_POST[ $key ];
+						$value =  stripslashes( esc_html( $_POST[ $key ] ) );
 					}
 				} else {
 					$value = '';
