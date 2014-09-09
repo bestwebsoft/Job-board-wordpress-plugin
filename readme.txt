@@ -3,7 +3,7 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: plugin, wordpress, jobs, vacancy, job-manager, job-board, job, job offer, job bord, djob board, dgob bord, CV, upload CV, add job offer, apply for a job, vacancy application, job candidate role, manage vacancies, job offer list, save search conditions, job offer categories, search by job category, search by salary, search by organization, post job offer, vacancy archive.  
 Requires at least: 3.5
-Tested up to: 3.9.2
+Tested up to: 4.0
 Stable tag: 1.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
