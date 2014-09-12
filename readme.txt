@@ -14,6 +14,8 @@ The plugin allows to create a job-board page on your site.
 
 The plugin allows to create and post job-board posts as well as to change, sort and archive them. After inserting the short-code into the page, you will see all vacancies from a search form by categories, organizations, salary etc. The search form is available only after the user has been authorized as a candidate. The candidate is allowed to upload and submit a CV, select a category by which the list of vacant positions is formed for the last 24 hours and save the current search conditions to be used as a search template in future.
 
+http://www.youtube.com/watch?v=ox2rMnwxfHs
+
 <a href="http://wordpress.org/plugins/job-board/faq/" target="_blank">FAQ</a>
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
 
