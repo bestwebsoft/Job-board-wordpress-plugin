@@ -4,7 +4,7 @@ Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&
 Tags: plugin, wordpress, jobs, vacancy, job-manager, job-board, job, job offer, job bord, djob board, dgob bord, CV, upload CV, add job offer, apply for a job, vacancy application, job candidate role, manage vacancies, job offer list, save search conditions, job offer categories, search by job category, search by salary, search by organization, post job offer, vacancy archive.  
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -117,6 +117,12 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.0.2 - 20.10.2014 =
+* Bugfix : Bug with export/import of a database was fixed. 
+* Bugfix : Bug with activation function was fixed. 
+* New : We added a custom money unit. 
+* Update : We changed all deprecated functions in WordPress 4.0.
+
 = V1.0.1 - 08.08.2014 =
 * Bugfix : Security Exploit was fixed.
 
@@ -125,6 +131,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.0.2 =
+Bug with export/import of a database was fixed. Bug with activation function was fixed. We added a custom money unit. We changed all deprecated functions in WordPress 4.0.
 
 = V1.0.1 =
 Security Exploit was fixed.
