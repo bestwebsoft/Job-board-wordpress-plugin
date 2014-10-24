@@ -5,12 +5,12 @@ The plugin allows to create and post job-board posts as well as to change, sort 
 
 <img src="http://bestwebsoft.com/wp-content/uploads/2014/07/job-board-banner-website.jpg" />
 
-<a href="http://bestwebsoft.com/plugin/job-board/description" target=_blank>Description</a> | 
-<a href="http://bestwebsoft.com/plugin/job-board/installation" target=_blank>Installation</a> | 
-<a href="http://bestwebsoft.com/plugin/job-board/faq" target=_blank>FAQ</a> | 
-<a href="http://bestwebsoft.com/plugin/job-board/screenshots" target=_blank>Screenshots</a> | 
-<a href="http://bestwebsoft.com/plugin/job-board/changelog" target=_blank>Changelog</a> | 
-<a href="http://bestwebsoft.com/plugin/job-board/download" target=_blank>Download</a>
+<a href="http://bestwebsoft.com/products/job-board/description" target=_blank>Description</a> | 
+<a href="http://bestwebsoft.com/products/job-board/installation" target=_blank>Installation</a> | 
+<a href="http://bestwebsoft.com/products/job-board/faq" target=_blank>FAQ</a> | 
+<a href="http://bestwebsoft.com/products/job-board/screenshots" target=_blank>Screenshots</a> | 
+<a href="http://bestwebsoft.com/products/job-board/changelog" target=_blank>Changelog</a> | 
+<a href="http://bestwebsoft.com/products/job-board/download" target=_blank>Download</a>
 
 
 Features
