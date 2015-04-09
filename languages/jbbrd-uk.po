@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Job board\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-24 16:47+0300\n"
+"POT-Creation-Date: 2015-04-09 09:41+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: bestwebsoft.com <plugins@bestwebsoft.com>\n"
 "Language-Team: BestWebSoft <info@bestwebsoft.com>\n"
@@ -16,979 +16,975 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../job-board.php:160
+#: ../job-board.php:109
 msgid "Job Information"
 msgstr "Інформація про вакансію"
 
-#: ../job-board.php:184
-msgid "requires"
-msgstr "потребує"
-
-#: ../job-board.php:184
-msgid "or higher, that is why it has been deactivated! Please upgrade WordPress and try again."
-msgstr "або вище, ось чому плагін було деактивовано! Будь ласка, оновіть WordPress та спробуйте ще раз."
-
-#: ../job-board.php:184
-msgid "Back to the WordPress"
-msgstr "Назад до WordPress на"
-
-#: ../job-board.php:184
-msgid "Plugins page"
-msgstr "Сторінку плагінів"
-
-#: ../job-board.php:211
+#: ../job-board.php:126
 msgid "Jobs"
 msgstr "Вакансії"
 
-#: ../job-board.php:212
-#: ../job-board.php:225
+#: ../job-board.php:127
+#: ../job-board.php:140
 msgid "Job"
 msgstr "Вакансія"
 
-#: ../job-board.php:213
+#: ../job-board.php:128
 msgid "Add job"
 msgstr "Додати вакансію"
 
-#: ../job-board.php:214
+#: ../job-board.php:129
 msgid "Add new job"
 msgstr "Додати нову вакансію"
 
-#: ../job-board.php:215
+#: ../job-board.php:130
 msgid "Edit"
 msgstr "Редагувати"
 
-#: ../job-board.php:216
-#: ../job-board.php:2958
+#: ../job-board.php:131
+#: ../job-board.php:2807
 msgid "Edit job"
 msgstr "Редагувати вакансію"
 
-#: ../job-board.php:217
+#: ../job-board.php:132
 msgid "New job"
 msgstr "Нова вакансія"
 
-#: ../job-board.php:218
+#: ../job-board.php:133
 msgid "View jobs"
 msgstr "Переглянути вакансії"
 
-#: ../job-board.php:219
-#: ../job-board.php:895
-#: ../job-board.php:896
+#: ../job-board.php:134
+#: ../job-board.php:782
+#: ../job-board.php:783
 msgid "View job"
 msgstr "Переглянути вакансію"
 
-#: ../job-board.php:220
+#: ../job-board.php:135
 msgid "Search job"
 msgstr "Шукати вакансію"
 
-#: ../job-board.php:221
-#: ../job-board.php:1667
+#: ../job-board.php:136
+#: ../job-board.php:1526
 msgid "No jobs found"
 msgstr "Вакансій не знайдено"
 
-#: ../job-board.php:222
+#: ../job-board.php:137
 msgid "No jobs found in Trash"
 msgstr "У корзині немає вакансій "
 
-#: ../job-board.php:223
+#: ../job-board.php:138
 msgid "Parent job"
 msgstr "Батьківська вакансія"
 
-#: ../job-board.php:278
+#: ../job-board.php:192
 msgid "Job categories"
 msgstr "Категорії вакансій"
 
-#: ../job-board.php:279
+#: ../job-board.php:193
 msgid "Job category"
 msgstr "Категорія вакансії"
 
-#: ../job-board.php:280
+#: ../job-board.php:194
 msgid "Add job category"
 msgstr "Додати категорію вакансії"
 
-#: ../job-board.php:281
+#: ../job-board.php:195
 msgid "Add new job category"
 msgstr "Додати нову категорію вакансій"
 
-#: ../job-board.php:282
+#: ../job-board.php:196
 msgid "Edit job categories"
 msgstr "Редагувати категорії вакансій"
 
-#: ../job-board.php:283
+#: ../job-board.php:197
 msgid "Edit job category"
 msgstr "Редагувати категорію вакансій"
 
-#: ../job-board.php:284
+#: ../job-board.php:198
 msgid "New job category"
 msgstr "Нова категорія вакансій"
 
-#: ../job-board.php:285
+#: ../job-board.php:199
 msgid "View job categories"
 msgstr "Переглянути категорії вакансій"
 
-#: ../job-board.php:286
+#: ../job-board.php:200
 msgid "View job category"
 msgstr "Переглянути категорію вакансій"
 
-#: ../job-board.php:287
-#: ../job-board.php:322
+#: ../job-board.php:201
+#: ../job-board.php:236
 msgid "Search job category"
 msgstr "Шукати категорію вакансії"
 
-#: ../job-board.php:288
+#: ../job-board.php:202
 msgid "No job categories found"
 msgstr "Категорії вакансій не знайдено"
 
-#: ../job-board.php:289
+#: ../job-board.php:203
 msgid "No job categories found in Trash"
 msgstr "У корзині немає категорій вакансій "
 
-#: ../job-board.php:290
+#: ../job-board.php:204
 msgid "Parent job category"
 msgstr "Батьківська категорія вакансій"
 
-#: ../job-board.php:313
+#: ../job-board.php:227
 msgid "Job archive categories"
 msgstr "Категорії архіву вакансій"
 
-#: ../job-board.php:314
+#: ../job-board.php:228
 msgid "Job archive category"
 msgstr "Категорія архіву вакансій"
 
-#: ../job-board.php:315
+#: ../job-board.php:229
 msgid "Add job archive category"
 msgstr "Додати категорію архіву вакансій"
 
-#: ../job-board.php:316
+#: ../job-board.php:230
 msgid "Add new job archive category"
 msgstr "Додати нову категорію архіву вакансій"
 
-#: ../job-board.php:317
+#: ../job-board.php:231
 msgid "Edit job archive categories"
 msgstr "Редагувати категорії архіву вакансій"
 
-#: ../job-board.php:318
+#: ../job-board.php:232
 msgid "Edit job archive category"
 msgstr "Редагувати категорію архіву вакансій"
 
-#: ../job-board.php:319
+#: ../job-board.php:233
 msgid "New job archive category"
 msgstr "Нова категорія архіву вакансій"
 
-#: ../job-board.php:320
+#: ../job-board.php:234
 msgid "View job archive categories"
 msgstr "Переглянути категорії архіву вакансій"
 
-#: ../job-board.php:321
+#: ../job-board.php:235
 msgid "View job archive category"
 msgstr "Переглянути категорію архіву вакансій"
 
-#: ../job-board.php:323
+#: ../job-board.php:237
 msgid "No job archive categories found"
 msgstr "Категорії архіву вакансій не знайдено"
 
-#: ../job-board.php:324
+#: ../job-board.php:238
 msgid "No job archive categories found in Trash"
 msgstr "У корзині немає категорій архіву вакансій "
 
-#: ../job-board.php:325
+#: ../job-board.php:239
 msgid "Parent job archive category"
 msgstr "Батьківська категорія архіву вакансій"
 
-#: ../job-board.php:339
-#: ../job-board.php:1194
+#: ../job-board.php:253
+#: ../job-board.php:1073
 msgid "Employment"
 msgstr "Зайнятість"
 
-#: ../job-board.php:340
+#: ../job-board.php:254
 msgid "Employment type"
 msgstr "Вид зайнятості"
 
-#: ../job-board.php:341
+#: ../job-board.php:255
 msgid "Add employment types"
 msgstr "Додати види зайнятості"
 
-#: ../job-board.php:342
+#: ../job-board.php:256
 msgid "Add employment type"
 msgstr "Додати вид зайнятості"
 
-#: ../job-board.php:343
+#: ../job-board.php:257
 msgid "Edit employment types"
 msgstr "Редагувати види зайнятості"
 
-#: ../job-board.php:344
+#: ../job-board.php:258
 msgid "Edit employment type"
 msgstr "Редагувати вид зайнятості"
 
-#: ../job-board.php:345
+#: ../job-board.php:259
 msgid "New employment type"
 msgstr "Новий вид зайнятості"
 
-#: ../job-board.php:346
+#: ../job-board.php:260
 msgid "View employment types"
 msgstr "Переглянути види зайнятості"
 
-#: ../job-board.php:347
+#: ../job-board.php:261
 msgid "View employment type"
 msgstr "Переглянути вид зайнятості "
 
-#: ../job-board.php:348
+#: ../job-board.php:262
 msgid "Search employment types"
 msgstr "Шукати види зайнятості"
 
-#: ../job-board.php:349
+#: ../job-board.php:263
 msgid "No employment types found"
 msgstr "Видів зайнятості не знайдено"
 
-#: ../job-board.php:350
+#: ../job-board.php:264
 msgid "No employment types found in trash"
 msgstr "В корзині немає видів занятості"
 
-#: ../job-board.php:351
+#: ../job-board.php:265
 msgid "Parent employment type"
 msgstr "Батьківський вид зайнятості"
 
-#: ../job-board.php:378
+#: ../job-board.php:292
 msgid "Archived"
 msgstr "В архіві"
 
-#: ../job-board.php:381
+#: ../job-board.php:295
 msgid "This job is in archive"
 msgstr "Ця вакансія в архіві"
 
-#: ../job-board.php:388
+#: ../job-board.php:302
 msgid "Posted"
 msgstr "Розміщено"
 
-#: ../job-board.php:391
+#: ../job-board.php:305
 msgid "This job is posted"
 msgstr "Цю вакансію розміщено"
 
-#: ../job-board.php:407
+#: ../job-board.php:321
 msgid "Freelance"
 msgstr "Фріланс"
 
-#: ../job-board.php:417
+#: ../job-board.php:331
 msgid "Full Time"
 msgstr "Повна зайнятість"
 
-#: ../job-board.php:427
+#: ../job-board.php:341
 msgid "Internship"
 msgstr "Стажування "
 
-#: ../job-board.php:437
+#: ../job-board.php:351
 msgid "Part Time"
 msgstr "Часткова зайнятість"
 
-#: ../job-board.php:447
+#: ../job-board.php:361
 msgid "Temporary"
 msgstr "Разова робота"
 
-#: ../job-board.php:514
+#: ../job-board.php:420
 msgid "year"
 msgstr "рік"
 
-#: ../job-board.php:515
-#: ../job-board.php:520
+#: ../job-board.php:421
+#: ../job-board.php:426
 msgid "month"
 msgstr "місяць"
 
-#: ../job-board.php:516
+#: ../job-board.php:422
 msgid "week"
 msgstr "тиждень"
 
-#: ../job-board.php:517
+#: ../job-board.php:423
 msgid "day"
 msgstr "день"
 
-#: ../job-board.php:518
+#: ../job-board.php:424
 msgid "hour"
 msgstr "година"
 
-#: ../job-board.php:525
+#: ../job-board.php:431
 msgid "You replied to job offer."
 msgstr "Ви подали заявку на вакансію."
 
-#: ../job-board.php:562
+#: ../job-board.php:468
 #, php-format
 msgid "%sSender Plugin%s is not found.%s"
 msgstr "%sSender Plugin%s не знайдено.%s"
 
-#: ../job-board.php:563
+#: ../job-board.php:469
 #, php-format
 msgid "If you want to give \"send CV possibility\" to Job candidates, you need to install and activate Sender plugin.%s"
 msgstr "Для того, щоб кандидати змогли надсилати резюме по вакансіям, встановіть та активуйте плагін Sender.%s"
 
-#: ../job-board.php:564
+#: ../job-board.php:470
 msgid "You can download Sender Plugin from"
 msgstr "Ви можете завантажити Sender з "
 
-#: ../job-board.php:564
+#: ../job-board.php:470
 msgid "Developers website"
 msgstr "Вебсайту розробників"
 
-#: ../job-board.php:564
+#: ../job-board.php:470
 msgid "website of plugin Authors"
 msgstr "вебсайту авторів плагіну"
 
-#: ../job-board.php:565
+#: ../job-board.php:471
 msgid "or"
 msgstr "чи"
 
-#: ../job-board.php:565
+#: ../job-board.php:471
 msgid "Wordpress."
 msgstr "Wordpress."
 
-#: ../job-board.php:568
+#: ../job-board.php:474
 #, php-format
 msgid "%sSender Plugin%s is not active.%sIf you want to give \"send CV possibility\" to Job candidates, you need to %sactivate Sender plugin.%s"
 msgstr "Плагін %sSender%s не активовано.%sАктивуйте його, щоб дати можливість кандидатам надсилати резюме по вакансіям  %sактивувати плагін Sender.%s"
 
-#: ../job-board.php:573
+#: ../job-board.php:478
 msgid "Sender Plugin has old version."
 msgstr "Застаріла версія плагіну Sender."
 
-#: ../job-board.php:573
+#: ../job-board.php:478
 msgid "You need to update this plugin for sendmail function correct work."
 msgstr "Для коректної роботи, вам потрібно оновити цей плагін."
 
-#: ../job-board.php:638
-#: ../job-board.php:1568
-#: ../job-board.php:1571
+#: ../job-board.php:542
+#: ../job-board.php:1427
+#: ../job-board.php:1430
 msgid "Error:"
 msgstr "Помилка:"
 
-#: ../job-board.php:638
+#: ../job-board.php:542
 msgid "Value entered in \"Custom monetary unit\" field is empty."
 msgstr "У поле \"Користувацька грошова одиниця\" було введено порожнє значення."
 
-#: ../job-board.php:685
+#: ../job-board.php:583
 msgid "Settings saved."
 msgstr "Налаштування збережено."
 
-#: ../job-board.php:698
+#: ../job-board.php:596
 msgid "Settings are not saved."
 msgstr "Налаштування не збережено."
 
-#: ../job-board.php:703
-#: ../job-board.php:707
-#: ../job-board.php:710
+#: ../job-board.php:601
+#: ../job-board.php:605
+#: ../job-board.php:608
 msgid "Warning:"
 msgstr "Увага:"
 
-#: ../job-board.php:703
-#: ../job-board.php:3154
+#: ../job-board.php:601
+#: ../job-board.php:3003
 msgid "Shortcode is not found."
 msgstr "Шорткод не знайдено."
 
-#: ../job-board.php:703
-#: ../job-board.php:3154
+#: ../job-board.php:601
+#: ../job-board.php:3003
 msgid "Please place shortcode"
 msgstr "Будь ласка, вставте шорткод"
 
-#: ../job-board.php:703
-#: ../job-board.php:3154
+#: ../job-board.php:601
+#: ../job-board.php:3003
 msgid "to page or post to display frontend content"
 msgstr "на сторінку або пост, щоб відображати вакансії у фронтенді"
 
-#: ../job-board.php:714
+#: ../job-board.php:612
 msgid "Job board settings"
 msgstr "Налаштування Job board"
 
-#: ../job-board.php:716
-#: ../job-board.php:2203
-#: ../job-board.php:2220
+#: ../job-board.php:614
+#: ../job-board.php:2058
+#: ../job-board.php:2075
 msgid "Settings"
 msgstr "Налаштування"
 
-#: ../job-board.php:717
-#: ../job-board.php:2221
+#: ../job-board.php:615
+#: ../job-board.php:2076
 msgid "FAQ"
 msgstr "FAQ"
 
-#: ../job-board.php:723
+#: ../job-board.php:621
 msgid "Notice:"
 msgstr "Зауважте:"
 
-#: ../job-board.php:723
-#, fuzzy
+#: ../job-board.php:621
 msgid "The plugin's settings have been changed. In order to save them please don't forget to click the 'Save Changes' button."
-msgstr "Налаштування плагіну змінено. Не забудьте зберегти налаштування, клікнувши %sЗберегти налаштування%s."
+msgstr "Налаштування плагіну змінено. Не забудьте зберегти налаштування, клікнувши 'Зберегти налаштування'."
 
-#: ../job-board.php:727
+#: ../job-board.php:625
 msgid "Place shortcode"
 msgstr "Вставте шорткод"
 
-#: ../job-board.php:727
+#: ../job-board.php:625
 msgid "to your job page to display frontend content and"
 msgstr "на сторінку вакансій, щоб відображати вакансії у фронтенді та"
 
-#: ../job-board.php:727
+#: ../job-board.php:625
 msgid "to display registration form."
 msgstr "для відображення форми реєстрації."
 
-#: ../job-board.php:731
+#: ../job-board.php:629
 msgid "Number of jobs on page"
 msgstr "Кількість вакансій на сторінці"
 
-#: ../job-board.php:732
+#: ../job-board.php:630
 msgid "per page"
 msgstr "на сторінці"
 
-#: ../job-board.php:733
+#: ../job-board.php:631
 msgid "You can set -1 to to show all jobs"
 msgstr "Поставте 1 для відображення всіх вакансій"
 
-#: ../job-board.php:737
+#: ../job-board.php:635
 msgid "Salary monetary unit"
 msgstr "Зарплата в грошах"
 
-#: ../job-board.php:751
+#: ../job-board.php:648
 msgid "Custom monetary unit"
 msgstr "Користувацька грошова одиниця"
 
-#: ../job-board.php:755
+#: ../job-board.php:652
 msgid "Salary period unit"
 msgstr "Період виплати зарплати"
 
-#: ../job-board.php:766
+#: ../job-board.php:663
 msgid "Time period for current salary"
 msgstr "Час поточної зарплатні"
 
-#: ../job-board.php:770
+#: ../job-board.php:667
 msgid "Frontend logo position"
 msgstr "Положення логотипу"
 
-#: ../job-board.php:774
+#: ../job-board.php:671
 msgid "Left"
 msgstr "Зліва"
 
-#: ../job-board.php:778
+#: ../job-board.php:675
 msgid "Right"
 msgstr "Справа"
 
-#: ../job-board.php:783
-#, fuzzy
+#: ../job-board.php:680
 msgid "Display frontend form"
 msgstr "Відображати форму у фронтенді"
 
-#: ../job-board.php:786
+#: ../job-board.php:683
 msgid "Display job filtering form in frontend."
-msgstr ""
+msgstr "Показувати форму пошуку вакансій во фронтенді"
 
-#: ../job-board.php:788
+#: ../job-board.php:685
 msgid "Display job filtering form in frontend for non-registered users"
-msgstr ""
+msgstr "Показувати форму пошуку вакансій во фронтенді для незареєстрованих користувачів"
 
-#: ../job-board.php:792
+#: ../job-board.php:689
 msgid "Location field type"
 msgstr "Тип поля розташування"
 
-#: ../job-board.php:795
+#: ../job-board.php:692
 msgid "Change location field in frontens sorting form to select box of all locations which already add to jobs base."
 msgstr "Замінити тип поля розташування у сортирувальній формі фронтенду випадаючим списком локацій, занесених в базу вакансій. "
 
-#: ../job-board.php:799
+#: ../job-board.php:696
 msgid "Template text for CV sending"
 msgstr "Текст шаблону при відправці резюме"
 
-#: ../job-board.php:805
+#: ../job-board.php:702
 msgid "Job offers default expiry time"
 msgstr "Час до відправлення вакансії в архів"
 
-#: ../job-board.php:808
+#: ../job-board.php:705
 msgid "days"
 msgstr "днів"
 
-#: ../job-board.php:812
+#: ../job-board.php:709
 msgid "Daily archiving time"
 msgstr "Час архівування"
 
-#: ../job-board.php:815
+#: ../job-board.php:712
 msgid "hours"
 msgstr "год."
 
-#: ../job-board.php:817
+#: ../job-board.php:714
 msgid "min"
 msgstr "хв."
 
-#: ../job-board.php:823
+#: ../job-board.php:720
 msgid "Save Changes"
 msgstr "Зберегти зміни"
 
-#: ../job-board.php:829
-msgid "If you enjoy our plugin, please give it 5 stars on WordPress"
-msgstr "Якщо вам подобається наш плагін, будь ласка, поставте йому 5 зірочок на WordPress"
-
-#: ../job-board.php:830
-msgid "Rate the plugin"
-msgstr "Оцінити плагін"
-
-#: ../job-board.php:833
-msgid "If there is something wrong about it, please contact us"
-msgstr "Якщо щось не так, будь ласка, повідомте нам"
-
-#: ../job-board.php:877
-#: ../job-board.php:880
+#: ../job-board.php:764
+#: ../job-board.php:767
 msgid "Job updated."
 msgstr "Вакансію доповнено."
 
-#: ../job-board.php:878
+#: ../job-board.php:765
 msgid "Custom field updated."
 msgstr "Поле доповнено."
 
-#: ../job-board.php:879
+#: ../job-board.php:766
 msgid "Custom field deleted."
 msgstr "Поле видалено."
 
-#: ../job-board.php:881
+#: ../job-board.php:768
 msgid "Job restored to revision from"
 msgstr "Вакансію відновлено до ревізії від"
 
-#: ../job-board.php:882
+#: ../job-board.php:769
 msgid "Job published."
 msgstr "Вакансію опубліковано."
 
-#: ../job-board.php:883
+#: ../job-board.php:770
 msgid "Job saved."
 msgstr "Вакансію збережено."
 
-#: ../job-board.php:884
+#: ../job-board.php:771
 msgid "Job submitted."
 msgstr "Вакансію додано."
 
-#: ../job-board.php:885
+#: ../job-board.php:772
 msgid "Job scheduled for:"
 msgstr "Вакансію призначено на:"
 
-#: ../job-board.php:886
+#: ../job-board.php:773
 msgid "Job draft updated."
 msgstr "Чернетку вакансії доповнено."
 
-#: ../job-board.php:1040
-#: ../job-board.php:1832
+#: ../job-board.php:927
+#: ../job-board.php:1687
 msgid "Link is not found!"
 msgstr "Посилання не знайдено!"
 
-#: ../job-board.php:1043
+#: ../job-board.php:930
 msgid "View this offer"
 msgstr "Переглянути пропозицію"
 
-#: ../job-board.php:1043
+#: ../job-board.php:930
 msgid "View"
 msgstr "Перегляд"
 
-#: ../job-board.php:1068
+#: ../job-board.php:955
 msgid "View Job"
 msgstr "Переглянути вакансію"
 
-#: ../job-board.php:1191
-#: ../job-board.php:1676
+#: ../job-board.php:1070
+#: ../job-board.php:1535
 msgid "Job offer"
 msgstr "Пропозиція"
 
-#: ../job-board.php:1192
-#: ../job-board.php:1387
-#: ../job-board.php:1388
+#: ../job-board.php:1071
+#: ../job-board.php:1247
+#: ../job-board.php:1248
 msgid "Location"
 msgstr "Розташування"
 
-#: ../job-board.php:1193
-#: ../job-board.php:1391
+#: ../job-board.php:1072
+#: ../job-board.php:1251
 msgid "Organization"
 msgstr "Організація"
 
-#: ../job-board.php:1195
+#: ../job-board.php:1074
 msgid "Categories"
 msgstr "Категорії"
 
-#: ../job-board.php:1196
-#: ../job-board.php:1395
-#: ../job-board.php:1677
+#: ../job-board.php:1075
+#: ../job-board.php:1255
+#: ../job-board.php:1536
 msgid "Salary"
 msgstr "Зарплата"
 
-#: ../job-board.php:1197
+#: ../job-board.php:1076
 msgid "Archive"
 msgstr "Архів"
 
-#: ../job-board.php:1198
-#: ../job-board.php:1678
+#: ../job-board.php:1077
+#: ../job-board.php:1537
 msgid "Date"
 msgstr "Дата"
 
-#: ../job-board.php:1254
+#: ../job-board.php:1132
 msgid "Job categories:"
 msgstr "Категорії вакансій:"
 
-#: ../job-board.php:1262
-#: ../job-board.php:1282
-#: ../job-board.php:1302
-#: ../job-board.php:1945
+#: ../job-board.php:1140
+#: ../job-board.php:1160
+#: ../job-board.php:1180
+#: ../job-board.php:1800
 msgid "Show all"
 msgstr "Показати все"
 
-#: ../job-board.php:1274
+#: ../job-board.php:1152
 msgid "Archived jobs:"
 msgstr "Архівні вакансії:"
 
-#: ../job-board.php:1294
+#: ../job-board.php:1172
 msgid "Employment type:"
 msgstr "Вид зайнятості:"
 
-#: ../job-board.php:1379
+#: ../job-board.php:1239
 msgid "Requirements"
 msgstr "Вимоги"
 
-#: ../job-board.php:1392
+#: ../job-board.php:1252
 msgid "Organization name"
 msgstr "Назва організації"
 
-#: ../job-board.php:1399
+#: ../job-board.php:1259
 msgid "Expiry date"
 msgstr "Кінцева дата"
 
-#: ../job-board.php:1407
-msgid "Move to archive"
-msgstr "Відправити в архів"
-
-#: ../job-board.php:1568
+#: ../job-board.php:1427
 msgid "location field should not be empty"
 msgstr "поле локації не може бути пустим"
 
-#: ../job-board.php:1571
+#: ../job-board.php:1430
 msgid "organization field should not be empty."
 msgstr "поле організації не може бути пустим"
 
-#: ../job-board.php:1630
+#: ../job-board.php:1489
 msgid "vacancy"
 msgstr "вакансія"
 
-#: ../job-board.php:1631
+#: ../job-board.php:1490
 msgid "vacancies"
 msgstr "вакансії"
 
-#: ../job-board.php:1855
+#: ../job-board.php:1710
 msgid "Jobs per page"
 msgstr "Кількість вакансій на сторінці"
 
-#: ../job-board.php:1880
+#: ../job-board.php:1735
 msgid "Job offers for choosen category by last day"
 msgstr "Останні пропозиції згідно вибраної категорії "
 
-#: ../job-board.php:1884
+#: ../job-board.php:1739
 msgid "Search results for"
 msgstr "Результати пошуку для"
 
-#: ../job-board.php:1887
-#: ../job-board.php:2834
+#: ../job-board.php:1742
+#: ../job-board.php:2686
 msgid "Search"
 msgstr "Пошук"
 
-#: ../job-board.php:1911
+#: ../job-board.php:1766
 msgid "Job candidate options"
 msgstr "Опції кандидата"
 
-#: ../job-board.php:1915
+#: ../job-board.php:1770
 msgid "Upload your CV file"
 msgstr "Завантажити резюме"
 
-#: ../job-board.php:1918
+#: ../job-board.php:1773
 msgid "You can upload only DOC/DOCX, PDF or TXT document."
 msgstr "Ви можете завантажити тільки DOC/DOCX, PDF чи TXT документ."
 
-#: ../job-board.php:1926
+#: ../job-board.php:1781
 msgid "Delete current CV"
 msgstr "Видалити поточне резюме"
 
-#: ../job-board.php:1935
+#: ../job-board.php:1790
 msgid "Set job search category"
 msgstr "Задати категорію пошуку роботи:"
 
-#: ../job-board.php:1955
+#: ../job-board.php:1810
 msgid "Choose job search category"
 msgstr "Вибрати категорію пошуку роботи"
 
-#: ../job-board.php:1958
+#: ../job-board.php:1813
 msgid "Clear current category search"
 msgstr "Очистити поточну категорію пошуку"
 
-#: ../job-board.php:1966
+#: ../job-board.php:1821
 msgid "Candidate saved search"
 msgstr "Збережений пошук кандидата"
 
-#: ../job-board.php:1981
+#: ../job-board.php:1836
 msgid "View saved search results"
 msgstr "Переглянути результати збереженого пошуку"
 
-#: ../job-board.php:1983
+#: ../job-board.php:1838
 msgid "Your saved search"
 msgstr "Збережений пошук"
 
-#: ../job-board.php:1986
+#: ../job-board.php:1841
 msgid "Saved search not found"
 msgstr "Збережений пошук не знайдено"
 
-#: ../job-board.php:1991
+#: ../job-board.php:1846
 msgid "Clear current saved search"
 msgstr "Очистити збережені налаштування пошуку"
 
-#: ../job-board.php:2018
+#: ../job-board.php:1873
 msgid "Failed to load CV: wrong file type. You can upload only DOC/DOCX, PDF or TXT document."
 msgstr "Помилка при завантаженні резюме: невірний тип файлу. Ви можете завантажити тільки DOC/DOCX, PDF чи TXT документ."
 
-#: ../job-board.php:2222
+#: ../job-board.php:2077
 msgid "Support"
 msgstr "Підтримка"
 
-#: ../job-board.php:2389
+#: ../job-board.php:2244
 msgid "Last 3 days"
 msgstr "Останні 3 дні"
 
-#: ../job-board.php:2390
+#: ../job-board.php:2245
 msgid "Last week"
 msgstr "Останній тиждень"
 
-#: ../job-board.php:2391
+#: ../job-board.php:2246
 msgid "Last month"
 msgstr "Останній місяць"
 
-#: ../job-board.php:2501
+#: ../job-board.php:2353
 msgid "Error: Vacancy author not found. The message has not been sent."
 msgstr "Помилка: Автор не знайдений. Повiдомлення не може бути вiдправлене."
 
-#: ../job-board.php:2515
-#: ../job-board.php:2530
-#: ../job-board.php:2538
+#: ../job-board.php:2367
+#: ../job-board.php:2382
+#: ../job-board.php:2390
 msgid "Hello,"
 msgstr "Вітаємо вас,"
 
-#: ../job-board.php:2516
-#: ../job-board.php:2531
-#: ../job-board.php:2539
+#: ../job-board.php:2368
+#: ../job-board.php:2383
+#: ../job-board.php:2391
 msgid "You receive message for your job offer:"
 msgstr "Ви отримали повідомлення щодо вашої вакансії:"
 
-#: ../job-board.php:2517
-#: ../job-board.php:2532
-#: ../job-board.php:2540
+#: ../job-board.php:2369
+#: ../job-board.php:2384
+#: ../job-board.php:2392
 msgid "from candidate:"
 msgstr "від кандидата:"
 
-#: ../job-board.php:2524
-#: ../job-board.php:2533
-#: ../job-board.php:2547
+#: ../job-board.php:2376
+#: ../job-board.php:2385
+#: ../job-board.php:2399
 msgid "Candidate CV:"
 msgstr "Резюме кандидата:"
 
-#: ../job-board.php:2524
-#: ../job-board.php:2547
+#: ../job-board.php:2376
+#: ../job-board.php:2399
 msgid "...sorry, CV not found."
 msgstr "…вибачте, резюме не знайдено."
 
-#: ../job-board.php:2526
-#: ../job-board.php:2549
+#: ../job-board.php:2378
+#: ../job-board.php:2401
 #, php-format
 msgid "This mail was sent by %sJob board%s plugin by %sBestWebSoft%s from"
 msgstr "Цей лист було відправлено за допомогою плагіну %sJob board%s %s від BestWebSoft%s від"
 
-#: ../job-board.php:2528
-#: ../job-board.php:2535
-#: ../job-board.php:2551
+#: ../job-board.php:2380
+#: ../job-board.php:2387
+#: ../job-board.php:2403
 msgid "Reply for"
 msgstr "Відповісти на"
 
-#: ../job-board.php:2528
-#: ../job-board.php:2535
-#: ../job-board.php:2551
+#: ../job-board.php:2380
+#: ../job-board.php:2387
+#: ../job-board.php:2403
 msgid "job offer."
 msgstr "вакансію."
 
-#: ../job-board.php:2534
+#: ../job-board.php:2386
 msgid "This mail was sent by Job board plugin by BestWebSoft from"
 msgstr "Цей лист було відправлено плагіном Job board від BestWebSoft від"
 
-#: ../job-board.php:2580
-#: ../job-board.php:2592
+#: ../job-board.php:2432
+#: ../job-board.php:2444
 msgid "Back to jobs"
 msgstr "Назад до вакансій"
 
-#: ../job-board.php:2608
+#: ../job-board.php:2460
 msgid "Add parameters to sorting jobs"
 msgstr "Введіть параметри сортування вакансій"
 
-#: ../job-board.php:2617
+#: ../job-board.php:2469
 msgid "Search results saved."
 msgstr "Налаштування пошуку збережено."
 
-#: ../job-board.php:2627
+#: ../job-board.php:2479
 msgid "Save search results"
 msgstr "Зберегти налаштування пошуку "
 
-#: ../job-board.php:2651
-#: ../job-board.php:2885
-#: ../job-board.php:2909
+#: ../job-board.php:2503
+#: ../job-board.php:2734
+#: ../job-board.php:2758
 msgid "Location:"
 msgstr "Розміщення:"
 
-#: ../job-board.php:2654
+#: ../job-board.php:2506
 msgid "Show all locations"
 msgstr "Показати всі розміщення"
 
-#: ../job-board.php:2677
+#: ../job-board.php:2529
 msgid "Select category:"
 msgstr "Выберіть категорію:"
 
-#: ../job-board.php:2681
+#: ../job-board.php:2533
 msgid "Show all categories"
 msgstr "Показати всі категорії"
 
-#: ../job-board.php:2696
-#: ../job-board.php:2933
+#: ../job-board.php:2548
+#: ../job-board.php:2782
 msgid "Employment:"
 msgstr "Вид зайнятості:"
 
-#: ../job-board.php:2700
+#: ../job-board.php:2552
 msgid "Show all employments"
 msgstr "Показати всі види зайнятості"
 
-#: ../job-board.php:2715
+#: ../job-board.php:2567
 msgid "Searching period:"
 msgstr "Період пошуку:"
 
-#: ../job-board.php:2719
+#: ../job-board.php:2571
 msgid "All time"
 msgstr "За весь час"
 
-#: ../job-board.php:2738
-#: ../job-board.php:2882
-#: ../job-board.php:2906
+#: ../job-board.php:2590
+#: ../job-board.php:2731
+#: ../job-board.php:2755
 msgid "Organization:"
 msgstr "Організація:"
 
-#: ../job-board.php:2748
-#: ../job-board.php:2888
-#: ../job-board.php:2912
+#: ../job-board.php:2600
+#: ../job-board.php:2737
+#: ../job-board.php:2761
 msgid "Salary:"
 msgstr "Зарплата:"
 
-#: ../job-board.php:2762
+#: ../job-board.php:2614
 msgid "to"
 msgstr "до"
 
-#: ../job-board.php:2833
+#: ../job-board.php:2685
 msgid "Reset"
 msgstr "Перезавантажити"
 
-#: ../job-board.php:2842
+#: ../job-board.php:2694
 msgid "Nothing found."
 msgstr "Нічого не знайдено."
 
-#: ../job-board.php:2875
-#: ../job-board.php:2904
+#: ../job-board.php:2724
+#: ../job-board.php:2753
 msgid "Posted:"
 msgstr "Розміщено:"
 
-#: ../job-board.php:2936
+#: ../job-board.php:2785
 msgid "Requirements:"
 msgstr "Вимоги:"
 
-#: ../job-board.php:2945
+#: ../job-board.php:2794
 msgid "Send CV"
 msgstr "Надіслати резюме"
 
-#: ../job-board.php:2988
+#: ../job-board.php:2837
 msgid "Username"
 msgstr "Користувач"
 
-#: ../job-board.php:2989
+#: ../job-board.php:2838
 msgid "Password"
 msgstr "Пароль"
 
-#: ../job-board.php:2990
+#: ../job-board.php:2839
 msgid "Remember Me"
 msgstr "Запам'ятати мене"
 
-#: ../job-board.php:2991
+#: ../job-board.php:2840
 msgid "Log In"
 msgstr "Увійти"
 
-#: ../job-board.php:3004
+#: ../job-board.php:2853
 msgid "Registration"
 msgstr "Реєстрація"
 
-#: ../job-board.php:3014
+#: ../job-board.php:2863
 msgid "Name:"
 msgstr "Ім'я:"
 
-#: ../job-board.php:3020
+#: ../job-board.php:2869
 msgid "E-mail:"
 msgstr "Ел. пошта:"
 
-#: ../job-board.php:3030
+#: ../job-board.php:2879
 msgid "User role:"
 msgstr "Роль:"
 
-#: ../job-board.php:3033
+#: ../job-board.php:2882
 msgid "Employer"
 msgstr "Роботодавець"
 
-#: ../job-board.php:3035
+#: ../job-board.php:2884
 msgid "Job candidate"
 msgstr "Кандидат"
 
-#: ../job-board.php:3045
+#: ../job-board.php:2894
 msgid "Clear"
 msgstr "Очистити"
 
-#: ../job-board.php:3046
+#: ../job-board.php:2895
 msgid "Register"
 msgstr "Зареєструватись"
 
-#: ../job-board.php:3061
+#: ../job-board.php:2910
 msgid "Wrong user name."
 msgstr "Невірне ім'я користувача."
 
-#: ../job-board.php:3062
+#: ../job-board.php:2911
 msgid "Wrong e-mail adress."
 msgstr "Невірна e-mail адреса."
 
-#: ../job-board.php:3063
+#: ../job-board.php:2912
 msgid "Role was not selected."
 msgstr "Роль не вибрано."
 
-#: ../job-board.php:3078
+#: ../job-board.php:2927
 msgid "Thank you for registering. Please check your email for password."
 msgstr "Дякуємо за реєстрацію. Ваш пароль надіслано на вказаний e-mail. "
 
-#: ../job-board.php:3080
+#: ../job-board.php:2929
 msgid "User already exists.  Password inherited."
 msgstr "Такий користувач уже існує."
 
-#: ../job-board.php:3083
+#: ../job-board.php:2932
 msgid "New user registration failed..."
 msgstr "Помилка при реєстрації нового користувача…"
 
-#: ../job-board.php:3089
+#: ../job-board.php:2938
 #, php-format
 msgid "Please %slogout%s and register/login as Employer or Job candidate for possibility to sort jobs and sending CV."
 msgstr "Будь ласка, %sвийдіть%s та зареєструйтесь/увійдіть як Роботодавець чи Кандидат, щоб мати можливість сортувати вакансії та відправляти резюме."
 
-#: ../job-board.php:3089
+#: ../job-board.php:2938
 msgid "Logout"
 msgstr "Вийти"
 
-#: ../job-board.php:3092
+#: ../job-board.php:2941
 #, php-format
 msgid "You are logged as %s."
 msgstr "Ви зайшли як %s."
 
-#: ../job-board.php:3112
+#: ../job-board.php:2961
 msgid "Read more..."
 msgstr "Читати далі…"
 
-#: ../job-board.php:3154
+#: ../job-board.php:3003
 msgid "WARNING:"
 msgstr "УВАГА:"
+
+#~ msgid "requires"
+#~ msgstr "потребує"
+
+#~ msgid ""
+#~ "or higher, that is why it has been deactivated! Please upgrade WordPress "
+#~ "and try again."
+#~ msgstr ""
+#~ "або вище, ось чому плагін було деактивовано! Будь ласка, оновіть "
+#~ "WordPress та спробуйте ще раз."
+
+#~ msgid "Back to the WordPress"
+#~ msgstr "Назад до WordPress на"
+
+#~ msgid "Plugins page"
+#~ msgstr "Сторінку плагінів"
+
+#~ msgid "If you enjoy our plugin, please give it 5 stars on WordPress"
+#~ msgstr ""
+#~ "Якщо вам подобається наш плагін, будь ласка, поставте йому 5 зірочок на "
+#~ "WordPress"
+
+#~ msgid "Rate the plugin"
+#~ msgstr "Оцінити плагін"
+
+#~ msgid "If there is something wrong about it, please contact us"
+#~ msgstr "Якщо щось не так, будь ласка, повідомте нам"
+
+#~ msgid "Move to archive"
+#~ msgstr "Відправити в архів"
 
 #~ msgid "Show/hide frontend form for filtering jobs"
 #~ msgstr "Відображати/сховати форму для сортування вакансій"

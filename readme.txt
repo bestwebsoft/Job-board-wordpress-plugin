@@ -1,10 +1,10 @@
-=== Job board ===
+=== Job board by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: plugin, wordpress, jobs, vacancy, job-manager, job-board, job, job offer, job bord, djob board, dgob bord, CV, upload CV, add job offer, apply for a job, vacancy application, job candidate role, manage vacancies, job offer list, save search conditions, job offer categories, search by job category, search by salary, search by organization, post job offer, vacancy archive.  
 Requires at least: 3.5
-Tested up to: 4.1.1
-Stable tag: 1.0.4
+Tested up to: 4.2-beta4
+Stable tag: 1.0.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,6 +17,7 @@ The plugin allows to create and post job-board posts as well as to change, sort 
 http://www.youtube.com/watch?v=ox2rMnwxfHs
 
 <a href="http://wordpress.org/plugins/job-board/faq/" target="_blank">FAQ</a>
+
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
 
 = Features =
@@ -60,6 +61,8 @@ We can fix some things for free for the users who provide translation of our plu
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
 3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" > "Job board".
 4. Create a page or a post and insert the short-code [jbbrd_vacancy] into the text.
+
+<a href="https://docs.google.com/document/d/1Lg33uJlVEW6Seo7oio8Dsc0PgOq0iXotTRtyHUHJLCI/edit" target="_blank">View a PDF version of Step-by-step Instruction on Job board Installation</a>.
 
 == Frequently Asked Questions ==
 
@@ -127,6 +130,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.0.5 - 09.04.2015 =
+* Bugfix : A permalinks error when using the vacancy page as blog main page was fixed
+* Bugfix : Incorrect style frontend sorting form was fixed.
+* Bugfix : Fixed position for job-board posts is removed.
+
 = V1.0.4 - 26.02.2015 =
 * Bugfix : Incorrect style linking was fixed.
 * Update : We changed all deprecated functions in WordPress 4.1.1.
@@ -149,6 +157,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.0.5 =
+A permalinks error when using the vacancy page as blog main page was fixed. Incorrect style frontend sorting form was fixed. Fixed position for job-board posts is removed.
 
 = V1.0.4 =
 Incorrect style linking was fixed. We changed all deprecated functions in WordPress 4.1.1.
