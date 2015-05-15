@@ -1,10 +1,10 @@
 === Job board by BestWebSoft ===
 Contributors: bestwebsoft
-Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
+Donate link: http://bestwebsoft.com/donate/
 Tags: plugin, wordpress, jobs, vacancy, job-manager, job-board, job, job offer, job bord, djob board, dgob bord, CV, upload CV, add job offer, apply for a job, vacancy application, job candidate role, manage vacancies, job offer list, save search conditions, job offer categories, search by job category, search by salary, search by organization, post job offer, vacancy archive.  
 Requires at least: 3.5
-Tested up to: 4.2-beta4
-Stable tag: 1.0.5
+Tested up to: 4.2.2
+Stable tag: 1.0.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,6 +15,8 @@ The plugin allows to create a job-board page on your site.
 The plugin allows to create and post job-board posts as well as to change, sort and archive them. After inserting the short-code into the page, you will see all vacancies from a search form by categories, organizations, salary etc. The search form is available only after the user has been authorized as a candidate. The candidate is allowed to upload and submit a CV, select a category by which the list of vacant positions is formed for the last 24 hours and save the current search conditions to be used as a search template in future.
 
 http://www.youtube.com/watch?v=ox2rMnwxfHs
+
+<a href="http://www.youtube.com/watch?v=-5mDdQmDuIc" target="_blank">Video instruction on Installation</a>
 
 <a href="http://wordpress.org/plugins/job-board/faq/" target="_blank">FAQ</a>
 
@@ -64,6 +66,8 @@ We can fix some things for free for the users who provide translation of our plu
 
 <a href="https://docs.google.com/document/d/1Lg33uJlVEW6Seo7oio8Dsc0PgOq0iXotTRtyHUHJLCI/edit" target="_blank">View a PDF version of Step-by-step Instruction on Job board Installation</a>.
 
+http://www.youtube.com/watch?v=-5mDdQmDuIc
+
 == Frequently Asked Questions ==
 
 = How can I create a vacancies page on my site? =
@@ -110,6 +114,7 @@ Vacancies` validity is specified when entering a date in the "Expiry date" field
 = I have some problems with the plugin's work. What Information should I provide to receive proper support? =
 
 Please make sure that the problem hasn't been discussed yet on our forum (<a href="http://support.bestwebsoft.com" target="_blank">http://support.bestwebsoft.com</a>). If no, please provide the following data along with your problem's description:
+
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
@@ -129,6 +134,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 10. Registration form in widget area.
 
 == Changelog ==
+
+= V1.0.6 - 15.05.2015 =
+* Update : BWS plugins section is updated.
+* Update : We updated all functionality for wordpress 4.2.2.
 
 = V1.0.5 - 09.04.2015 =
 * Bugfix : A permalinks error when using the vacancy page as blog main page was fixed
@@ -157,6 +166,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.0.6 =
+BWS plugins section is updated. We updated all functionality for wordpress 4.2.2.
 
 = V1.0.5 =
 A permalinks error when using the vacancy page as blog main page was fixed. Incorrect style frontend sorting form was fixed. Fixed position for job-board posts is removed.

@@ -4,7 +4,7 @@ Plugin Name: Job board by BestWebSoft
 Plugin URI: http://bestwebsoft.com/products/
 Description: Plugin for adding to site possibility to create job offers page with custom search, send CV and subscribing for similar jobs.
 Author: BestWebSoft
-Version: 1.0.5
+Version: 1.0.6
 Author URI: http://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -778,7 +778,7 @@ if ( ! function_exists( 'jbbrd_vacancy_updated_messages' ) ) {
 			if ( '' == $jbbrd_options['shortcode_permalink'] ) {
 				$view_link = $preview_link = '';
 			} else {
-				$vacancy_id_slug	= ( ! get_option( 'permalink_structure' ) ) ? '&vacancy_id=' : '?vacancy_id=';
+				$vacancy_id_slug	= ( ! get_option('permalink_structure') && ( trim( $jbbrd_options['shortcode_permalink'], '/' ) != get_option( 'home' ) ) ) ? '&vacancy_id=' : '?vacancy_id=';
 				$view_link 			= sprintf( ' <a href="%s">%s</a>', $jbbrd_options['shortcode_permalink'] . $vacancy_id_slug . get_the_id(), __( 'View job', 'jbbrd' ) );
 				$preview_link 		= sprintf( ' <a target="_blank" href="%s">%s</a>', $jbbrd_options['shortcode_permalink'] . $vacancy_id_slug . get_the_id(), __( 'View job', 'jbbrd' ) );
 			}
@@ -2414,7 +2414,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 								'install_link'			=> '/wp-admin/plugin-install.php?tab=search&s=Job+Board+Bestwebsoft&plugin-search-input=Search+Plugins',
 							) );
 						}
-						if ( is_plugin_active( 'email-queue/email-queue.php' || is_plugin_active( 'email-queue-pro/email-queue-pro.php' ) ) && mlq_if_mail_plugin_is_in_queue( plugin_basename( __FILE__ ) ) ) {
+						if ( ( is_plugin_active( 'email-queue/email-queue.php' ) || is_plugin_active( 'email-queue-pro/email-queue-pro.php' ) ) && mlq_if_mail_plugin_is_in_queue( plugin_basename( __FILE__ ) ) ) {
 							mlq_get_mail_data_for_email_queue_and_save( plugin_basename( __FILE__ ), $jbbrd_current_employer_email, $jbbrd_subject, $jbbrd_message );
 						} elseif ( is_plugin_active( 'sender-pro/sender-pro.php' ) ) {
 							jbbrd_save_letter_to_sender_pro_db( $jbbrd_current_employer_id, $jbbrd_subject, $jbbrd_message, $jbbrd_current_candidate );
