@@ -89,6 +89,9 @@ input#jbbrd_salary_input {
 	width: 50px;
 	margin-right: 5px;
 }
+.jbbrd_input_number {
+	width: 50px;
+} 
 #jbbrd_archive_checkbox {
 	margin-left: 5px;
 }

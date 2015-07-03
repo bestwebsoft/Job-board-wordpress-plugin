@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Job board by BestWebSoft
+Plugin Name: Job Board by BestWebSoft
 Plugin URI: http://bestwebsoft.com/products/
 Description: Plugin for adding to site possibility to create job offers page with custom search, send CV and subscribing for similar jobs.
 Author: BestWebSoft
-Version: 1.0.6
+Version: 1.0.7
 Author URI: http://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -33,7 +33,7 @@ License: GPLv3 or later
 if ( ! function_exists( 'jbbrd_add_admin_menu' ) ) {
 	function jbbrd_add_admin_menu() {
 		bws_add_general_menu( plugin_basename( __FILE__ ) );
-		add_submenu_page( 'bws_plugins', 'Job board', 'Job board', 'manage_options', "job-board.php", 'jbbrd_settings_page' );	
+		add_submenu_page( 'bws_plugins', 'Job Board', 'Job Board', 'manage_options', "job-board.php", 'jbbrd_settings_page' );	
 		/* Add custom list page to candidate profile menu. */
 		$hook = add_users_page( 'New job offers', 'New job offers', 'job_candidate', 'job_candidate', 'jbbrd_candidate_category_custom_search_page' );
 		add_action( "load-$hook", 'jbbrd_screen_options' );
@@ -83,14 +83,11 @@ if ( ! function_exists ( 'jbbrd_init' ) ) {
 		jbbrd_post_type_vacancy();
 		/* Register taxonomy for vacancy. */
 		jbbrd_taxonomy_vacancy();
-		/* Register terms for archive. */
-		jbbrd_taxonomy_vacancy_terms();
-		/* Register terms for employment. */
-		jbbrd_taxonomy_employment_terms();
 		/* Hide logo image when search results displayed. */
 		jbbrd_logo_search_hide();
 		/* Call register settings function. */
 		jbbrd_settings();
+		add_action( 'delete_term_taxonomy', 'jbbrd_delete_term', 10, 1 );
 	}
 }
 
@@ -433,8 +430,14 @@ if ( ! function_exists( 'jbbrd_settings' ) ) {
 			'shortcode_permalink'				=> '',
 		);
 		/* Install the option defaults. */
-		if ( ! get_option( 'jbbrd_options' ) )
+		if ( ! get_option( 'jbbrd_options' ) ) {
 			add_option( 'jbbrd_options', $jbbrd_option_defaults );
+			/* Add taxonomy terms during first instalation of plugin */
+			/* Register terms for archive. */
+			jbbrd_taxonomy_vacancy_terms();
+			/* Register terms for employment. */
+			jbbrd_taxonomy_employment_terms();
+		}
 		/* Get options from the database. */
 		$jbbrd_options = get_option( 'jbbrd_options' );
 
@@ -511,9 +514,9 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 	function jbbrd_settings_page() {
 		global $wpdb, $jbbrd_options, $jbbrd_option_defaults, $jbbrd_sender_not_found, $jbbrd_sender_not_active, $jbbrd_plugin_info;
 		$error = $warning = '';
-
+		$plugin_basename  = plugin_basename( __FILE__ );
 		/* Save data for settings page. */
-		if ( isset( $_POST['jbbrd_form_submit'] ) && check_admin_referer( plugin_basename(__FILE__), 'jbbrd_nonce_name' ) ) {
+		if ( isset( $_POST['jbbrd_form_submit'] ) && check_admin_referer( $plugin_basename, 'jbbrd_nonce_name' ) ) {
 			/* Check if start shedule time changed. */
 			if ( ( $_POST['jbbrd_custom_time_hours'] != $jbbrd_options['custom_time_hours'] ) || ( $_POST['jbbrd_custom_time_min'] != $jbbrd_options['custom_time_min'] ) ) 
 				$jbbrd_reset_shedule_time = true;
@@ -521,7 +524,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 				$jbbrd_reset_shedule_time = false;
 			
 			if ( ( isset( $_POST['jbbrd_post_per_page'] ) ) && ( '' != $_POST['jbbrd_post_per_page'] ) && ( 0 < $_POST['jbbrd_post_per_page'] ) && ( is_numeric( $_POST['jbbrd_post_per_page'] ) ) ) {
-				$jbbrd_options['post_per_page'] = esc_html( floor( $_POST['jbbrd_post_per_page'] ) );
+				$jbbrd_options['post_per_page'] = esc_html( ltrim( $_POST['jbbrd_post_per_page'], '0' ) );
 			} elseif ( '-1' == $_POST['jbbrd_post_per_page'] ) {
 				$jbbrd_options['post_per_page'] = '-1';
 			}
@@ -567,15 +570,15 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 
 			/* Set archieving period. */
 			if ( ( isset( $_POST['jbbrd_archieving_period'] ) ) && ( '' != $_POST['jbbrd_archieving_period'] ) && ( is_numeric( $_POST['jbbrd_archieving_period'] ) ) )
-				$jbbrd_options['archieving_period'] = esc_html( floor( $_POST['jbbrd_archieving_period'] ) );
+				$jbbrd_options['archieving_period'] = esc_html( ltrim( $_POST['jbbrd_archieving_period'], '0' ) );
 
 			/* Set custom time to start move to archive shedule. */
 			if ( ( isset( $_POST['jbbrd_custom_time_hours'] ) ) && ( '' != $_POST['jbbrd_custom_time_hours'] ) && ( is_numeric( $_POST['jbbrd_custom_time_hours'] ) ) ) {
-				$jbbrd_options['custom_time_hours'] = ( 23 < floor( $_POST['jbbrd_custom_time_hours'] ) ) ? 23 : esc_html( floor( $_POST['jbbrd_custom_time_hours'] ) );
+				$jbbrd_options['custom_time_hours'] = 23 < $_POST['jbbrd_custom_time_hours'] ? 23 : esc_html( ltrim( $_POST['jbbrd_custom_time_hours'], '0' ) );
 			}
 			if ( ( isset( $_POST['jbbrd_custom_time_min'] ) ) && ( '' != $_POST['jbbrd_custom_time_min'] ) && ( is_numeric( $_POST['jbbrd_custom_time_min'] ) ) ) {
-				$jbbrd_options['custom_time_min'] = ( 59 < floor( $_POST['jbbrd_custom_time_min'] ) ) ? 59 : esc_html( floor( $_POST['jbbrd_custom_time_min'] ) );
-			}			
+				$jbbrd_options['custom_time_min'] = 59 < $_POST['jbbrd_custom_time_min'] ? 59 : esc_html( ltrim( $_POST['jbbrd_custom_time_min'], '0' ) );
+			}
 
 			if ( '' == $error ) {
 				/* Update options in the database. */
@@ -606,10 +609,16 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 		}
 		if ( isset( $jbbrd_sender_not_active ) || '' != $jbbrd_sender_not_active ) {
 			$warning .= '<strong>' . __( 'Warning:', 'jbbrd' ) . '</strong>&nbsp;' . $jbbrd_sender_not_active . '<br />';
+		} 
+
+		if ( isset( $_REQUEST['bws_restore_confirm'] ) && check_admin_referer( $plugin_basename, 'bws_settings_nonce_name' ) ) {
+			$jbbrd_options = $jbbrd_option_defaults;
+			update_option( 'jbbrd_options', $jbbrd_options );
+			$message = __( 'All plugin settings were restored.', 'jbbrd' );
 		} ?>
 		<div class="wrap">
 			<div class="icon32 icon32-bws" id="icon-options-general"></div>
-			<h2><?php _e( 'Job board settings', 'jbbrd' ); ?></h2>
+			<h2><?php _e( 'Job Board settings', 'jbbrd' ); ?></h2>
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab nav-tab-active" href="admin.php?page=job-board.php"><?php _e( 'Settings', 'jbbrd' ); ?></a>
 				<a class="nav-tab" href="http://bestwebsoft.com/products/job-board/faq/" target="_blank"><?php _e( 'FAQ', 'jbbrd' ); ?></a>
@@ -621,113 +630,118 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 				<p><strong><?php _e( "Notice:", 'jbbrd' ); ?></strong> <?php _e( "The plugin's settings have been changed. In order to save them please don't forget to click the 'Save Changes' button.", 'jbbrd' ); ?></p>
 			</div>
 			<div id="jbbrd_settings_error" class="error" <?php if ( '' == $error ) echo 'style="display:none"'; ?>><p><?php echo $error; ?></p></div>
-			<div class="update-nag" style="display: block; margin: 5px 0px 0px; <?php if ( '' == $warning ) echo ' display:none; '; ?>"><?php echo $warning; ?></div>
-			<p><?php print( __( 'Place shortcode', 'jbbrd' ) . '&nbsp;<span style="font-weight:bold;font-size:1.2em;">[jbbrd_vacancy]</span>&nbsp;' . __( 'to your job page to display frontend content and', 'jbbrd' ) . '&nbsp;<span style="font-weight:bold;font-size:1.2em;">[jbbrd_registration]</span>&nbsp;' . __( 'to display registration form.', 'jbbrd' ) ); ?></p>
-			<form id="jbbrd_settings_form" method="post" action="admin.php?page=job-board.php">
-				<table class="form-table">
-					<tr valign="top">
-						<th><?php _e( 'Number of jobs on page', 'jbbrd' ); ?></th>
-						<td><input maxlength="2" type="text" name="jbbrd_post_per_page" value="<?php if ( isset( $jbbrd_options['post_per_page'] ) ) echo stripslashes( $jbbrd_options['post_per_page'] ); else echo stripslashes( $jbbrd_option_defaults['post_per_page'] ); ?>"/> <?php _e( 'per page', 'jbbrd' ); ?><br />
-							<span class="jbbrd_admin_options_notice">(<?php _e( 'You can set -1 to to show all jobs', 'jbbrd' ); ?>)</span>
-						</td>
-					</tr>
-					<tr valign="top">
-						<th><?php _e( 'Salary monetary unit', 'jbbrd' ); ?></th>
-						<td>
-							<input type="radio" id="preset_money_unit_select" name="jbbrd_select_money_unit" value="preset" <?php if ( 'preset' == $jbbrd_options['select_money_unit'] ) echo 'checked="checked" '; ?>/>
-							<select name="jbbrd_money_choose">
-								<?php foreach ( $jbbrd_options['money'] as $money_unit ) {
-									/* Output each select option line, check against the last $_GET to show the current option selected. */
-									echo '<option value="' . $money_unit . '"';
-										if ( $money_unit == $jbbrd_options['money_choose'] ) echo ' selected="selected"';
-									echo '">' . $money_unit . '</option>';
-								} ?>
-							</select><br/>
-							<input type="radio" id="custom_money_unit_select" name="jbbrd_select_money_unit" value="custom" <?php if ( 'custom' == $jbbrd_options['select_money_unit'] ) echo "checked=\"checked\" "; ?>/> 
-							<input type="text" style="width:200px;" name="jbbrd_custom_money_unit" value="<?php echo $jbbrd_options['custom_money_unit']; ?>" />
-							<span class="jbbrd_admin_options_notice">(<?php _e( "Custom monetary unit", 'jbbrd' ); ?>)</span>
-						</td>
-					</tr>
-					<tr valign="top">
-						<th><?php _e( 'Salary period unit', 'jbbrd' ); ?></th>
-						<td>
-							<select name="jbbrd_time_period_choose">
-								<?php foreach ( $jbbrd_options['time_period'] as $key => $money_unit ) {
-									/* Output each select option line, check against the last $_GET to show the current option selected. */
-									echo '<option value="' . $money_unit . '"';
-									if ( $money_unit == $jbbrd_options['time_period_choose'] )
-										echo ' selected="selected"';
-									echo '">' . $money_unit . '</option>';
-								} ?>
-							</select>
-							<span class="jbbrd_admin_options_notice"> (<?php _e( 'Time period for current salary', 'jbbrd' ); ?>)</span>
-						</td>
-					</tr>
-					<tr valign="top">
-						<th><?php _e( 'Frontend logo position', 'jbbrd' ); ?></th>
-						<td>
-							<label>
-								<input type="radio" name="jbbrd_logo_position" value="left" <?php if ( 'left' == $jbbrd_options['logo_position'] ) echo ' checked="checked"'; ?> />
-								<?php _e( 'Left', 'jbbrd' ); ?>
-							</label><br />
-							<label>
-								<input id="jbbrd_logo_position_right" type="radio" name="jbbrd_logo_position" value="right" <?php if ( 'right' == $jbbrd_options['logo_position'] ) echo ' checked="checked"'; ?> />
-								<?php _e( 'Right', 'jbbrd' ); ?>
-							</label>
-						</td>
-					</tr>
-					<tr valign="top">
-						<th><?php _e( 'Display frontend form', 'jbbrd' ); ?></th>
-						<td>
-							<input type="checkbox" name="jbbrd_frontend_form" value="1" <?php if ( 1 == $jbbrd_options['frontend_form'] ) echo ' checked="checked"'; ?> /> 
-							<span class="jbbrd_admin_options_notice"><?php _e( 'Display job filtering form in frontend.' , 'jbbrd' ); ?></span><br />
-							<input type="checkbox" name="jbbrd_frontend_form_non_registered" value="1" <?php if ( 1 == $jbbrd_options['frontend_form_non_registered'] ) echo ' checked="checked"'; ?> /> 
-							<span class="jbbrd_admin_options_notice"><?php _e( 'Display job filtering form in frontend for non-registered users' , 'jbbrd' ); ?></span>
-						</td>
-					</tr>
-					<tr valign="top">
-						<th><?php _e( 'Location field type', 'jbbrd' ); ?></th>
-						<td>
-							<input type="checkbox" name="jbbrd_location_select" value="1" <?php if ( 1 == $jbbrd_options['location_select'] ) echo ' checked="checked"'; ?> /> 
-							<span class="jbbrd_admin_options_notice"><?php _e( 'Change location field in frontens sorting form to select box of all locations which already add to jobs base.' , 'jbbrd' ); ?></span>
-						</td>
-					</tr>
-					<tr valign="top">
-						<th><?php _e( 'Template text for CV sending', 'jbbrd' ); ?></th>
-						<td>
-							<textarea name="jbbrd_vacancy_reply_text"><?php if ( isset( $jbbrd_options['vacancy_reply_text'] ) ) echo stripslashes( $jbbrd_options['vacancy_reply_text'] ); else echo stripslashes( $jbbrd_option_defaults['vacancy_reply_text'] ); ?></textarea>
-						</td>
-					</tr>
-					<tr valign="top">
-						<th><?php _e( 'Job offers default expiry time', 'jbbrd' ); ?></th>
-						<td>
-							<input maxlength="3" size="2" type="text" name="jbbrd_archieving_period" value="<?php if ( isset( $jbbrd_options['archieving_period'] ) ) echo stripslashes( $jbbrd_options['archieving_period'] ); else echo stripslashes( $jbbrd_option_defaults['archieving_period'] ); ?>"/>
-							<?php _e( 'days', 'jbbrd' ); ?>
-						</td>
-					</tr>
-					<tr valign="top">
-						<th><?php _e( 'Daily archiving time', 'jbbrd' ); ?></th>
-						<td>
-							<input maxlength="2" size="2" type="text" name="jbbrd_custom_time_hours" value="<?php if ( isset( $jbbrd_options['custom_time_hours'] ) ) echo stripslashes( $jbbrd_options['custom_time_hours'] ); else echo stripslashes( $jbbrd_option_defaults['custom_time_hours'] ); ?>"/>
-							<?php _e( 'hours', 'jbbrd' ); ?>
-							<input maxlength="2" size="2" type="text" name="jbbrd_custom_time_min" value="<?php if ( isset( $jbbrd_options['custom_time_min'] ) ) echo stripslashes( $jbbrd_options['custom_time_min'] ); else echo stripslashes( $jbbrd_option_defaults['custom_time_min'] ); ?>"/>
-							<?php _e( 'min', 'jbbrd' ); ?>
-						</td>
-					</tr>
-				</table>
-				<input type="hidden" name="jbbrd_form_submit" value="submit" />
-				<p class="submit_div">
-					<input type="submit" class="button-primary" value="<?php _e( 'Save Changes', 'jbbrd' ); ?>" />
-				</p>
-				<?php wp_nonce_field( plugin_basename( __FILE__ ), 'jbbrd_nonce_name' ); ?>
-			</form>
-			<?php bws_plugin_reviews_block( $jbbrd_plugin_info['Name'], 'job-board' ); ?>
+			<?php if ( isset( $_REQUEST['bws_restore_default'] ) && check_admin_referer( $plugin_basename, 'bws_settings_nonce_name' ) ) {
+				bws_form_restore_default_confirm( $plugin_basename );
+			} else { ?>
+				<div class="update-nag" style="margin: 5px 0px 0px; <?php if ( '' == $warning ) echo ' display:none; '; ?>"><?php echo $warning; ?></div>
+				<p><?php print( __( 'Place shortcode', 'jbbrd' ) . '&nbsp;<span style="font-weight:bold;font-size:1.2em;">[jbbrd_vacancy]</span>&nbsp;' . __( 'to your job page to display frontend content and', 'jbbrd' ) . '&nbsp;<span style="font-weight:bold;font-size:1.2em;">[jbbrd_registration]</span>&nbsp;' . __( 'to display registration form.', 'jbbrd' ) ); ?></p>
+				<form id="jbbrd_settings_form" method="post" action="admin.php?page=job-board.php">
+					<table class="form-table">
+						<tr valign="top">
+							<th><?php _e( 'Number of jobs on page', 'jbbrd' ); ?></th>
+							<td><input class="jbbrd_input_number" type="number" min="-1" max="99" step="1" name="jbbrd_post_per_page" value="<?php if ( isset( $jbbrd_options['post_per_page'] ) ) echo stripslashes( $jbbrd_options['post_per_page'] ); else echo stripslashes( $jbbrd_option_defaults['post_per_page'] ); ?>"/> <?php _e( 'per page', 'jbbrd' ); ?><br />
+								<span class="jbbrd_admin_options_notice">(<?php _e( 'You can set -1 to to show all jobs', 'jbbrd' ); ?>)</span>
+							</td>
+						</tr>
+						<tr valign="top">
+							<th><?php _e( 'Salary monetary unit', 'jbbrd' ); ?></th>
+							<td>
+								<input type="radio" id="preset_money_unit_select" name="jbbrd_select_money_unit" value="preset" <?php if ( 'preset' == $jbbrd_options['select_money_unit'] ) echo 'checked="checked" '; ?>/>
+								<select name="jbbrd_money_choose">
+									<?php foreach ( $jbbrd_options['money'] as $money_unit ) {
+										/* Output each select option line, check against the last $_GET to show the current option selected. */
+										echo '<option value="' . $money_unit . '"';
+											if ( $money_unit == $jbbrd_options['money_choose'] ) echo ' selected="selected"';
+										echo '">' . $money_unit . '</option>';
+									} ?>
+								</select><br/>
+								<input type="radio" id="custom_money_unit_select" name="jbbrd_select_money_unit" value="custom" <?php if ( 'custom' == $jbbrd_options['select_money_unit'] ) echo "checked=\"checked\" "; ?>/> 
+								<input type="text" style="width:200px;" name="jbbrd_custom_money_unit" value="<?php echo $jbbrd_options['custom_money_unit']; ?>" maxlength="100" />
+								<span class="jbbrd_admin_options_notice">(<?php _e( "Custom monetary unit", 'jbbrd' ); ?>)</span>
+							</td>
+						</tr>
+						<tr valign="top">
+							<th><?php _e( 'Salary period unit', 'jbbrd' ); ?></th>
+							<td>
+								<select name="jbbrd_time_period_choose">
+									<?php foreach ( $jbbrd_options['time_period'] as $key => $money_unit ) {
+										/* Output each select option line, check against the last $_GET to show the current option selected. */
+										echo '<option value="' . $money_unit . '"';
+										if ( $money_unit == $jbbrd_options['time_period_choose'] )
+											echo ' selected="selected"';
+										echo '">' . $money_unit . '</option>';
+									} ?>
+								</select>
+								<span class="jbbrd_admin_options_notice"> (<?php _e( 'Time period for current salary', 'jbbrd' ); ?>)</span>
+							</td>
+						</tr>
+						<tr valign="top">
+							<th><?php _e( 'Frontend logo position', 'jbbrd' ); ?></th>
+							<td>
+								<label>
+									<input type="radio" name="jbbrd_logo_position" value="left" <?php if ( 'left' == $jbbrd_options['logo_position'] ) echo ' checked="checked"'; ?> />
+									<?php _e( 'Left', 'jbbrd' ); ?>
+								</label><br />
+								<label>
+									<input id="jbbrd_logo_position_right" type="radio" name="jbbrd_logo_position" value="right" <?php if ( 'right' == $jbbrd_options['logo_position'] ) echo ' checked="checked"'; ?> />
+									<?php _e( 'Right', 'jbbrd' ); ?>
+								</label>
+							</td>
+						</tr>
+						<tr valign="top">
+							<th><?php _e( 'Display frontend form', 'jbbrd' ); ?></th>
+							<td>
+								<input type="checkbox" name="jbbrd_frontend_form" value="1" <?php if ( 1 == $jbbrd_options['frontend_form'] ) echo ' checked="checked"'; ?> /> 
+								<span class="jbbrd_admin_options_notice"><?php _e( 'Display job filtering form in frontend.' , 'jbbrd' ); ?></span><br />
+								<input type="checkbox" name="jbbrd_frontend_form_non_registered" value="1" <?php if ( 1 == $jbbrd_options['frontend_form_non_registered'] ) echo ' checked="checked"'; ?> /> 
+								<span class="jbbrd_admin_options_notice"><?php _e( 'Display job filtering form in frontend for non-registered users' , 'jbbrd' ); ?></span>
+							</td>
+						</tr>
+						<tr valign="top">
+							<th><?php _e( 'Location field type', 'jbbrd' ); ?></th>
+							<td>
+								<input type="checkbox" name="jbbrd_location_select" value="1" <?php if ( 1 == $jbbrd_options['location_select'] ) echo ' checked="checked"'; ?> /> 
+								<span class="jbbrd_admin_options_notice"><?php _e( 'Change location field in frontens sorting form to select box of all locations which already add to jobs base.' , 'jbbrd' ); ?></span>
+							</td>
+						</tr>
+						<tr valign="top">
+							<th><?php _e( 'Template text for CV sending', 'jbbrd' ); ?></th>
+							<td>
+								<textarea name="jbbrd_vacancy_reply_text"><?php if ( isset( $jbbrd_options['vacancy_reply_text'] ) ) echo stripslashes( $jbbrd_options['vacancy_reply_text'] ); else echo stripslashes( $jbbrd_option_defaults['vacancy_reply_text'] ); ?></textarea>
+							</td>
+						</tr>
+						<tr valign="top">
+							<th><?php _e( 'Job offers default expiry time', 'jbbrd' ); ?></th>
+							<td>
+								<input class="jbbrd_input_number" type="number" min="0" max="999" step="1" name="jbbrd_archieving_period" value="<?php if ( isset( $jbbrd_options['archieving_period'] ) ) echo stripslashes( $jbbrd_options['archieving_period'] ); else echo stripslashes( $jbbrd_option_defaults['archieving_period'] ); ?>"/>
+								<?php _e( 'days', 'jbbrd' ); ?>
+							</td>
+						</tr>
+						<tr valign="top">
+							<th><?php _e( 'Daily archiving time', 'jbbrd' ); ?></th>
+							<td>
+								<input class="jbbrd_input_number" type="number" min="0" max="23" step="1" name="jbbrd_custom_time_hours" value="<?php if ( isset( $jbbrd_options['custom_time_hours'] ) ) echo stripslashes( $jbbrd_options['custom_time_hours'] ); else echo stripslashes( $jbbrd_option_defaults['custom_time_hours'] ); ?>"/>
+								<?php _e( 'hours', 'jbbrd' ); ?>
+								<input class="jbbrd_input_number" type="number" min="0" max="59" step="1" name="jbbrd_custom_time_min" value="<?php if ( isset( $jbbrd_options['custom_time_min'] ) ) echo stripslashes( $jbbrd_options['custom_time_min'] ); else echo stripslashes( $jbbrd_option_defaults['custom_time_min'] ); ?>"/>
+								<?php _e( 'min', 'jbbrd' ); ?>
+							</td>
+						</tr>
+					</table>
+					<input type="hidden" name="jbbrd_form_submit" value="submit" />
+					<p class="submit_div">
+						<input type="submit" class="button-primary" value="<?php _e( 'Save Changes', 'jbbrd' ); ?>" />
+					</p>
+					<?php wp_nonce_field( $plugin_basename, 'jbbrd_nonce_name' ); ?>
+				</form>
+				<?php bws_form_restore_default_settings( $plugin_basename );
+				bws_plugin_reviews_block( $jbbrd_plugin_info['Name'], 'job-board' ); 
+			} ?>
 		</div>
 	<?php } 
 }
 
 /**
- * Add Job board JS.
+ * Add Job Board JS.
  * @return void
  */
 if ( ! function_exists ( 'jbbrd_load_scripts' ) ) {
@@ -1245,20 +1259,20 @@ if ( ! function_exists( 'jbbrd_meta_personal' ) ) {
 				<table border="0">
 					<tr>
 						<td class="jbbrd_personal_field"><label id="jbbrd_location_input_label" for="jbbrd_location_input"><?php _e( 'Location', 'jbbrd' ); ?></label><?php if ( '' == $jbbrd_location ) { ?><span style="color:red">*</span><?php } ?></td>
-						<td class="jbbrd_personal_input"><input type="text" id="jbbrd_location_input" required="required" name="jbbrd_location" value="<?php echo $jbbrd_location; ?>" placeholder="<?php _e( 'Location', 'jbbrd' ); ?>" /></td>
+						<td class="jbbrd_personal_input"><input type="text" maxlength="250" id="jbbrd_location_input" required="required" name="jbbrd_location" value="<?php echo $jbbrd_location; ?>" placeholder="<?php _e( 'Location', 'jbbrd' ); ?>" /></td>
 					</tr>
 					<tr>
 						<td class="jbbrd_personal_field"><label id="jbbrd_organization_input_label" for="jbbrd_organization_input"><?php _e( 'Organization', 'jbbrd' ); ?></label><?php if ( '' == $jbbrd_organization ) { ?><span style="color:red">*</span><?php } ?></td>
-						<td class="jbbrd_personal_input"><input type="text" id="jbbrd_organization_input" required="required" name="jbbrd_organization" value="<?php echo $jbbrd_organization; ?>" placeholder="<?php _e( 'Organization name', 'jbbrd' ); ?>" /></td>
+						<td class="jbbrd_personal_input"><input type="text" maxlength="250" id="jbbrd_organization_input" required="required" name="jbbrd_organization" value="<?php echo $jbbrd_organization; ?>" placeholder="<?php _e( 'Organization name', 'jbbrd' ); ?>" /></td>
 					</tr>
 					<tr>
 						<td class="jbbrd_personal_field"><label id="jbbrd_salary_input_label" for="jbbrd_salary_input"><?php _e( 'Salary', 'jbbrd' ); ?></label></td>
-						<td class="jbbrd_personal_input"><input type="text" id="jbbrd_salary_input" name="salary" value="<?php echo $salary; ?>" placeholder="0" /><span class="jbbrd_personal_field"><?php echo $money_choose . '/' . $jbbrd_options['time_period_choose']; ?></span></td>
+						<td class="jbbrd_personal_input"><input type="number" min="0" id="jbbrd_salary_input" name="salary" value="<?php echo $salary; ?>" placeholder="0" /><span class="jbbrd_personal_field"><?php echo $money_choose . '/' . $jbbrd_options['time_period_choose']; ?></span></td>
 					</tr>
 					<tr>
 						<td class="jbbrd_personal_field"><label id="jbbrd_expiry_date_label" for="jbbrd_expiry_date"><?php _e( 'Expiry date', 'jbbrd' ); ?></label></td>
 						<td class="jbbrd_personal_input">
-							<input type="text" id="jbbrd_expiry_date" name="expiry_date" value="<?php echo $expiry_date; ?>" placeholder="MM/DD/YYYY" />
+							<input type="text" maxlength="20" id="jbbrd_expiry_date" name="expiry_date" value="<?php echo $expiry_date; ?>" placeholder="MM/DD/YYYY" />
 						</td>
 					</tr>
 					<tr>
@@ -1452,7 +1466,7 @@ if ( ! function_exists( 'jbbrd_save_post' ) ) {
 							$value				= date( $format, strtotime( $date_compl[1] . "-" . $date_compl[0] . '-' . $date_compl[2] ) );
 						}
 					} else {
-						$value =  stripslashes( esc_html( $_POST[ $key ] ) );
+						$value = stripslashes( esc_html( ltrim( $_POST[ $key ], '0' ) ) );
 					}
 				} else {
 					$value = '';
@@ -1510,12 +1524,11 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 				$per_page				= $this->get_items_per_page( 'vacancies_per_page', 30);
 				$current_page			= $this->get_pagenum();
 				$total_items			= $this->items_count();;
-				$this->found_data		= array_slice( $this->job_list(), ( ( $current_page - 1 ) * $per_page ), $per_page );
+				$this->items			= array_slice( $this->job_list(), ( ( $current_page - 1 ) * $per_page ), $per_page );
 				$this->set_pagination_args( array(
 					'total_items' => $total_items,
 					'per_page'    => $per_page,
 				) );
-				$this->items			= $this->found_data;
 			}
 
 			/**
@@ -1610,30 +1623,28 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 					$jbbrd_order = $_GET['order'];
 				else
 					$jbbrd_order = 'desc';
-
+				
 				/* Prepare sql_query. */
-				$sql_query = "
-					SELECT DISTINCT wpp.`ID`, wpp.`post_title`, wpp.`post_modified`, pm.`meta_value` 
+				$sql_query = "SELECT DISTINCT wpp.`ID`, wpp.`post_title`, wpp.`post_modified`, pm.`meta_value` 
 					FROM `" . $posts_table . "` AS wpp
-					JOIN `" . $term_relationships_table . "` AS tr ON wpp.`ID` = tr.`object_id`
-					JOIN `" . $term_taxonomy_table . "` AS ttt ON (tr.`term_taxonomy_id` = ttt.`term_taxonomy_id`
+					JOIN `" . $term_relationships_table . "` AS tr ON wpp.`ID` = tr.`object_id` ";
+				if ( ! empty( $jbbrd_term_id ) )
+					$sql_query .= "JOIN `" . $term_taxonomy_table . "` AS ttt ON (tr.`term_taxonomy_id` = ttt.`term_taxonomy_id`
 						AND ttt.`term_id` = '" . $jbbrd_term_id . "'
-						AND ttt.`taxonomy` = 'jbbrd_businesses')
-					JOIN `" . $postmeta_table . "` AS pm ON (wpp.`ID` = pm.`post_id`
+						AND ttt.`taxonomy` = 'jbbrd_businesses') ";
+				$sql_query .= "JOIN `" . $postmeta_table . "` AS pm ON (wpp.`ID` = pm.`post_id`
 						AND pm.`meta_key` = 'salary')
 					AND wpp.`post_status` = 'publish'
 					AND wpp.`post_type` = 'vacancy'
-					AND UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`post_modified`) < '86400'
-				";
+					AND UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`post_modified`) < '86400'";
 				/* Set search order. */
 				if ( isset( $_POST['s'] ) ) {
-					$sql_query .= "AND wpp.`post_title` LIKE '%" . $search . "%'";
+					$sql_query .= " AND wpp.`post_title` LIKE '%" . $search . "%'";
 				}
 				/* Set output ordering. */
-				$sql_query .= "
-					ORDER BY wpp.`" . $jbbrd_orderby . "` " . $jbbrd_order . "
-				";
+				$sql_query .= " ORDER BY wpp.`" . $jbbrd_orderby . "` " . $jbbrd_order;
 				$job_data = $wpdb->get_results( $sql_query, ARRAY_A );
+				
 				foreach ( $job_data as $job ) {
 					$job_list[$i]			= array();
 					$job_list[$i]['id']		= $job['ID'];
@@ -1645,7 +1656,6 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 				}
 				return( $job_list );
 			}
-
 			/**
 			 * Function to get number of all matched jobs
 			 * @return sting reports number
@@ -1661,17 +1671,16 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 				$term_taxonomy_table 		= $wpdb->prefix . "term_taxonomy";
 				$terms_table 				= $wpdb->prefix . "terms";
 				/* Prepare sql_query. */
-				$sql_query = "
-					SELECT COUNT(wpp.`id`) 
+				$sql_query = "SELECT COUNT(wpp.`id`) 
 					FROM `" . $posts_table . "` AS wpp
-					JOIN `" . $term_relationships_table . "` AS tr ON wpp.`ID` = tr.`object_id`
-					JOIN `" . $term_taxonomy_table . "` AS ttt ON (tr.`term_taxonomy_id` = ttt.`term_taxonomy_id`
+					JOIN `" . $term_relationships_table . "` AS tr ON wpp.`ID` = tr.`object_id` ";
+				if ( ! empty( $jbbrd_term_id ) )
+					$sql_query .= "JOIN `" . $term_taxonomy_table . "` AS ttt ON (tr.`term_taxonomy_id` = ttt.`term_taxonomy_id`
 						AND ttt.`term_id` = '" . $jbbrd_term_id . "'
-						AND ttt.`taxonomy` = 'jbbrd_businesses')
-					AND wpp.`post_status` = 'publish'
+						AND ttt.`taxonomy` = 'jbbrd_businesses') ";
+				$sql_query .= "AND wpp.`post_status` = 'publish'
 					AND wpp.`post_type` = 'vacancy'
-					AND UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`post_modified`) < '86400'
-				";
+					AND UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`post_modified`) < '86400'";
 				$items_count  = $wpdb->get_var( $sql_query );
 				return $items_count;
 			}
@@ -1704,7 +1713,6 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
  */
 if ( ! function_exists( 'jbbrd_screen_options' ) ) {
 	function jbbrd_screen_options() {
-		global $sndr_reports_list;
 		$option = 'per_page';
 		$args = array(
 			'label'		=> __( 'Jobs per page', 'jbbrd' ),
@@ -1920,7 +1928,8 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_db' ) ) {
 	function jbbrd_save_letter_to_sender_db( $employer_id, $subject, $body ) {
 		global $wpdb;
 		/* Save mail into database. */
-		$wpdb->insert( $wpdb->prefix . 'sndr_mail_send', 
+		$prefix = is_multisite() ? $wpdb->base_prefix : $wpdb->prefix;
+		$wpdb->insert( $prefix . 'sndr_mail_send', 
 			array( 
 				'subject'		=> $subject, 
 				'body'			=> $body,
@@ -1928,7 +1937,7 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_db' ) ) {
 			)
 		);
 		$last_id = $wpdb->insert_id; /* Get last ID. */
-		$wpdb->insert( $wpdb->prefix . 'sndr_users', 
+		$wpdb->insert( $prefix . 'sndr_users', 
 			array( 
 				'id_user'		=> $employer_id, 
 				'id_mail'		=> $last_id,
@@ -1963,7 +1972,8 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_pro_db' ) ) {
 		$candidate_id	= htmlspecialchars( stripslashes( $candidate_id ) );
 		$candidate_id 	= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $candidate_id ) ) );
 		/* Save mail into database. */
-		$wpdb->insert( $wpdb->prefix . 'sndr_mail_send', 
+		$prefix = is_multisite() ? $wpdb->base_prefix : $wpdb->prefix;
+		$wpdb->insert( $prefix . 'sndr_mail_send', 
 			array( 
 				'subject'			=> $subject, 
 				'body'				=> $body,
@@ -1976,7 +1986,7 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_pro_db' ) ) {
 		/* Get user into database. */
 		$user_id = $employer_id; 
 		/* Save user into database. */
-		$wpdb->insert( $wpdb->prefix . 'sndr_mailout', 
+		$wpdb->insert( $prefix . 'sndr_mailout', 
 			array( 
 				'mail_id'			=> $mail_id,
 				'from_name'			=> get_userdata( $candidate_id )->user_login, 
@@ -1988,7 +1998,7 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_pro_db' ) ) {
 		/* Get last ID. */
 		$mailout_id = $wpdb->insert_id;
 		/* Save user into database. */
-		$wpdb->insert( $wpdb->prefix . 'sndr_users', 
+		$wpdb->insert( $prefix . 'sndr_users', 
 			array( 
 				'id_user'			=> $user_id,
 				'id_mail'			=> $mail_id,
@@ -2096,12 +2106,11 @@ if ( ! function_exists( 'jbbrd_vacansy_response' ) ) {
 		$job_candidate = esc_sql( $job_candidate );
 		$job_candidate = '%' . $job_candidate . '%';
 		/* Get subscribers list. */
-		$jbbrd_user_id_find = $wpdb->get_results( "
-			SELECT umt.`user_id`
-			FROM `" . $wpdb->prefix . "usermeta` as umt
+		$prefix = is_multisite() ? $wpdb->base_prefix : $wpdb->prefix;
+		$jbbrd_user_id_find = $wpdb->get_results( "SELECT umt.`user_id`
+			FROM `" . $prefix . "usermeta` as umt
 			WHERE umt.`meta_key` = 'wp_capabilities'
-			AND umt.`meta_value` LIKE '%job_candidate%'
-		", ARRAY_N);
+			AND umt.`meta_value` LIKE '%job_candidate%'", ARRAY_N);
 		/* If current user is 'job_candidate' return true */
 		foreach ( $jbbrd_user_id_find as $key => $value ) {
 			if ( ( $user == $value[0] ) || is_admin() ) {
@@ -2375,7 +2384,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 							}
 							$jbbrd_message .= sprintf( '<h4 style="font-weight:normal;">' . __( 'Candidate CV:', 'jbbrd' ) . '&nbsp;' . ( ( '' != $jbbrd_current_candidate_cv ) ? '<a style="color:#6495ED;text-decoration:none;line-height:11px;" href="' . $jbbrd_current_candidate_cv . '">' . $jbbrd_current_candidate_cv_filename . '</a>' : __( '...sorry, CV not found.', 'jbbrd' ) ) . '</h4>');
 							$jbbrd_message .= '<hr style="border-width:0;border-bottom:solid 1px #e0e0e0;" />';
-							$jbbrd_message .= sprintf( __( 'This mail was sent by %sJob board%s plugin by %sBestWebSoft%s from', 'jbbrd' ) . '&nbsp;<a  href="' . esc_url( get_bloginfo( 'url' ) ) . '">' . get_bloginfo( 'name' ) . '</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/products/job-board/' ) . '">' ),'</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/' ) . '">' ),'</a>' );
+							$jbbrd_message .= sprintf( __( 'This mail was sent by %sJob Board%s plugin by %sBestWebSoft%s from', 'jbbrd' ) . '&nbsp;<a  href="' . esc_url( get_bloginfo( 'url' ) ) . '">' . get_bloginfo( 'name' ) . '</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/products/job-board/' ) . '">' ),'</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/' ) . '">' ),'</a>' );
 							$jbbrd_message .= '</div>';
 							$jbbrd_subject = __( 'Reply for', 'jbbrd' ) . ' ' . get_the_title( $jbbrd_current_vacancy_id ) . ' ' . __( 'job offer.', 'jbbrd' );
 						} else {
@@ -2383,7 +2392,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 							$jbbrd_message .= __( 'You receive message for your job offer:', 'jbbrd' ) . ' ' . get_the_title( $jbbrd_current_vacancy_id ) . "\n";
 							$jbbrd_message .= __ ( 'from candidate:', 'jbbrd' ) . ' ' . get_userdata( $jbbrd_current_candidate )->user_login . "\n";
 							$jbbrd_message .= __( 'Candidate CV:', 'jbbrd' ) . ' ' . $jbbrd_current_candidate_cv . "\n";
-							$jbbrd_message .= __( 'This mail was sent by Job board plugin by BestWebSoft from', 'jbbrd' ) . ' ' . get_bloginfo( 'name' ) . '.';
+							$jbbrd_message .= __( 'This mail was sent by Job Board plugin by BestWebSoft from', 'jbbrd' ) . ' ' . get_bloginfo( 'name' ) . '.';
 							$jbbrd_subject = __( 'Reply for', 'jbbrd' ) . ' ' . get_the_title( $jbbrd_current_vacancy_id ) . ' ' . __( 'job offer.', 'jbbrd' );
 						}
 					} else {
@@ -2398,7 +2407,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 						}
 						$jbbrd_message .= sprintf( '<h4 style="font-weight:normal;">' . __( 'Candidate CV:', 'jbbrd' ) . '&nbsp;' . ( ( '' != $jbbrd_current_candidate_cv ) ? '<a style="color:#6495ED;text-decoration:none;line-height:11px;" href="' . $jbbrd_current_candidate_cv . '">' . $jbbrd_current_candidate_cv_filename . '</a>' : __( '...sorry, CV not found.', 'jbbrd' ) ) . '</h4>');
 						$jbbrd_message .= '<hr style="border-width:0;border-bottom:solid 1px #e0e0e0;" />';
-						$jbbrd_message .= sprintf( __( 'This mail was sent by %sJob board%s plugin by %sBestWebSoft%s from', 'jbbrd' ) . '&nbsp;<a  href="' . esc_url( get_bloginfo( 'url' ) ) . '">' . get_bloginfo( 'name' ) . '</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/products/job-board/' ) . '">' ),'</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/' ) . '">' ),'</a>' );
+						$jbbrd_message .= sprintf( __( 'This mail was sent by %sJob Board%s plugin by %sBestWebSoft%s from', 'jbbrd' ) . '&nbsp;<a  href="' . esc_url( get_bloginfo( 'url' ) ) . '">' . get_bloginfo( 'name' ) . '</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/products/job-board/' ) . '">' ),'</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/' ) . '">' ),'</a>' );
 						$jbbrd_message .= '</div>';
 						$jbbrd_subject = __( 'Reply for', 'jbbrd' ) . ' ' . get_the_title( $jbbrd_current_vacancy_id ) . ' ' . __( 'job offer.', 'jbbrd' );
 					}
@@ -2408,7 +2417,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 						$_SESSION['jbbrd_send_cv'] = 1;
 						if ( is_plugin_active( 'email-queue/email-queue.php' ) || is_plugin_active( 'email-queue-pro/email-queue-pro.php' ) ) {
 							mlq_add_extra_plugin_to_mail_queue( array(
-								'plugin_name'			=> 'Job board', 
+								'plugin_name'			=> 'Job Board', 
 								'plugin_slug' 			=> 'job-board',
 								'plugin_link'			=> plugin_basename( __FILE__ ),
 								'install_link'			=> '/wp-admin/plugin-install.php?tab=search&s=Job+Board+Bestwebsoft&plugin-search-input=Search+Plugins',
@@ -3031,6 +3040,36 @@ if ( ! function_exists( 'jbbrd_update_permalink' ) ) {
 	}
 }
 
+/**
+ * Remove association with term, which was deleted
+ * @return void
+ */
+if ( ! function_exists( 'jbbrd_delete_term' ) ) {
+	function jbbrd_delete_term( $term_id ) {
+		global $wpdb;
+		$args = array(
+			'post_type'     => 'vacancy',
+			'posts_per_page'=> -1,
+			'tax_query'     => array(
+				array(
+					'taxonomy' => 'jbbrd_employment',
+					'field'    => 'id',
+					'terms'    => $term_id
+				)
+			)
+		);
+		$new_query = new WP_Query( $args );
+		if ( $new_query->have_posts() ) {
+			foreach ( $new_query->posts as $post ) {
+				do_action( 'delete_term_relationships', $post->ID, $term_id );
+				$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->term_relationships WHERE object_id = %d AND term_taxonomy_id = %d", $post->ID, $term_id ) );
+				do_action( 'deleted_term_relationships', $post->ID, $term_id );
+			}
+			wp_update_term_count( $term_id, 'jbbrd_employment' );
+		}
+		wp_reset_query();
+	}
+}
 
 /**
  * Update 'shortcode_permalink' plugin options value on post update.

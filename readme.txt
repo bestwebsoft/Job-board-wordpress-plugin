@@ -1,10 +1,10 @@
-=== Job board by BestWebSoft ===
+=== Job Board by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: plugin, wordpress, jobs, vacancy, job-manager, job-board, job, job offer, job bord, djob board, dgob bord, CV, upload CV, add job offer, apply for a job, vacancy application, job candidate role, manage vacancies, job offer list, save search conditions, job offer categories, search by job category, search by salary, search by organization, post job offer, vacancy archive.  
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -36,7 +36,7 @@ http://www.youtube.com/watch?v=ox2rMnwxfHs
 
 = Recommended Plugins =
 
-The author of the Job board also recommends the following plugins:
+The author of the Job Board also recommends the following plugins:
 
 * <a href="http://wordpress.org/plugins/sender/">Sender</a> - this plugin sends mail to registered users. There is also a premium version of the plugin - <a href="http://bestwebsoft.com/products/sender/?k=ccd218c6d916f9735e3de54ff210e4fe">Sender Pro</a>, allowing to create and save templates for letters, edit the content of messages with a visual editor TinyMce, set priority оf mailing, create and manage mailing lists.
 * <a href="http://wordpress.org/plugins/updater/">Updater</a> - This plugin updates WordPress core and the plugins to the recent versions. You can also use the auto mode or manual mode for updating and set email notifications.
@@ -61,10 +61,10 @@ We can fix some things for free for the users who provide translation of our plu
 
 1. Upload the `job-board` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
-3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" > "Job board".
+3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" > "Job Board".
 4. Create a page or a post and insert the short-code [jbbrd_vacancy] into the text.
 
-<a href="https://docs.google.com/document/d/1Lg33uJlVEW6Seo7oio8Dsc0PgOq0iXotTRtyHUHJLCI/edit" target="_blank">View a PDF version of Step-by-step Instruction on Job board Installation</a>.
+<a href="https://docs.google.com/document/d/1Lg33uJlVEW6Seo7oio8Dsc0PgOq0iXotTRtyHUHJLCI/edit" target="_blank">View a PDF version of Step-by-step Instruction on Job Board Installation</a>.
 
 http://www.youtube.com/watch?v=-5mDdQmDuIc
 
@@ -122,7 +122,7 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Screenshots ==
 
-1. Job board display.
+1. Job Board display.
 2. Adding new vacancy display with additional fields.
 3. Adding new vacancies category display with additional fields.
 4. Adding new employment type display.
@@ -134,6 +134,12 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 10. Registration form in widget area.
 
 == Changelog ==
+
+= V1.0.7 - 07.06.2015 =
+* Bugfix : We fixed bug with editing of default employments.
+* Bugfix : We fixed bug with plugin work on multisite.
+* Bugfix : We fixed bug with displaying of the new jobs on the user profile page.
+* New : Ability to restore settings to defaults.
 
 = V1.0.6 - 15.05.2015 =
 * Update : BWS plugins section is updated.
@@ -166,6 +172,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.0.7 =
+We fixed bug with editing of default employments. We fixed bug with plugin work on multisite. We fixed bug with displaying of the new jobs on the user profile page. Ability to restore settings to defaults.
 
 = V1.0.6 =
 BWS plugins section is updated. We updated all functionality for wordpress 4.2.2.
