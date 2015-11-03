@@ -29,10 +29,6 @@
 	width: 300px;
 	margin-right: 20px;
 }
-.jbbrd_admin_options_notice {
-	color: #888888;
-	font-size: 10px;
-}
 .jbbrd_frontend_input {
 	width: 200px !important;
 }
@@ -112,6 +108,9 @@ input#jbbrd_salary_input {
     border: 0px !important;
     text-align: left;
     margin-bottom: 0px;
+}
+#jbbrd_frontend_form .jbbrd_frontend_table_sendmail {
+	table-layout: auto;
 }
 #jbbrd_frontend_form .jbbrd_frontend_table_sendmail,
 #jbbrd_frontend_form .jbbrd_frontend_table_sendmail td {

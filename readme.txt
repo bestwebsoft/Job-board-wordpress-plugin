@@ -1,10 +1,10 @@
 === Job Board by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
-Tags: plugin, wordpress, jobs, vacancy, job-manager, job-board, job, job offer, job bord, djob board, dgob bord, CV, upload CV, add job offer, apply for a job, vacancy application, job candidate role, manage vacancies, job offer list, save search conditions, job offer categories, search by job category, search by salary, search by organization, post job offer, vacancy archive.  
-Requires at least: 3.5
-Tested up to: 4.2.2
-Stable tag: 1.0.7
+Tags: add job offer, apply for a job, application, archive job board posts, best plugin, best job board plugin, candidate, career, career page, change job board posts, company, cv, dgob bord, djob board, employees, employer, employment, freelance, free, free plugin, free job board, free job board plugin, hiring, internship, job, job advertisement board, job board, job bord, job candidate role, job manager, job offer, job offer categories, job offer list, job list, job listing, jobs, job lists, job management, job portal, listing, manager, manage vacancies, plugin, positions, post job offer, recruiting, resume, resume up-loader, talent, save search conditions, search by job category, search by organization, search by salary, select category, sort job board posts, submit CV, upload CV, vacancy, vacant positions, vacant, vacancy application, vacancy archive, wordpress, wp, wp plugin, wp free plugin, wp job board, wp job board plugin, wp simple job board plugin, wp free job board, wp free job board plugin, wordpress plugin, wordpress free plugin, wordpress job board, wordpress job board plugin, wordpress simple job board plugin, wordpress free job board, wordpress free job board plugin
+Requires at least: 3.8
+Tested up to: 4.3.1
+Stable tag: 1.0.8
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,23 +16,23 @@ The plugin allows to create and post job-board posts as well as to change, sort 
 
 http://www.youtube.com/watch?v=ox2rMnwxfHs
 
-<a href="http://www.youtube.com/watch?v=-5mDdQmDuIc" target="_blank">Video instruction on Installation</a>
+<a href="http://www.youtube.com/watch?v=-5mDdQmDuIc" target="_blank">Job Board by BestWebSoft Video instruction on Installation</a>
 
-<a href="http://wordpress.org/plugins/job-board/faq/" target="_blank">FAQ</a>
+<a href="http://wordpress.org/plugins/job-board/faq/" target="_blank">Job Board by BestWebSoft FAQ</a>
 
-<a href="http://support.bestwebsoft.com" target="_blank">Support</a>
+<a href="http://support.bestwebsoft.com" target="_blank">Job Board by BestWebSoft Support</a>
 
 = Features =
 
-* Actions: Allows to add, edit, delete and categorize the vacancies.
-* Actions: Sorts and filters vacant positions - both in the admin panel and in the front-end.
-* Actions: Allows to apply for the vacancy (after registration).
-* Actions: Allows to save the search as a template for future use.
-* Actions: Allow the applicant to select a category and browse the vacancies in this category using in the admin panel.
-* Actions: Sends letters when you get an application for the vacancy.
-* Actions: Automatically places the vacancy to the archive after the expiration of the period which was set either by the administrator or by the author.
-* Actions: Allows the administrator to manage of how the vacancies page as well as vacancies in the front-end are displayed. 
-* Actions: Allows to place the login/registration form to add users with Employer and Job candidate roles. 
+* Allows to add, edit, delete and categorize the vacancies.
+* Sorts and filters vacant positions - both in the admin panel and in the front-end.
+* Allows to apply for the vacancy (after registration).
+* Allows to save the search as a template for future use.
+* Allow the applicant to select a category and browse the vacancies in this category using in the admin panel.
+* Sends letters when you get an application for the vacancy.
+* Automatically places the vacancy to the archive after the expiration of the period which was set either by the administrator or by the author.
+* Allows the administrator to manage of how the vacancies page as well as vacancies in the front-end are displayed. 
+* Allows to place the login/registration form to add users with Employer and Job candidate roles. 
 
 = Recommended Plugins =
 
@@ -135,6 +135,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.0.8 - 03.11.2015 =
+* NEW : A button for Job Board shortcode inserting to the content was added.
+* Update : Textdomain was changed.
+* Update : We updated all functionality for wordpress 4.3.1.
+
 = V1.0.7 - 07.06.2015 =
 * Bugfix : We fixed bug with editing of default employments.
 * Bugfix : We fixed bug with plugin work on multisite.
@@ -172,6 +177,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.0.8 =
+A button for Job Board shortcode inserting to the content was added. Textdomain was changed. We updated all functionality for wordpress 4.3.1.
 
 = V1.0.7 =
 We fixed bug with editing of default employments. We fixed bug with plugin work on multisite. We fixed bug with displaying of the new jobs on the user profile page. Ability to restore settings to defaults.
