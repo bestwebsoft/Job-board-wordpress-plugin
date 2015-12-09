@@ -392,8 +392,6 @@ span.bws_code {
 .rtl .bws_hidden_help_text:before {
     margin-right: -2px;
 }
-
-
 /* bws shortcode insert */
 #bws_shortcode_content,
 #bws_shortcode_select_plugin {

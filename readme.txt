@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: add job offer, apply for a job, application, archive job board posts, best plugin, best job board plugin, candidate, career, career page, change job board posts, company, cv, dgob bord, djob board, employees, employer, employment, freelance, free, free plugin, free job board, free job board plugin, hiring, internship, job, job advertisement board, job board, job bord, job candidate role, job manager, job offer, job offer categories, job offer list, job list, job listing, jobs, job lists, job management, job portal, listing, manager, manage vacancies, plugin, positions, post job offer, recruiting, resume, resume up-loader, talent, save search conditions, search by job category, search by organization, search by salary, select category, sort job board posts, submit CV, upload CV, vacancy, vacant positions, vacant, vacancy application, vacancy archive, wordpress, wp, wp plugin, wp free plugin, wp job board, wp job board plugin, wp simple job board plugin, wp free job board, wp free job board plugin, wordpress plugin, wordpress free plugin, wordpress job board, wordpress job board plugin, wordpress simple job board plugin, wordpress free job board, wordpress free job board plugin
 Requires at least: 3.8
-Tested up to: 4.3.1
-Stable tag: 1.0.8
+Tested up to: 4.4
+Stable tag: 1.0.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -135,6 +135,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.0.9 - 09.12.2015 =
+* Bugfix : The bug with plugin menu duplicating was fixed.
+
 = V1.0.8 - 03.11.2015 =
 * NEW : A button for Job Board shortcode inserting to the content was added.
 * Update : Textdomain was changed.
@@ -177,6 +180,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.0.9 =
+The bug with plugin menu duplicating was fixed.
 
 = V1.0.8 =
 A button for Job Board shortcode inserting to the content was added. Textdomain was changed. We updated all functionality for wordpress 4.3.1.

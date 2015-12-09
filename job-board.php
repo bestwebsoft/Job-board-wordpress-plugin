@@ -6,7 +6,7 @@ Description: Plugin for adding to site possibility to create job offers page wit
 Author: BestWebSoft
 Text Domain: job-board
 Domain Path: /languages
-Version: 1.0.8
+Version: 1.0.9
 Author URI: http://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -35,7 +35,7 @@ License: GPLv3 or later
 if ( ! function_exists( 'jbbrd_add_admin_menu' ) ) {
 	function jbbrd_add_admin_menu() {
 		global $submenu;
-		bws_add_general_menu( plugin_basename( __FILE__ ) );
+		bws_general_menu();
 		$settings = add_submenu_page( 'bws_plugins', 'Job Board', 'Job Board', 'manage_options', 'job-board.php', 'jbbrd_settings_page' );	
 		/* Add custom list page to candidate profile menu. */
 		$hook = add_users_page( 'New job offers', 'New job offers', 'job_candidate', 'job_candidate', 'jbbrd_candidate_category_custom_search_page' );
@@ -155,6 +155,9 @@ if ( ! function_exists( 'jbbrd_post_type_vacancy' ) ) {
 				'not_found' 				=> __( 'No jobs found', 'job-board' ),
 				'not_found_in_trash' 		=> __( 'No jobs found in Trash', 'job-board' ),
 				'parent' 					=> __( 'Parent job', 'job-board' ),
+				'filter_items_list'     	=> __( 'Filter jobs list', 'job-board' ),
+				'items_list_navigation' 	=> __( 'Jobs list navigation', 'job-board' ),
+				'items_list'            	=> __( 'Jobs list', 'job-board' )
 			),
 			'singular_label' 	=> __( 'Job', 'job-board' ),
 			'public' 			=> true,
@@ -221,6 +224,8 @@ if ( ! function_exists( 'jbbrd_taxonomy_vacancy' ) ) {
 					'not_found' 				=> __( 'No job categories found', 'job-board' ),
 					'not_found_in_trash' 		=> __( 'No job categories found in Trash', 'job-board' ),
 					'parent' 					=> __( 'Parent job category', 'job-board' ),
+					'items_list_navigation' 	=> __( 'Job categories list navigation', 'job-board' ),
+					'items_list'            	=> __( 'Job categories list', 'job-board' )
 				),
 				'rewrite' 			=> true,
 				'show_ui'			=> true, /* Show to user. */
@@ -256,6 +261,8 @@ if ( ! function_exists( 'jbbrd_taxonomy_vacancy' ) ) {
 					'not_found' 				=> __( 'No job archive categories found', 'job-board' ),
 					'not_found_in_trash' 		=> __( 'No job archive categories found in Trash', 'job-board' ),
 					'parent' 					=> __( 'Parent job archive category', 'job-board' ),
+					'items_list_navigation' 	=> __( 'Job archive categories list navigation', 'job-board' ),
+					'items_list'            	=> __( 'Job archive categories list', 'job-board' )
 				),
 				'rewrite' 			=> true,
 				'show_ui'			=> false, /* Show to user. */
@@ -282,6 +289,8 @@ if ( ! function_exists( 'jbbrd_taxonomy_vacancy' ) ) {
 					'not_found' 				=> __( 'No employment types found', 'job-board' ),
 					'not_found_in_trash' 		=> __( 'No employment types found in trash', 'job-board' ),
 					'parent' 					=> __( 'Parent employment type', 'job-board' ),
+					'items_list_navigation' 	=> __( 'Employment types list navigation', 'job-board' ),
+					'items_list'            	=> __( 'Employment types list', 'job-board' )
 				),
 				'rewrite' 			=> true,
 				'show_ui'			=> true, /* Show to user. */
@@ -643,7 +652,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 			$message = __( 'All plugin settings were restored.', 'job-board' );
 		} ?>
 		<div class="wrap">
-			<h2><?php _e( 'Job Board settings', 'job-board' ); ?></h2>
+			<h1><?php _e( 'Job Board settings', 'job-board' ); ?></h1>
 			<div class="updated fade" <?php if ( ! isset( $message ) ) echo 'style="display:none;" '; ?>>
 				<p><strong><?php if ( isset( $message ) ) echo $message; ?></strong></p>
 			</div>
@@ -689,7 +698,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 									} ?>
 								</select><br/>
 								<input type="radio" id="custom_money_unit_select" name="jbbrd_select_money_unit" value="custom" <?php if ( 'custom' == $jbbrd_options['select_money_unit'] ) echo "checked=\"checked\" "; ?>/> 
-								<input type="text" style="width:200px;" name="jbbrd_custom_money_unit" value="<?php echo $jbbrd_options['custom_money_unit']; ?>" maxlength="100" />
+								<input type="text" name="jbbrd_custom_money_unit" value="<?php echo $jbbrd_options['custom_money_unit']; ?>" maxlength="100" />
 								<span class="bws_info">(<?php _e( "Custom monetary unit", 'job-board' ); ?>)</span>
 							</td>
 						</tr>
@@ -1802,7 +1811,7 @@ if ( ! function_exists( 'jbbrd_add_cv_load_field' ) ) {
 		$jbbrd_cv = get_user_meta( $user->ID, 'jbbrd_user_cv', true ); 
 		if ( ( true === jbbrd_vacansy_response() ) || ( current_user_can( 'activate_plugins', get_current_user_id() ) ) ) { ?>
 			<!-- Job candidate CV. -->
-			<h3><?php _e("Job candidate options", "jbbrd"); ?></h3>
+			<h2><?php _e( "Job candidate options", 'job-board' ); ?></h2>
 			<?php if ( is_admin() && ( is_plugin_active( 'sender/sender.php' ) || is_plugin_active( 'sender-pro/sender-pro.php' ) ) ) { ?>
 				<table class="form-table">
 					<tr>

@@ -1,18 +1,44 @@
 <?php
 /*
 * General functions for BestWebSoft plugins
-* Version: 1.1.3
 */
 
+/**
+* Function add BWS Plugins page - for old plugin version
+* @deprecated 1.7.9
+*/
 if ( ! function_exists ( 'bws_add_general_menu' ) ) {
 	function bws_add_general_menu() {
-		add_menu_page( 'BWS Plugins', 'BWS Plugins', 'manage_options', 'bws_plugins', 'bws_add_menu_render', plugins_url( 'images/px.png', __FILE__ ), 1001 );
+		bws_general_menu();
+	}
+}
+
+/**
+* Function add BWS Plugins page
+* @return void
+*/
+if ( ! function_exists ( 'bws_general_menu' ) ) {
+	function bws_general_menu() {
+		global $menu, $bws_general_menu_exist;
+
+		if ( ! $bws_general_menu_exist ) {
+			/* we check also menu exist in global array as in old plugins $bws_general_menu_exist variable not exist */
+			foreach ( $menu as $value_menu ) {
+				if ( 'bws_plugins' == $value_menu[2] ) {
+					$bws_general_menu_exist = true;
+					return;
+				}
+			}
+
+			add_menu_page( 'BWS Plugins', 'BWS Plugins', 'manage_options', 'bws_plugins', 'bws_add_menu_render', plugins_url( 'images/px.png', __FILE__ ), 1001 );
+			$bws_general_menu_exist = true;
+		}
 	}
 }
 
 /**
 * Function check if plugin is compatible with current WP version - for old plugin version
-* @return void
+* @deprecated 1.7.4
 */
 if ( ! function_exists ( 'bws_wp_version_check' ) ) {
 	function bws_wp_version_check( $plugin_basename, $plugin_info, $require_wp ) {
@@ -328,13 +354,19 @@ if ( ! function_exists( 'bws_go_pro_tab_check' ) ) {
 	}
 }
 
-/* compatibility function (Menu Version: 1.7.6) */
+/**
+* Function display GO PRO tab - for old plugin version
+* @deprecated 1.7.6
+*/
 if ( ! function_exists( 'bws_go_pro_tab' ) ) {
 	function bws_go_pro_tab( $plugin_info, $plugin_basename, $page, $pro_page, $bws_license_plugin, $link_slug, $link_key, $link_pn, $pro_plugin_is_activated = false, $trial_days_number = false ) {
 		bws_go_pro_tab_show( false, $plugin_info, $plugin_basename, $page, $pro_page, $bws_license_plugin, $link_slug, $link_key, $link_pn, $pro_plugin_is_activated, $trial_days_number );
 	}
 }
 
+/**
+* Function display GO PRO tab
+*/
 if ( ! function_exists( 'bws_go_pro_tab_show' ) ) {
 	function bws_go_pro_tab_show( $bws_hide_premium_options_check, $plugin_info, $plugin_basename, $page, $pro_page, $bws_license_plugin, $link_slug, $link_key, $link_pn, $pro_plugin_is_activated = false, $trial_days_number = false ) {
 		global $wp_version, $bstwbsftwppdtplgns_options;
@@ -686,7 +718,9 @@ if ( ! function_exists( 'bws_hide_premium_options' ) ) {
 		global $current_user;
 		if ( ! $current_user )
 			get_currentuserinfo();
-
+		if ( ! isset( $options['hide_premium_options'] ) || ! is_array( $options['hide_premium_options'] ) )
+			$options['hide_premium_options'] = array();
+		
 		$options['hide_premium_options'][] = $current_user->ID;
 
 		return array( 
@@ -701,7 +735,7 @@ if ( ! function_exists( 'bws_hide_premium_options_check' ) ) {
 		if ( ! $current_user )
 			get_currentuserinfo();
 
-		if ( isset( $options['hide_premium_options'] ) && in_array( $current_user->ID, $options['hide_premium_options'] ) )
+		if ( ! empty( $options['hide_premium_options'] ) && in_array( $current_user->ID, $options['hide_premium_options'] ) )
 			return true;
 		else
 			return false;
@@ -922,11 +956,11 @@ if ( ! class_exists( 'BWS_admin_tooltip' ) ) {
 }
 
 if ( ! function_exists ( 'bws_form_restore_default_settings' ) ) {
-	function bws_form_restore_default_settings( $plugin_basename ) { ?>
+	function bws_form_restore_default_settings( $plugin_basename, $change_permission_attr = '' ) { ?>
 		<form method="post" action="">			
 			<p><?php _e( 'Restore all plugin settings to defaults', 'bestwebsoft' ); ?></p>
 			<p>					
-				<input type="submit" class="button" value="<?php _e( 'Restore settings', 'bestwebsoft' ); ?>" />
+				<input <?php echo $change_permission_attr; ?> type="submit" class="button" value="<?php _e( 'Restore settings', 'bestwebsoft' ); ?>" />
 			</p>
 			<input type="hidden" name="bws_restore_default" value="submit" />
 			<?php wp_nonce_field( $plugin_basename, 'bws_settings_nonce_name' ); ?>
@@ -961,12 +995,14 @@ if ( ! function_exists( 'bws_add_editor_buttons' ) ) {
 		}
 	}
 }
+
 if ( ! function_exists( 'bws_add_buttons' ) ){
 	function bws_add_buttons( $plugin_array ) {
 		$plugin_array['add_bws_shortcode'] = plugins_url( 'js/shortcode-button.js', __FILE__ );
 		return $plugin_array;
 	}
 }
+
 if ( ! function_exists( 'bws_register_buttons' ) ) {
 	function bws_register_buttons( $buttons ) {
 		array_push( $buttons, 'add_bws_shortcode' ); /* dropcap', 'recentposts */
