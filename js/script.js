@@ -9,8 +9,10 @@
 		});		
 		/* Add datapicker. */
 		if ( $.isFunction( $.fn.datepicker ) ) {
-			$('#jbbrd_expiry_date').datepicker( function() {
-				dateFormat : 'dd-mm-yy'
+			var is_rtl = ( $( 'body' ).hasClass( 'rtl' ) );
+			$( '#jbbrd_expiry_date' ).datepicker({
+				dateFormat : 'dd-mm-yy',
+				isRTL : is_rtl
 			});
 		}
 		/* Change form settings */

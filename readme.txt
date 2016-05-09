@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: add job offer, apply for a job, application, archive job board posts, best plugin, best job board plugin, candidate, career, career page, change job board posts, company, cv, dgob bord, djob board, employees, employer, employment, freelance, free, free plugin, free job board, free job board plugin, hiring, internship, job, job advertisement board, job board, job bord, job candidate role, job manager, job offer, job offer categories, job offer list, job list, job listing, jobs, job lists, job management, job portal, listing, manager, manage vacancies, plugin, positions, post job offer, recruiting, resume, resume up-loader, talent, save search conditions, search by job category, search by organization, search by salary, select category, sort job board posts, submit CV, upload CV, vacancy, vacant positions, vacant, vacancy application, vacancy archive, wordpress, wp, wp plugin, wp free plugin, wp job board, wp job board plugin, wp simple job board plugin, wp free job board, wp free job board plugin, wordpress plugin, wordpress free plugin, wordpress job board, wordpress job board plugin, wordpress simple job board plugin, wordpress free job board, wordpress free job board plugin
 Requires at least: 3.8
-Tested up to: 4.4
-Stable tag: 1.0.9
+Tested up to: 4.5.2
+Stable tag: 1.1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -34,6 +34,8 @@ http://www.youtube.com/watch?v=ox2rMnwxfHs
 * Allows the administrator to manage of how the vacancies page as well as vacancies in the front-end are displayed. 
 * Allows to place the login/registration form to add users with Employer and Job candidate roles. 
 
+If you have a feature, suggestion or idea you'd like to see in the plugin, we'd love to hear about it! <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">Suggest a Feature</a>
+
 = Recommended Plugins =
 
 The author of the Job Board also recommends the following plugins:
@@ -51,7 +53,7 @@ If you would like to create your own language pack or update the existing one, y
 
 = Technical support =
 
-Dear users, our plugins are available for free download. If you have any questions or recommendations regarding the functionality of our plugins (existing options, new options, current issues), please feel free to contact us. Please note that we accept requests in English only. All messages in another languages won't be accepted.
+Dear users, our plugins are available for free download. If you have any questions or recommendations regarding the functionality of our plugins (existing options, new options, current issues), please feel free to contact us. Please note that we accept requests in English only. All messages in other languages won't be accepted.
 
 If you notice any bugs in the plugins, you can notify us about it and we'll investigate and fix the issue then. Your request should contain URL of the website, issues description and WordPress admin panel credentials.
 Moreover we can customize the plugin according to your requirements. It's a paid service (as a rule it costs $40, but the price can vary depending on the amount of the necessary changes and their complexity). Please note that we could also include this or that feature (developed for you) in the next release and share with the other users then. 
@@ -122,18 +124,21 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Screenshots ==
 
-1. Job Board display.
-2. Adding new vacancy display with additional fields.
-3. Adding new vacancies category display with additional fields.
-4. Adding new employment type display.
-5. Plugin settings in WordPress admin panel with additional fields.
-6. Vacancies page in front-end display with sorting form fields.
-7. Single job offer page view.
-8. Job candidate settings on profile page.
-9. Job candidate chosen category offers by last day on profile page screen.
-10. Registration form in widget area.
+1. Vacancies page in front-end display with sorting form fields.
+2. Single job offer page view.
+3. Registration form in widget area.
+4. Job Board display.
+5. Adding new vacancy display with additional fields.
+6. Adding new vacancies category display with additional fields.
+7. Adding new employment type display.
+8. Plugin settings in WordPress admin panel with additional fields.
+9. Job candidate settings on profile page.
+10. Job candidate chosen category offers by last day on profile page screen.
 
 == Changelog ==
+
+= V1.1.0 - 09.05.2016 =
+* Bugfix : The bug with pagination was fixed.
 
 = V1.0.9 - 09.12.2015 =
 * Bugfix : The bug with plugin menu duplicating was fixed.
@@ -180,6 +185,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.1.0 =
+Ability to add custom styles.
 
 = V1.0.9 =
 The bug with plugin menu duplicating was fixed.
