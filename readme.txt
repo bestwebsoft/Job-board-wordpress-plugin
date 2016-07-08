@@ -1,7 +1,7 @@
 === Job Board by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
-Tags: add job offer, apply for a job, application, archive job board posts, best plugin, best job board plugin, candidate, career, career page, change job board posts, company, cv, dgob bord, djob board, employees, employer, employment, freelance, free, free plugin, free job board, free job board plugin, hiring, internship, job, job advertisement board, job board, job bord, job candidate role, job manager, job offer, job offer categories, job offer list, job list, job listing, jobs, job lists, job management, job portal, listing, manager, manage vacancies, plugin, positions, post job offer, recruiting, resume, resume up-loader, talent, save search conditions, search by job category, search by organization, search by salary, select category, sort job board posts, submit CV, upload CV, vacancy, vacant positions, vacant, vacancy application, vacancy archive, wordpress, wp, wp plugin, wp free plugin, wp job board, wp job board plugin, wp simple job board plugin, wp free job board, wp free job board plugin, wordpress plugin, wordpress free plugin, wordpress job board, wordpress job board plugin, wordpress simple job board plugin, wordpress free job board, wordpress free job board plugin
+Tags: add job offer, job board, job board plugin, apply for a job, job, cv, manage vacancies, search by salary, job manager, job offer, job offer categories, job offer list
 Requires at least: 3.8
 Tested up to: 4.5.2
 Stable tag: 1.1.0
