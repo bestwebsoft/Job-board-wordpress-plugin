@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: Job Board by BestWebSoft
-Plugin URI: http://bestwebsoft.com/products/
-Description: Plugin for adding to site possibility to create job offers page with custom search, send CV and subscribing for similar jobs.
+Plugin URI: http://bestwebsoft.com/products/job-board/
+Description: Create your personal job board and listing WordPress website. Search jobs, submit CV/resumes, choose candidates.
 Author: BestWebSoft
 Text Domain: job-board
 Domain Path: /languages
-Version: 1.1.0
+Version: 1.1.1
 Author URI: http://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -29,14 +29,14 @@ License: GPLv3 or later
 */
 
 /**
- * Add Wordpress page 'bws_plugins' and sub-page of this plugin to admin-panel.
+ * Add Wordpress page 'bws_panel' and sub-page of this plugin to admin-panel.
  * @return void
  */
 if ( ! function_exists( 'jbbrd_add_admin_menu' ) ) {
 	function jbbrd_add_admin_menu() {
 		global $submenu;
 		bws_general_menu();
-		$settings = add_submenu_page( 'bws_plugins', 'Job Board', 'Job Board', 'manage_options', 'job-board.php', 'jbbrd_settings_page' );	
+		$settings = add_submenu_page( 'bws_panel', 'Job Board', 'Job Board', 'manage_options', 'job-board.php', 'jbbrd_settings_page' );	
 		/* Add custom list page to candidate profile menu. */
 		$hook = add_users_page( 'New job offers', 'New job offers', 'job_candidate', 'job_candidate', 'jbbrd_candidate_category_custom_search_page' );
 		add_action( "load-$hook", 'jbbrd_screen_options' );
@@ -473,12 +473,6 @@ if ( ! function_exists( 'jbbrd_settings' ) ) {
 
 		/* Array merge incase this version has added new options */
 		if ( ! isset( $jbbrd_options['plugin_option_version'] ) || $jbbrd_options['plugin_option_version'] != $jbbrd_plugin_info["Version"] ) {
-			/* check if shortcode option value exists - added in v.1.0.2 */
-			if ( isset( $jbbrd_options['jbbrd_shortcode_permalink'] ) ) {
-				$jbbrd_options['shortcode_permalink'] = $jbbrd_options['jbbrd_shortcode_permalink'];
-				unset( $jbbrd_options['jbbrd_shortcode_permalink'] );
-			}
-			$jbbrd_option_defaults['display_settings_notice'] = 0;
 			$jbbrd_options = array_merge( $jbbrd_option_defaults, $jbbrd_options );
 			$jbbrd_options['plugin_option_version'] = $jbbrd_plugin_info["Version"];
 			update_option( 'jbbrd_options', $jbbrd_options );
@@ -1440,7 +1434,7 @@ if ( ! function_exists( 'jbbrd_admin_notice' ) ) {
 	function jbbrd_admin_notice() {
 		global $typenow, $hook_suffix, $jbbrd_plugin_info, $jbbrd_options;
 		if ( 'plugins.php' == $hook_suffix && ! is_network_admin() ) {
-			bws_plugin_banner_to_settings( $jbbrd_plugin_info, 'jbbrd_options', 'job-board', 'admin.php?page=job-board.php', 'post-new.php?post_type=vacancy',  __( 'Job', 'job-board' ) );
+			bws_plugin_banner_to_settings( $jbbrd_plugin_info, 'jbbrd_options', 'job-board', 'admin.php?page=job-board.php', 'post-new.php?post_type=vacancy' );
 		}
 		if ( isset( $_GET['page'] ) && $_GET['page'] == 'job-board.php' ) {
 			bws_plugin_suggest_feature_banner( $jbbrd_plugin_info, 'jbbrd_options', 'job-board' );
@@ -2858,9 +2852,9 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 					/* Common vacation page view.  */
 					$jbbrd_content .= '<div id="jbbrd_custom_post_' . get_the_ID() . '" class="jbbrd_content">';
 					/* Show vacancy content if get vacancy ID, else show exerpts. */
-					if ( isset( $_GET['vacancy_id'] ) ) 
-						$jbbrd_content .= '<p>' . get_the_content() . '</p>';
-					else { 
+					if ( isset( $_GET['vacancy_id'] ) ) {
+						$jbbrd_content .= '<p>' . wpautop( get_the_content() ) . '</p>';
+					} else { 
 						/* Replaces the excerpt "more" text by a link. */
 						add_filter( 'excerpt_more', 'jbbrd_excerpt_more_link' );
 						$jbbrd_content .= '<p>' . get_the_excerpt() . '</p>';

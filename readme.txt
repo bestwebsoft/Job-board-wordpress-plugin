@@ -3,12 +3,12 @@ Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: add job offer, job board, job board plugin, apply for a job, job, cv, manage vacancies, search by salary, job manager, job offer, job offer categories, job offer list
 Requires at least: 3.8
-Tested up to: 4.5.2
-Stable tag: 1.1.0
+Tested up to: 4.5.3
+Stable tag: 1.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-The plugin allows to create a job-board page on your site.
+Create your personal job board and listing WordPress website. Search jobs, submit CV/resumes, choose candidates.
 
 == Description ==
 
@@ -49,7 +49,7 @@ There is also a premium version of the plugin <a href="http://bestwebsoft.com/pr
 * Russian (ru_RU)
 * Ukrainian (uk)
 
-If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
+If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
 
 = Technical support =
 
@@ -63,7 +63,7 @@ We can fix some things for free for the users who provide translation of our plu
 
 1. Upload the `job-board` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
-3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" > "Job Board".
+3. You can adjust the necessary settings using your WordPress admin panel in "BWS Panel" > "Job Board".
 4. Create a page or a post and insert the short-code [jbbrd_vacancy] into the text.
 
 <a href="https://docs.google.com/document/d/1Lg33uJlVEW6Seo7oio8Dsc0PgOq0iXotTRtyHUHJLCI/edit" target="_blank">View a PDF version of Step-by-step Instruction on Job Board Installation</a>.
@@ -137,6 +137,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.1.1 - 12.07.2016 =
+* Update : 'wpautop' filter was added for job description.
+* Update : We updated all functionality for wordpress 4.5.3.
+
 = V1.1.0 - 09.05.2016 =
 * Bugfix : The bug with pagination was fixed.
 
@@ -185,6 +189,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.1.1 =
+'wpautop' filter was added for job description. We updated all functionality for wordpress 4.5.3.
 
 = V1.1.0 =
 Ability to add custom styles.
