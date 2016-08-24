@@ -6,7 +6,7 @@ Description: Create your personal job board and listing WordPress website. Searc
 Author: BestWebSoft
 Text Domain: job-board
 Domain Path: /languages
-Version: 1.1.1
+Version: 1.1.2
 Author URI: http://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -94,7 +94,7 @@ if ( ! function_exists ( 'jbbrd_init' ) ) {
 		}
 
 		/* Function check if plugin is compatible with current WP version  */
-		bws_wp_min_version_check( plugin_basename( __FILE__ ), $jbbrd_plugin_info, '3.8', '3.5' );
+		bws_wp_min_version_check( plugin_basename( __FILE__ ), $jbbrd_plugin_info, '3.8' );
 
 		/* Session start. */
 		if ( ! @session_id() )
@@ -119,9 +119,9 @@ if ( ! function_exists ( 'jbbrd_admin_init' ) ) {
 	function jbbrd_admin_init() {
 		global $bws_plugin_info, $jbbrd_plugin_info, $bws_shortcode_list;
 		/* Add variable for bws_menu */
-		if ( ! isset( $bws_plugin_info ) || empty( $bws_plugin_info ) ) {
+		if ( empty( $bws_plugin_info ) )
 			$bws_plugin_info = array( 'id' => '139', 'version' => $jbbrd_plugin_info["Version"] );
-		}
+
 		/* Custom meta boxes for the edit job screen. */
 		add_meta_box( "list-pers-meta", __( 'Job Information', 'job-board' ), "jbbrd_meta_personal", "vacancy", "normal", "low" );
 
@@ -2287,13 +2287,14 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 			$jbbrd_salary_min = min( jbbrd_salary_find() );
 			$jbbrd_salary_max = max( jbbrd_salary_find() );
 		} else {
-			$jbbrd_salary_min = $jbbrd_salary_max = 0;
+			$jbbrd_salary_min = $jbbrd_salary_max = '';
 		}
 		/* Clear posible vulnerabilities of variable input. */
 		$jbbrd_get_search_period 		= isset( $_GET['search_period'] ) ? htmlspecialchars( stripslashes( $_GET['search_period'] ) ) : "";
 		$jbbrd_get_category 			= isset( $_GET['category'] ) ? htmlspecialchars( stripslashes( $_GET['category'] ) ) : "";
 		$jbbrd_get_employment_category 	= isset( $_GET['employment_category'] ) ? htmlspecialchars( stripslashes( $_GET['employment_category'] ) ) : "";
 		$jbbrd_get_location	 			= isset( $_GET['jbbrd_location'] ) ? htmlspecialchars( stripslashes( $_GET['jbbrd_location'] ) ) : "";
+		$jbbrd_get_keyword	 			= isset( $_GET['jbbrd_keyword'] ) ? htmlspecialchars( stripslashes( $_GET['jbbrd_keyword'] ) ) : "";		
 		$jbbrd_get_organization	 		= isset( $_GET['jbbrd_organization'] ) ? htmlspecialchars( stripslashes( $_GET['jbbrd_organization'] ) ) : "";
 		$jbbrd_get_salary_from	 		= isset( $_GET['jbbrd_salary_from'] ) ? htmlspecialchars( stripslashes( $_GET['jbbrd_salary_from'] ) ) : "";
 		$jbbrd_get_salary_to	 		= isset( $_GET['jbbrd_salary_to'] ) ? htmlspecialchars( stripslashes( $_GET['jbbrd_salary_to'] ) ) : "";
@@ -2303,6 +2304,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 		$jbbrd_get_category 			= $_GET['category']				= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $jbbrd_get_category ) ) );
 		$jbbrd_get_employment_category	= $_GET['employment_category'] 	= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $jbbrd_get_employment_category ) ) );
 		$jbbrd_get_location				= $_GET['jbbrd_location'] 		= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $jbbrd_get_location ) ) );
+		$jbbrd_get_keyword				= $_GET['jbbrd_keyword'] 		= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $jbbrd_get_keyword ) ) );
 		$jbbrd_get_organization			= $_GET['jbbrd_organization']	= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $jbbrd_get_organization ) ) );
 		$jbbrd_get_salary_from			= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $jbbrd_get_salary_from ) ) );
 		$jbbrd_get_salary_to			= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $jbbrd_get_salary_to ) ) );
@@ -2313,78 +2315,96 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 			7 		=> __( 'Last week', 'job-board' ),
 			30		=> __( 'Last month', 'job-board' ),
 		);
+
+		$jbbrd_employment_search_categories = $jbbrd_search_period_cond = $jbbrd_businesses_search_categories = $jbbrd_location_cond = $jbbrd_organization_cond = $jbbrd_salary_cond = '';
+
 		/* If time period exist set time period query. */
-		if ( isset( $jbbrd_get_search_period ) && ( '' != $jbbrd_get_search_period ) ) {
+		if ( ! empty( $jbbrd_get_search_period ) )
 			$jbbrd_search_period_cond = array(
 				'column' => 'post_modified_gmt',
 				'after'  => $jbbrd_get_search_period . ' day ago',
 			);	
-		} else {
-			$jbbrd_search_period_cond = '';
-		}
 		/* If category exist set search by this category. */
-		if ( isset( $jbbrd_get_category ) && ( '' != $jbbrd_get_category ) ) {
+		if ( ! empty( $jbbrd_get_category ) )
 			$jbbrd_businesses_search_categories = array(
 				'taxonomy'	=> 'jbbrd_businesses',
 				'field'		=> 'slug',
 				'terms'		=> $jbbrd_get_category,
 			);
-		} else {
-			$jbbrd_businesses_search_categories = '';
-		}
+
 		/* If employment category exist set search by this category. */
-		if ( isset( $jbbrd_get_employment_category ) && ( '' != $jbbrd_get_employment_category ) ) {
+		if ( ! empty( $jbbrd_get_employment_category ) )
 			$jbbrd_employment_search_categories = array(
 				'taxonomy'	=> 'jbbrd_employment',
 				'field'		=> 'slug',
 				'terms'		=> $jbbrd_get_employment_category,
 			);
-		} else
-			$jbbrd_employment_search_categories = '';
 		
 		$jbbrd_search_categories = array(
 			$jbbrd_businesses_search_categories,
-			$jbbrd_employment_search_categories,
+			$jbbrd_employment_search_categories
 		);
-		/* Set wp_query conditions for frontend form search. */
-		if ( isset( $jbbrd_get_location ) && ( '' != $jbbrd_get_location ) ) 
+
+		/* Set wp_query conditions for frontend form search. */		
+		if ( ! empty( $jbbrd_get_location ) )
 			$jbbrd_location_cond = array( 
 				'key'		=> 'jbbrd_location', 
 				'value'		=> $jbbrd_get_location, 
 				'compare'	=> 'LIKE', 
 			);
-		else
-			$jbbrd_location_cond = '';
-		
-		if ( isset( $jbbrd_get_organization ) && ( '' != $jbbrd_get_organization ) ) 
+
+		if ( ! empty( $jbbrd_get_organization ) ) 
 			$jbbrd_organization_cond = array( 
 				'key'		=> 'jbbrd_organization', 
 				'value'		=> $jbbrd_get_organization,
 				'compare'	=> 'LIKE', 
 			);
-		else
-			$jbbrd_organization_cond = '';
 		
-		if ( isset( $jbbrd_get_salary_from ) && ( '' != $jbbrd_get_salary_from ) ) 
-			$jbbrd_salary_from_cond = array( 
-				'key' 		=> 'salary', 
-				'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_from ),
-				'compare' 	=> '>=', 
-				'type' 		=> 'numeric',);
-		else
-			$jbbrd_salary_from_cond = '';
+		if ( ! empty( $jbbrd_get_salary_from ) || ! empty( $jbbrd_get_salary_to ) ) {
+			$jbbrd_salary_cond = array(
+				'relation' => 'OR',
+				array(
+					'key' 		=> 'salary', 
+					'compare' 	=> 'NOT EXISTS',
+				)
+			);
 
-		if ( isset( $jbbrd_get_salary_to ) && ( '' != $jbbrd_get_salary_to ) ) 
-			$jbbrd_salary_to_cond = array( 
-				'key' 		=> 'salary', 
-				'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_to ), 
-				'compare' 	=> '<=', 
-				'type' 		=> 'numeric',);
-		else
-			$jbbrd_salary_to_cond = '';
+
+			if ( ! empty( $jbbrd_get_salary_from ) && ! empty( $jbbrd_get_salary_to ) ) {
+				$jbbrd_salary_cond[] = array(
+					'relation' => 'AND',
+					array( 
+						'key' 		=> 'salary', 
+						'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_from ),
+						'compare' 	=> '>=', 
+						'type' 		=> 'numeric'
+					),
+					array( 
+						'key' 		=> 'salary', 
+						'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_to ), 
+						'compare' 	=> '<=', 
+						'type' 		=> 'numeric'
+					),
+				);
+			} elseif ( ! empty( $jbbrd_get_salary_from ) ) {
+				$jbbrd_salary_cond[] = array( 
+					'key' 		=> 'salary', 
+					'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_from ),
+					'compare' 	=> '>=', 
+					'type' 		=> 'numeric'
+				);
+			} else {
+				$jbbrd_salary_cond[] = array( 
+					'key' 		=> 'salary', 
+					'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_to ), 
+					'compare' 	=> '<=', 
+					'type' 		=> 'numeric'
+				);
+			}
+		}
 
 		/* If get ID - set id search condition. */
-		$jbbrd_title_search_cond = ( isset( $jbbrd_get_vacancy_id ) && '' != $jbbrd_get_vacancy_id ) ? $jbbrd_get_vacancy_id : '';
+		$jbbrd_title_search_cond = ! empty( $jbbrd_get_vacancy_id ) ? $jbbrd_get_vacancy_id : '';
 		/* Add parameters for output posts. */
 
 		if ( get_query_var( 'paged' ) ) {
@@ -2411,13 +2431,14 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 				'relation' 	=> 'AND', 
 				$jbbrd_location_cond,
 				$jbbrd_organization_cond,
-				$jbbrd_salary_from_cond,
-				$jbbrd_salary_to_cond,
+				$jbbrd_salary_cond
 			),
 			'date_query' => array(
 				$jbbrd_search_period_cond,
 			)
 		);
+		if ( ! empty( $jbbrd_get_keyword ) )
+			$args['s'] = $jbbrd_get_keyword;
 
 		$second_query = new WP_Query( $args );
 
@@ -2533,7 +2554,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 		/* If no send CV button. */
 		if ( ! isset( $_POST['jbbrd_frontend_sendmail_submit'] ) ) {
 			if ( ! isset( $_GET['vacancy_id'] ) || ( isset( $_GET['vacancy_id'] ) && ! $second_query->have_posts() ) ) {
-			/* Print form fo sorting jobs in frontend. */
+				/* Print form fo sorting jobs in frontend. */
 				if ( ( isset( $jbbrd_options['frontend_form'] ) && 1 == $jbbrd_options['frontend_form'] && is_user_logged_in() && current_user_can( 'read_private_vacancies', get_current_user_id() ) ) ||
 					( isset( $jbbrd_options['frontend_form_non_registered'] ) && 1 == $jbbrd_options['frontend_form_non_registered'] ) ) { 
 					$jbbrd_content .= '<hr />
@@ -2602,6 +2623,19 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 												$jbbrd_content .= '" />';
 											}
 											$jbbrd_content .= '
+										</td>
+									</tr>
+									<tr>
+										<td class="jbbrd_frontend_field">
+											<label>' . __( 'Keyword:', 'job-board' ) . '</label>
+											<div>';
+												/* Output html for taxonomy dropdown filter. */
+												$jbbrd_content .= '<input type="text" class="jbbrd_frontend_input" name="jbbrd_keyword" value="';
+													if ( isset( $jbbrd_get_keyword ) ) {
+														$jbbrd_content .= $jbbrd_get_keyword; 
+													}
+												$jbbrd_content .= '" />
+											</div>
 										</td>
 									</tr>
 									<tr>
@@ -2774,7 +2808,8 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 				$jbbrd_content .= '<br /><h3>' . __( 'Nothing found.', 'job-board' ) . '</h3>';
 			}
 		}		
-		if ( $second_query->have_posts() && ( ! isset( $_POST['jbbrd_frontend_sendmail_submit'] ) ) ) : /* check for existing posts with specified parameters*/ 
+		if ( $second_query->have_posts() && ( ! isset( $_POST['jbbrd_frontend_sendmail_submit'] ) ) ) :
+			/* check for existing posts with specified parameters*/ 
 			$vacancy_id_slug = ( ! get_option('permalink_structure') && ( trim( $jbbrd_options['shortcode_permalink'], '/' ) != get_option('home') ) ) ? '&vacancy_id=' : '?vacancy_id=';
 			/* get the value of currency */
 			if ( 'preset' == $jbbrd_options['select_money_unit'] ) {

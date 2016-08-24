@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: add job offer, job board, job board plugin, apply for a job, job, cv, manage vacancies, search by salary, job manager, job offer, job offer categories, job offer list
 Requires at least: 3.8
-Tested up to: 4.5.3
-Stable tag: 1.1.1
+Tested up to: 4.6
+Stable tag: 1.1.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -137,6 +137,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.1.2 - 24.08.2016 =
+* NEW : Keyword field has been added to the search form to specify the search terms (for jobs titles and content).
+* Update : Jobs without salary has been included to search results.
+
 = V1.1.1 - 12.07.2016 =
 * Update : 'wpautop' filter was added for job description.
 * Update : We updated all functionality for wordpress 4.5.3.
@@ -189,6 +193,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.1.2 =
+* Functionality expanded.
 
 = V1.1.1 =
 'wpautop' filter was added for job description. We updated all functionality for wordpress 4.5.3.
