@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: Job Board by BestWebSoft
-Plugin URI: http://bestwebsoft.com/products/job-board/
+Plugin URI: http://bestwebsoft.com/products/wordpress/plugins/job-board/
 Description: Create your personal job board and listing WordPress website. Search jobs, submit CV/resumes, choose candidates.
 Author: BestWebSoft
 Text Domain: job-board
 Domain Path: /languages
-Version: 1.1.2
+Version: 1.1.3
 Author URI: http://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -519,13 +519,13 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 		$all_plugins = get_plugins();
 
 		if ( ! ( array_key_exists( 'sender/sender.php', $all_plugins ) || array_key_exists( 'sender-pro/sender-pro.php', $all_plugins ) ) ) {
-			$jbbrd_sender_not_found = sprintf( __( '%sSender Plugin%s is not found.%s', 'job-board' ), ( '<a target="_blank" href="' . esc_url( 'http://bestwebsoft.com/products/sender/' ) . '">' ),'</a>', '<br />' );
+			$jbbrd_sender_not_found = sprintf( __( '%sSender Plugin%s is not found.%s', 'job-board' ), ( '<a target="_blank" href="' . esc_url( 'http://bestwebsoft.com/products/wordpress/plugins/sender/' ) . '">' ),'</a>', '<br />' );
 			$jbbrd_sender_not_found .= sprintf( __( 'If you want to give "send CV possibility" to Job candidates, you need to install and activate Sender plugin.%s', 'job-board' ), '</br>' );
-			$jbbrd_sender_not_found .= __( 'You can download Sender Plugin from', 'job-board' ) . ' <a href="' . esc_url( 'http://bestwebsoft.com/products/sender/' ) . '" title="' . __( 'Developers website', 'job-board' ). '"target="_blank">' . __( 'website of plugin Authors', 'job-board' ) . ' </a>';
+			$jbbrd_sender_not_found .= __( 'You can download Sender Plugin from', 'job-board' ) . ' <a href="' . esc_url( 'http://bestwebsoft.com/products/wordpress/plugins/sender/' ) . '" title="' . __( 'Developers website', 'job-board' ). '"target="_blank">' . __( 'website of plugin Authors', 'job-board' ) . ' </a>';
 			$jbbrd_sender_not_found .= __( 'or', 'job-board' ) . ' <a href="' . esc_url( 'http://wordpress.org/plugins/sender/' ) . '" title="Wordpress" target="_blank">' . __( 'Wordpress.', 'job-board' ) . '</a>';
 		} else {
 			if ( ! ( is_plugin_active( 'sender/sender.php' ) || is_plugin_active( 'sender-pro/sender-pro.php' ) ) ) {
-				$jbbrd_sender_not_active = sprintf( __( '%sSender Plugin%s is not active.%sIf you want to give "send CV possibility" to Job candidates, you need to %sactivate Sender plugin.%s', 'job-board' ), ( '<a target="_blank" href="' . esc_url( 'http://bestwebsoft.com/products/sender/' ) . '">' ),'</a>', '<br />', ( '<a href="' . esc_url( 'plugins.php' ) . '">' ), '</a>' );
+				$jbbrd_sender_not_active = sprintf( __( '%sSender Plugin%s is not active.%sIf you want to give "send CV possibility" to Job candidates, you need to %sactivate Sender plugin.%s', 'job-board' ), ( '<a target="_blank" href="' . esc_url( 'http://bestwebsoft.com/products/wordpress/plugins/sender/' ) . '">' ),'</a>', '<br />', ( '<a href="' . esc_url( 'plugins.php' ) . '">' ), '</a>' );
 			}
 			/* Old version. */
 			if ( is_plugin_active( 'sender/sender.php' ) && isset( $all_plugins['sender/sender.php']['Version'] ) && $all_plugins['sender/sender.php']['Version'] < '0.5' )
@@ -2476,7 +2476,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 							}
 							$jbbrd_message .= sprintf( '<h4 style="font-weight:normal;">' . __( 'Candidate CV:', 'job-board' ) . '&nbsp;' . ( ( '' != $jbbrd_current_candidate_cv ) ? '<a style="color:#6495ED;text-decoration:none;line-height:11px;" href="' . $jbbrd_current_candidate_cv . '">' . $jbbrd_current_candidate_cv_filename . '</a>' : __( '...sorry, CV not found.', 'job-board' ) ) . '</h4>');
 							$jbbrd_message .= '<hr style="border-width:0;border-bottom:solid 1px #e0e0e0;" />';
-							$jbbrd_message .= sprintf( __( 'This mail was sent by %sJob Board%s plugin by %sBestWebSoft%s from', 'job-board' ) . '&nbsp;<a  href="' . esc_url( get_bloginfo( 'url' ) ) . '">' . get_bloginfo( 'name' ) . '</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/products/job-board/' ) . '">' ),'</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/' ) . '">' ),'</a>' );
+							$jbbrd_message .= sprintf( __( 'This mail was sent by %sJob Board%s plugin by %sBestWebSoft%s from', 'job-board' ) . '&nbsp;<a  href="' . esc_url( get_bloginfo( 'url' ) ) . '">' . get_bloginfo( 'name' ) . '</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/products/wordpress/plugins/job-board/' ) . '">' ),'</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/' ) . '">' ),'</a>' );
 							$jbbrd_message .= '</div>';
 							$jbbrd_subject = __( 'Reply for', 'job-board' ) . ' ' . get_the_title( $jbbrd_current_vacancy_id ) . ' ' . __( 'job offer.', 'job-board' );
 						} else {
@@ -2499,7 +2499,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 						}
 						$jbbrd_message .= sprintf( '<h4 style="font-weight:normal;">' . __( 'Candidate CV:', 'job-board' ) . '&nbsp;' . ( ( '' != $jbbrd_current_candidate_cv ) ? '<a style="color:#6495ED;text-decoration:none;line-height:11px;" href="' . $jbbrd_current_candidate_cv . '">' . $jbbrd_current_candidate_cv_filename . '</a>' : __( '...sorry, CV not found.', 'job-board' ) ) . '</h4>');
 						$jbbrd_message .= '<hr style="border-width:0;border-bottom:solid 1px #e0e0e0;" />';
-						$jbbrd_message .= sprintf( __( 'This mail was sent by %sJob Board%s plugin by %sBestWebSoft%s from', 'job-board' ) . '&nbsp;<a  href="' . esc_url( get_bloginfo( 'url' ) ) . '">' . get_bloginfo( 'name' ) . '</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/products/job-board/' ) . '">' ),'</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/' ) . '">' ),'</a>' );
+						$jbbrd_message .= sprintf( __( 'This mail was sent by %sJob Board%s plugin by %sBestWebSoft%s from', 'job-board' ) . '&nbsp;<a  href="' . esc_url( get_bloginfo( 'url' ) ) . '">' . get_bloginfo( 'name' ) . '</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/products/wordpress/plugins/job-board/' ) . '">' ),'</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/' ) . '">' ),'</a>' );
 						$jbbrd_message .= '</div>';
 						$jbbrd_subject = __( 'Reply for', 'job-board' ) . ' ' . get_the_title( $jbbrd_current_vacancy_id ) . ' ' . __( 'job offer.', 'job-board' );
 					}
@@ -2888,7 +2888,10 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 					$jbbrd_content .= '<div id="jbbrd_custom_post_' . get_the_ID() . '" class="jbbrd_content">';
 					/* Show vacancy content if get vacancy ID, else show exerpts. */
 					if ( isset( $_GET['vacancy_id'] ) ) {
-						$jbbrd_content .= '<p>' . wpautop( get_the_content() ) . '</p>';
+						$content = wpautop( get_the_content() );
+						if ( function_exists( 'mltlngg_the_content_filter' ) )
+							$content = mltlngg_the_content_filter( $content );
+						$jbbrd_content .= '<p>' . $content . '</p>';
 					} else { 
 						/* Replaces the excerpt "more" text by a link. */
 						add_filter( 'excerpt_more', 'jbbrd_excerpt_more_link' );
@@ -2936,7 +2939,12 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 					'next_text' => '&raquo;',
 				);
 			
-				$jbbrd_content .= '<div class="page-navigation">' . paginate_links( $pages_array ) . '</div>';
+				$jbbrd_content .= '<div class="page-navigation page-links">' . paginate_links( $pages_array ) . '</div>';
+				if ( function_exists( 'pgntn_nav_display' ) ) {
+					ob_start();				
+					pgntn_nav_display( 'custom', 'bottom', $second_query );
+					$jbbrd_content .= ob_get_clean();
+				}
 			}
 		endif;
 	

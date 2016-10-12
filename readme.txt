@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: add job offer, job board, job board plugin, apply for a job, job, cv, manage vacancies, search by salary, job manager, job offer, job offer categories, job offer list
 Requires at least: 3.8
-Tested up to: 4.6
-Stable tag: 1.1.2
+Tested up to: 4.6.1
+Stable tag: 1.1.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -40,9 +40,9 @@ If you have a feature, suggestion or idea you'd like to see in the plugin, we'd 
 
 The author of the Job Board also recommends the following plugins:
 
-* <a href="http://wordpress.org/plugins/sender/">Sender</a> - this plugin sends mail to registered users. There is also a premium version of the plugin - <a href="http://bestwebsoft.com/products/sender/?k=ccd218c6d916f9735e3de54ff210e4fe">Sender Pro</a>, allowing to create and save templates for letters, edit the content of messages with a visual editor TinyMce, set priority оf mailing, create and manage mailing lists.
+* <a href="http://wordpress.org/plugins/sender/">Sender</a> - this plugin sends mail to registered users. There is also a premium version of the plugin - <a href="http://bestwebsoft.com/products/wordpress/plugins/sender/?k=ccd218c6d916f9735e3de54ff210e4fe">Sender Pro</a>, allowing to create and save templates for letters, edit the content of messages with a visual editor TinyMce, set priority оf mailing, create and manage mailing lists.
 * <a href="http://wordpress.org/plugins/updater/">Updater</a> - This plugin updates WordPress core and the plugins to the recent versions. You can also use the auto mode or manual mode for updating and set email notifications.
-There is also a premium version of the plugin <a href="http://bestwebsoft.com/products/updater/?k=f058bd7a03e4033393399694b61aa061">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.
+There is also a premium version of the plugin <a href="http://bestwebsoft.com/products/wordpress/plugins/updater/?k=f058bd7a03e4033393399694b61aa061">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.
 
 = Translation =
 
@@ -137,6 +137,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.1.3 - 12.10.2016 =
+* Update : The compatibility with new Multilanguage version updated.
+
 = V1.1.2 - 24.08.2016 =
 * NEW : Keyword field has been added to the search form to specify the search terms (for jobs titles and content).
 * Update : Jobs without salary has been included to search results.
@@ -193,6 +196,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.1.3 =
+* Plugin optimization completed.
 
 = V1.1.2 =
 * Functionality expanded.

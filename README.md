@@ -38,9 +38,9 @@ Create your personal job board and listing WordPress website. Search jobs, submi
 <p>The author of the Job Board also recommends the following plugins:</p>
 
 <ul>
-<li><a href="http://wordpress.org/plugins/sender/">Sender</a> - this plugin sends mail to registered users. There is also a premium version of the plugin - <a href="http://bestwebsoft.com/products/sender/?k=ccd218c6d916f9735e3de54ff210e4fe">Sender Pro</a>, allowing to create and save templates for letters, edit the content of messages with a visual editor TinyMce, set priority оf mailing, create and manage mailing lists.</li>
+<li><a href="http://wordpress.org/plugins/sender/">Sender</a> - this plugin sends mail to registered users. There is also a premium version of the plugin - <a href="http://bestwebsoft.com/products/wordpress/plugins/sender/?k=ccd218c6d916f9735e3de54ff210e4fe">Sender Pro</a>, allowing to create and save templates for letters, edit the content of messages with a visual editor TinyMce, set priority оf mailing, create and manage mailing lists.</li>
 <li><a href="http://wordpress.org/plugins/updater/">Updater</a> - This plugin updates WordPress core and the plugins to the recent versions. You can also use the auto mode or manual mode for updating and set email notifications.
-There is also a premium version of the plugin <a href="http://bestwebsoft.com/products/updater/?k=f058bd7a03e4033393399694b61aa061">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.</li>
+There is also a premium version of the plugin <a href="http://bestwebsoft.com/products/wordpress/plugins/updater/?k=f058bd7a03e4033393399694b61aa061">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.</li>
 </ul>
 
 <h4>Translation</h4>
