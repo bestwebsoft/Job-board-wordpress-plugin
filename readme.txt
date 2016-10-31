@@ -12,61 +12,101 @@ Create your personal job board and listing WordPress website. Search jobs, submi
 
 == Description ==
 
-The plugin allows to create and post job-board posts as well as to change, sort and archive them. After inserting the short-code into the page, you will see all vacancies from a search form by categories, organizations, salary etc. The search form is available only after the user has been authorized as a candidate. The candidate is allowed to upload and submit a CV, select a category by which the list of vacant positions is formed for the last 24 hours and save the current search conditions to be used as a search template in future.
+Job Board is a simple plugin which allows to create your personal job WordPress website. Add and manage unlimited job posts, categories and employers. Allow users to register, search jobs, and submit their resume/CV online.
+
+Connect job seekers with their future employers today!
 
 http://www.youtube.com/watch?v=ox2rMnwxfHs
 
-<a href="http://www.youtube.com/watch?v=-5mDdQmDuIc" target="_blank">Job Board by BestWebSoft Video instruction on Installation</a>
-
-<a href="http://wordpress.org/plugins/job-board/faq/" target="_blank">Job Board by BestWebSoft FAQ</a>
-
-<a href="http://support.bestwebsoft.com" target="_blank">Job Board by BestWebSoft Support</a>
-
 = Features =
 
-* Allows to add, edit, delete and categorize the vacancies.
-* Sorts and filters vacant positions - both in the admin panel and in the front-end.
-* Allows to apply for the vacancy (after registration).
-* Allows to save the search as a template for future use.
-* Allow the applicant to select a category and browse the vacancies in this category using in the admin panel.
-* Sends letters when you get an application for the vacancy.
-* Automatically places the vacancy to the archive after the expiration of the period which was set either by the administrator or by the author.
-* Allows the administrator to manage of how the vacancies page as well as vacancies in the front-end are displayed. 
-* Allows to place the login/registration form to add users with Employer and Job candidate roles. 
+* Add and manage an unlimited number of:
+	* Jobs
+	* Categories
+	* Employment
+* Use shortcode to add:
+	* Job board
+	* Registration form
+* Customize your jobs additional info:
+	* Requirements
+	* Location
+	* Organization
+	* Salary
+	* Expiry date
+* Choose employment type:
+	* Freelance
+	* Full time
+	* Internship
+	* Part time
+	* Temporary
+	* Custom
+		* Name
+		* Slug
+		* Parent
+		* Description
+* Choose currency:
+	* From the list
+	* Custom
+* Choose salary per:
+	* Hour
+	* Day
+	* Week
+	* Month
+	* Year
+* Choose job featured image position:
+	* Left
+	* Right
+* Change location field in the frontend sorting form
+* Customize text after CV sending
+* Set the job offers default expiry time
+* Set daily archiving time
+* Job candidates can customize their account:
+	* Upload resume/CV file
+	* Set the job search category
+* Search and view a list with job offers
+* Add custom code via plugin settings page
+* Compatible with latest WordPress version
+* Incredibly simple settings for fast setup without modifying code
+* Detailed step-by-step documentation and videos
 
-If you have a feature, suggestion or idea you'd like to see in the plugin, we'd love to hear about it! <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">Suggest a Feature</a>
+If you have a feature suggestion or idea you'd like to see in the plugin, we'd love to hear about it! [Suggest a Feature](http://support.bestwebsoft.com/hc/en-us/requests/new)
 
-= Recommended Plugins =
+= Documentation & Videos =
 
-The author of the Job Board also recommends the following plugins:
+* [[Doc] Installation](https://docs.google.com/document/d/1Lg33uJlVEW6Seo7oio8Dsc0PgOq0iXotTRtyHUHJLCI/)
+* [[Video] Installation Instruction](http://www.youtube.com/watch?v=-5mDdQmDuIc)
 
-* <a href="http://wordpress.org/plugins/sender/">Sender</a> - this plugin sends mail to registered users. There is also a premium version of the plugin - <a href="http://bestwebsoft.com/products/wordpress/plugins/sender/?k=ccd218c6d916f9735e3de54ff210e4fe">Sender Pro</a>, allowing to create and save templates for letters, edit the content of messages with a visual editor TinyMce, set priority оf mailing, create and manage mailing lists.
-* <a href="http://wordpress.org/plugins/updater/">Updater</a> - This plugin updates WordPress core and the plugins to the recent versions. You can also use the auto mode or manual mode for updating and set email notifications.
-There is also a premium version of the plugin <a href="http://bestwebsoft.com/products/wordpress/plugins/updater/?k=f058bd7a03e4033393399694b61aa061">Updater Pro</a> with more useful features available. It can make backup of all your files and database before updating. Also it can forbid some plugins or WordPress Core update.
+= Help & Support =
+
+Visit our Help Center if you have any questions, our friendly Support Team is happy to help — <http://support.bestwebsoft.com/>
 
 = Translation =
 
 * Russian (ru_RU)
 * Ukrainian (uk)
 
-If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
+Some of these translations are not complete. We are constantly adding new features which should be translated. If you would like to create your own language pack or update the existing one, you can send [the text of PO and MO files](http://codex.wordpress.org/Translating_WordPress) to [BestWebSoft](http://support.bestwebsoft.com/hc/en-us/requests/new) and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO [files Poedit](http://www.poedit.net/download.php).
 
-= Technical support =
+= Recommended Plugins =
 
-Dear users, our plugins are available for free download. If you have any questions or recommendations regarding the functionality of our plugins (existing options, new options, current issues), please feel free to contact us. Please note that we accept requests in English only. All messages in other languages won't be accepted.
+* [Updater](http://bestwebsoft.com/products/wordpress/plugins/updater/?k=c9514c3366ba95825f1470bfc8d75f4f) - Automatically check and update WordPress core with all installed plugins to the latest versions. Manual mode, email notifications and backups of all your files and database before updating.
+* [Sender](http://bestwebsoft.com/products/wordpress/plugins/sender/?k=ccd218c6d916f9735e3de54ff210e4fe) - Send bulk email messages to WordPress users. Custom templates, advanced settings and detailed reports.
+* [Custom Search](http://bestwebsoft.com/products/wordpress/plugins/custom-search/?k=0320eef03b72c22f7448ab163f612a6d) - Add custom post types to WordPress website search results.
 
-If you notice any bugs in the plugins, you can notify us about it and we'll investigate and fix the issue then. Your request should contain URL of the website, issues description and WordPress admin panel credentials.
-Moreover we can customize the plugin according to your requirements. It's a paid service (as a rule it costs $40, but the price can vary depending on the amount of the necessary changes and their complexity). Please note that we could also include this or that feature (developed for you) in the next release and share with the other users then. 
-We can fix some things for free for the users who provide translation of our plugin into their native language (this should be a new translation of a certain plugin, you can check available translations on the official plugin page).
+= Donate =
+
+Donations play an important role in supporting open-source projects. We greatly appreciate any donation you can make to help us continue further development of free products.
+
+[Donate Now](http://bestwebsoft.com/donate/)
 
 == Installation == 
 
 1. Upload the `job-board` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
 3. You can adjust the necessary settings using your WordPress admin panel in "BWS Panel" > "Job Board".
-4. Create a page or a post and insert the short-code [jbbrd_vacancy] into the text.
+4. Create a page or a post and insert the shortcode [jbbrd_vacancy] into the text.
 
-<a href="https://docs.google.com/document/d/1Lg33uJlVEW6Seo7oio8Dsc0PgOq0iXotTRtyHUHJLCI/edit" target="_blank">View a PDF version of Step-by-step Instruction on Job Board Installation</a>.
+[View a PDF version of Step-by-step Instruction on Job Board Installation](https://docs.google.com/document/d/1Lg33uJlVEW6Seo7oio8Dsc0PgOq0iXotTRtyHUHJLCI/)
 
 http://www.youtube.com/watch?v=-5mDdQmDuIc
 
@@ -74,14 +114,14 @@ http://www.youtube.com/watch?v=-5mDdQmDuIc
 
 = How can I create a vacancies page on my site? =
 
-Just insert the short-code [jbbrd_vacancy] into your page or post and save the settings on the settings page of the plugin.
-Attention: In order to avoid incorrect formatting of the text, the short-code should be placed in text mode.
+Just insert the shortcode [jbbrd_vacancy] into your page or post and save the settings on the settings page of the plugin.
+Attention: In order to avoid incorrect formatting of the text, the shortcode should be placed in text mode.
 
-= How can I place the login / registration form to add users with Employer and Job candidate roles =
+= How can I place the login/registration form to add users with Employer and Job candidate roles? =
 
-Insert the short-code [jbbrd_registration] into your page or post.
-You can also add the login / registration form into widget. To do it, just create a text widget and put the short-code into the widget field.
-To prevent the login / registration errors, do not place more than one registration form short-code on your website.
+Insert the shortcode [jbbrd_registration] into your page or post.
+You can also add the login/registration form into widget. To do it, just create a text widget and put the shortcode into the widget field.
+To prevent the login/registration errors, do not place more than one registration form shortcode on your website.
 
 = How can I add a category of vacancies? =
 
@@ -98,16 +138,16 @@ Create a new vacancy, or press the "Edit" in existing one. Select "Featured Imag
 
 = Why I cannot see the CV sort and send form? =
 
-Make sure that you have <a href="http://wordpress.org/plugins/sender/">Sender plugin</a> installed and activated.
+Make sure that you have [Sender plugin](http://bestwebsoft.com/products/wordpress/plugins/sender/?k=ccd218c6d916f9735e3de54ff210e4fe) installed and activated.
 Register as a Job candidate to get the possibility to use a filter of vacancies and send CV.
 
 = How can I send CV? =
 
-Log in to your profile. In the user profile file, add CV (Doc, Docx, Pdf, Txt only).  Click "Send CV" under the vacancy. The employer will receive an email with your details and a link to your CV attached file.
+Log in to your profile. In the user profile file, add CV (Doc, Docx, Pdf, Txt only). Click "Send CV" under the vacancy. The employer will receive an email with your details and a link to your CV attached file.
 
 = Why I cannot find a vacancy using a standard search form? =
 
-Unlike standard posts, vacancies are custom post type and they are not included in the standard search form. To add a vacancy custom post type into your search, please install the plugin <a href="/wp-admin/plugin-install.php?tab=search&type=term&s=Custom+Search+plugin+bestwebsoft&plugin-search-input=Search+Plugins">"Custom search"</a>
+Unlike standard posts, vacancies are custom post type and they are not included in the standard search form. To add a vacancy custom post type into your search, please install [Custom Search](http://bestwebsoft.com/products/wordpress/plugins/custom-search/?k=0320eef03b72c22f7448ab163f612a6d) plugin.
 
 = What is the "archive of vacancies"? How to extract a vacancy from the archive of vacancies?? =
 
@@ -115,12 +155,12 @@ Vacancies` validity is specified when entering a date in the "Expiry date" field
 
 = I have some problems with the plugin's work. What Information should I provide to receive proper support? =
 
-Please make sure that the problem hasn't been discussed yet on our forum (<a href="http://support.bestwebsoft.com" target="_blank">http://support.bestwebsoft.com</a>). If no, please provide the following data along with your problem's description:
+Please make sure that the problem hasn't been discussed yet on our forum (<http://support.bestwebsoft.com>). If no, please provide the following data along with your problem's description:
 
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
-4. copy and paste into the message your system status report. Please read more here: <a href="https://docs.google.com/document//1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit" target="_blank">Instruction on System Status</a>
+4. copy and paste into the message your system status report. Please read more here: [Instruction on System Status](https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit)
 
 == Screenshots ==
 
