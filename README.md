@@ -3,8 +3,6 @@
 
 Create your personal job board and listing WordPress website. Search jobs, submit CV/resumes, choose candidates.
 
-<img src="http://bestwebsoft.com/wp-content/uploads/2014/09/job-board-banner-website.jpg" />
-
 <p>Job Board is a simple plugin which allows to create your personal job WordPress website. Add and manage unlimited job posts, categories and employers. Allow users to register, search jobs, and submit their resume/CV online.</p>
 
 <p>Connect job seekers with their future employers today!</p>
