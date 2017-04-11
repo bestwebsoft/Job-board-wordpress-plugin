@@ -1,14 +1,3 @@
-#adminmenu #menu-posts-vacancy:hover div.wp-menu-image:before,
-#adminmenu #menu-posts-vacancy.wp-has-current-submenu div.wp-menu-image:before,
-#adminmenu #menu-posts-vacancy div.wp-menu-image:before {
-	background: url("../images/jbbrd_icon_02.png") no-repeat scroll center 8px rgba(0, 0, 0, 0);
-	content: "";
-	opacity: 0.7;
-}
-#adminmenu #menu-posts-vacancy.wp-has-current-submenu div.wp-menu-image:before {
-	opacity: 1;
-}
-
 /* Styles for Job Vacancy Manager */
 #jbbrd_table_information {
 	width: 100%;
@@ -82,7 +71,7 @@ th#jbbrd_archive {
 	height: 180px;
 }
 input#jbbrd_salary_input {
-	width: 50px;
+	width: 75px;
 	margin-right: 5px;
 }
 .jbbrd_input_number {
@@ -104,7 +93,8 @@ input#jbbrd_salary_input {
 #jbbrd_frontend_form .jbbrd_frontend_table_sendmail,
 #jbbrd_frontend_form .jbbrd_frontend_table_sendmail td,
 #jbbrd_registration_form .jbbrd_frontend_table_sendmail,
-#jbbrd_registration_form .jbbrd_frontend_table_sendmail td {
+#jbbrd_registration_form .jbbrd_frontend_table_sendmail td,
+#jbbrd_registration_form .jbbrd_frontend_table_sendmail tr {
     border: 0px !important;
     text-align: left;
     margin-bottom: 0px;
@@ -181,7 +171,7 @@ input#jbbrd_salary_input {
 }
 #jbbrd_frontend_input_salary_from,
 #jbbrd_frontend_input_salary_to {
-	width: 55px !important;
+	width: 68px !important;
 	margin-right: 10px !important;
 }
 #jbbrd_frontend_submit {

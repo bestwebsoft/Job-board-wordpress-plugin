@@ -1,4 +1,4 @@
-<a href="http://bestwebsoft.com/products/wordpress/plugins/job-board/" target=_blank>Job Board WordPress Plugin</a>
+<a href="https://bestwebsoft.com/products/wordpress/plugins/job-board/" target=_blank>Job Board WordPress Plugin</a>
 ========================
 
 Create your personal job board and listing WordPress website. Search jobs, submit CV/resumes, choose candidates.

@@ -1,18 +1,18 @@
 <?php
 /*
 Plugin Name: Job Board by BestWebSoft
-Plugin URI: http://bestwebsoft.com/products/wordpress/plugins/job-board/
+Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/job-board/
 Description: Create your personal job board and listing WordPress website. Search jobs, submit CV/resumes, choose candidates.
 Author: BestWebSoft
 Text Domain: job-board
 Domain Path: /languages
-Version: 1.1.3
-Author URI: http://bestwebsoft.com/
+Version: 1.1.4
+Author URI: https://bestwebsoft.com/
 License: GPLv3 or later
 */
 
 /*
-	@ Copyright 2016  BestWebSoft  ( http://support.bestwebsoft.com )
+	@ Copyright 2017  BestWebSoft  ( https://support.bestwebsoft.com )
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
@@ -38,7 +38,7 @@ if ( ! function_exists( 'jbbrd_add_admin_menu' ) ) {
 		bws_general_menu();
 		$settings = add_submenu_page( 'bws_panel', 'Job Board', 'Job Board', 'manage_options', 'job-board.php', 'jbbrd_settings_page' );	
 		/* Add custom list page to candidate profile menu. */
-		$hook = add_users_page( 'New job offers', 'New job offers', 'job_candidate', 'job_candidate', 'jbbrd_candidate_category_custom_search_page' );
+		$hook = add_users_page( __( 'New job offers', 'job-board' ), __( 'New job offers', 'job-board' ), 'job_candidate', 'job_candidate', 'jbbrd_candidate_category_custom_search_page' );
 		add_action( "load-$hook", 'jbbrd_screen_options' );
 
 		add_action( 'load-' . $settings, 'jbbrd_add_tabs' );
@@ -158,6 +158,7 @@ if ( ! function_exists( 'jbbrd_post_type_vacancy' ) ) {
 			),
 			'singular_label' 	=> __( 'Job', 'job-board' ),
 			'public' 			=> true,
+			'menu_icon'			=> 'dashicons-index-card',
 			'show_ui' 			=> true, /* UI in admin panel. */
 			'_builtin' 			=> false, /* It's a custom post type, not built in. */
 			'_edit_link' 		=> 'post.php?post=%d',
@@ -513,19 +514,40 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 		$error = $warning = '';
 		$plugin_basename  = plugin_basename( __FILE__ );
 
+		$cstmsrch_options = get_option( 'cstmsrch_options' );
+
+		/**
+		 * @deprecated
+		 * @since 1.1.4
+		 * @todo remove after 20.09.2017
+		 */
+		if ( isset( $cstmsrch_options['plugin_option_version'] ) && version_compare( str_replace( 'pro-', '', $cstmsrch_options['plugin_option_version'] ), '1.35', '<' ) ) {
+			$vacancy_enabled = ( in_array( 'vacancy', $cstmsrch_options['post_types'] ) ? 1 : 0 );
+		} else {
+		/* @todo end */
+
+			if ( ! empty( $cstmsrch_options["output_order"] ) ) {
+				foreach( $cstmsrch_options["output_order"] as $key => $search_item ) {
+					if ( isset( $search_item['name'] ) && 'vacancy' == $search_item['name'] ) {
+						$vacancy_enabled = ! empty( $search_item['enabled'] ) ? 1 : 0;
+					}
+				}
+			}
+		}
+
 		if ( ! function_exists( 'is_plugin_active' ) )
 			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 		$all_plugins = get_plugins();
 
 		if ( ! ( array_key_exists( 'sender/sender.php', $all_plugins ) || array_key_exists( 'sender-pro/sender-pro.php', $all_plugins ) ) ) {
-			$jbbrd_sender_not_found = sprintf( __( '%sSender Plugin%s is not found.%s', 'job-board' ), ( '<a target="_blank" href="' . esc_url( 'http://bestwebsoft.com/products/wordpress/plugins/sender/' ) . '">' ),'</a>', '<br />' );
+			$jbbrd_sender_not_found = sprintf( __( '%sSender Plugin%s is not found.%s', 'job-board' ), ( '<a target="_blank" href="' . esc_url( 'https://bestwebsoft.com/products/wordpress/plugins/sender/' ) . '">' ),'</a>', '<br />' );
 			$jbbrd_sender_not_found .= sprintf( __( 'If you want to give "send CV possibility" to Job candidates, you need to install and activate Sender plugin.%s', 'job-board' ), '</br>' );
-			$jbbrd_sender_not_found .= __( 'You can download Sender Plugin from', 'job-board' ) . ' <a href="' . esc_url( 'http://bestwebsoft.com/products/wordpress/plugins/sender/' ) . '" title="' . __( 'Developers website', 'job-board' ). '"target="_blank">' . __( 'website of plugin Authors', 'job-board' ) . ' </a>';
-			$jbbrd_sender_not_found .= __( 'or', 'job-board' ) . ' <a href="' . esc_url( 'http://wordpress.org/plugins/sender/' ) . '" title="Wordpress" target="_blank">' . __( 'Wordpress.', 'job-board' ) . '</a>';
+			$jbbrd_sender_not_found .= __( 'You can download Sender Plugin from', 'job-board' ) . ' <a href="' . esc_url( 'https://bestwebsoft.com/products/wordpress/plugins/sender/' ) . '" title="' . __( 'Developers website', 'job-board' ). '"target="_blank">' . __( 'website of plugin Authors', 'job-board' ) . ' </a>';
+			$jbbrd_sender_not_found .= __( 'or', 'job-board' ) . ' <a href="' . esc_url( 'https://wordpress.org/plugins/sender/' ) . '" title="Wordpress" target="_blank">' . __( 'Wordpress.', 'job-board' ) . '</a>';
 		} else {
 			if ( ! ( is_plugin_active( 'sender/sender.php' ) || is_plugin_active( 'sender-pro/sender-pro.php' ) ) ) {
-				$jbbrd_sender_not_active = sprintf( __( '%sSender Plugin%s is not active.%sIf you want to give "send CV possibility" to Job candidates, you need to %sactivate Sender plugin.%s', 'job-board' ), ( '<a target="_blank" href="' . esc_url( 'http://bestwebsoft.com/products/wordpress/plugins/sender/' ) . '">' ),'</a>', '<br />', ( '<a href="' . esc_url( 'plugins.php' ) . '">' ), '</a>' );
+				$jbbrd_sender_not_active = sprintf( __( '%sSender Plugin%s is not active.%sIf you want to give "send CV possibility" to Job candidates, you need to %sactivate Sender plugin.%s', 'job-board' ), ( '<a target="_blank" href="' . esc_url( 'https://bestwebsoft.com/products/wordpress/plugins/sender/' ) . '">' ),'</a>', '<br />', ( '<a href="' . esc_url( 'plugins.php' ) . '">' ), '</a>' );
 			}
 			/* Old version. */
 			if ( is_plugin_active( 'sender/sender.php' ) && isset( $all_plugins['sender/sender.php']['Version'] ) && $all_plugins['sender/sender.php']['Version'] < '0.5' )
@@ -597,6 +619,50 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 				$jbbrd_options['custom_time_min'] = 59 < $_POST['jbbrd_custom_time_min'] ? 59 : esc_html( ltrim( $_POST['jbbrd_custom_time_min'], '0' ) );
 			}
 
+			if ( $cstmsrch_options ) {
+
+				/**
+				 * @deprecated
+				 * @since 1.32
+				 * @todo remove after 01.06.2017
+				 */
+
+				if ( isset( $cstmsrch_options['plugin_option_version'] ) && version_compare( str_replace( 'pro-', '', $cstmsrch_options['plugin_option_version'] ), '1.35', '<' ) ) {
+
+					if ( isset( $_REQUEST['jbbrd_add_to_search'] ) && "" != $cstmsrch_options ) {
+						if ( isset( $cstmsrch_options['post_types'] ) ) {
+							if ( ! in_array( 'vacancy', $cstmsrch_options['post_types'] ) )
+							$cstmsrch_options['post_types'][] = 'vacancy';
+						}
+					} else {
+						if ( isset( $cstmsrch_options['post_types'] ) ) {
+							$key = array_search( 'vacancy', $cstmsrch_options['post_types'] );
+							unset( $cstmsrch_options['post_types'][ $key ] );
+						}
+					}
+
+					$vacancy_enabled = ( ! empty( $_REQUEST['jbbrd_add_to_search'] ) ) ? 1 : 0;
+
+				} else {
+				/* @todo end */					
+
+					$vacancy_enabled = ( ! empty( $_REQUEST['jbbrd_add_to_search'] ) ) ? 1 : 0;
+
+
+					foreach( $cstmsrch_options["output_order"] as $key => $search_item ) {
+						if ( isset( $search_item['name'] ) && 'vacancy' == $search_item['name'] ) {
+							$cstmsrch_options["output_order"][ $key ]['enabled'] = $vacancy_enabled;
+							$vacancy_exist = true;
+						}
+					}
+					if ( ! isset( $vacancy_exist ) ) {
+						$cstmsrch_options["output_order"][] = array( 'name' => 'vacancy', 'type' => 'post_type', 'enabled' => $vacancy_enabled );
+					}
+				}
+
+				update_option( 'cstmsrch_options', $cstmsrch_options );
+			}
+
 			if ( '' == $error ) {
 				/* Update options in the database. */
 				update_option( 'jbbrd_options', $jbbrd_options );
@@ -620,13 +686,13 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 		/* Warning if not found shortcode. */
 		if ( '' == $jbbrd_options['shortcode_permalink'] ) {
 			$warning .= '<strong>' . __( 'Warning:', 'job-board' ) . '</strong>&nbsp;' . __( 'Shortcode is not found.', 'job-board' ) . '&nbsp;<br />' . 
-				sprintf( __( 'Please add jobs shortcode to your page to display content in the frontend using %s button', 'job-board' ), '<span class="bws_code"><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt=""/></span>' ) . '.<br />';
+				sprintf( __( 'Please add jobs shortcode to your page to display content in the frontend using %s button', 'job-board' ), '<span class="bwsicons bwsicons-shortcode"></span>' ) . '.<br />';
 		}
 		/* Warning if not found sender plugin. */
-		if ( isset( $jbbrd_sender_not_found ) ) {
+		if ( ! empty( $jbbrd_sender_not_found ) ) {
 			$warning .= '<strong>' . __( 'Warning:', 'job-board' ) . '</strong>&nbsp;' . $jbbrd_sender_not_found . '<br />';
 		}
-		if ( isset( $jbbrd_sender_not_active ) || '' != $jbbrd_sender_not_active ) {
+		if ( ! empty( $jbbrd_sender_not_active ) ) {
 			$warning .= '<strong>' . __( 'Warning:', 'job-board' ) . '</strong>&nbsp;' . $jbbrd_sender_not_active . '<br />';
 		} 
 
@@ -654,17 +720,13 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 					<br/>
 					<div><?php printf( 
 						__( "If you would like to display jobs or registration form in your page, please use %s button", 'job-board' ), 
-						'<span class="bws_code"><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt=""/></span>' ); ?> 
-						<div class="bws_help_box bws_help_box_right dashicons dashicons-editor-help">
-							<div class="bws_hidden_help_text" style="min-width: 180px;">
-								<?php printf( 
-									__( "You can add jobs list or registration form to your page by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s to display jobs or the shortcode %s to display registration form", 'job-board' ), 
-									'<code><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt="" /></code>',
-									'<code>[jbbrd_vacancy]</code>',
-									'<code>[jbbrd_registration]</code>'
-								); ?>
-							</div>
-						</div>
+						'<span class="bwsicons bwsicons-shortcode"></span>' );
+						echo bws_add_help_box( sprintf( 
+							__( "You can add jobs list or registration form to your page by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s to display jobs or the shortcode %s to display registration form", 'job-board' ), 
+							'<code><span class="bwsicons bwsicons-shortcode"></span></code>',
+							'<code>[jbbrd_vacancy]</code>',
+							'<code>[jbbrd_registration]</code>'
+						) ); ?>
 					</div>
 					<form class="bws_form" method="post" action="">
 						<table class="form-table">
@@ -707,7 +769,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 								</td>
 							</tr>
 							<tr valign="top">
-								<th><?php _e( 'Frontend logo position', 'job-board' ); ?></th>
+								<th><?php _e( 'Job featured image position', 'job-board' ); ?></th>
 								<td><fieldset>
 									<label>
 										<input type="radio" name="jbbrd_logo_position" value="left" <?php if ( 'left' == $jbbrd_options['logo_position'] ) echo ' checked="checked"'; ?> />
@@ -759,7 +821,25 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 									<?php _e( 'min', 'job-board' ); ?>
 								</td>
 							</tr>
-						</table>					
+							<tr valign="top">
+								<th><?php _e( 'Add jobs to the search', 'job-board' ); ?></th>
+								<td>
+									<?php if ( array_key_exists( 'custom-search-plugin/custom-search-plugin.php', $all_plugins ) || array_key_exists( 'custom-search-pro/custom-search-pro.php', $all_plugins ) ) {
+										if ( is_plugin_active( 'custom-search-plugin/custom-search-plugin.php' ) || is_plugin_active( 'custom-search-pro/custom-search-pro.php' ) ) { 
+											$custom_search_admin_url = ( is_plugin_active( 'custom-search-plugin/custom-search-plugin.php' ) ) ? 'custom_search.php' : 'custom_search_pro.php'; ?>
+											<input type="checkbox" name="jbbrd_add_to_search" value="1" <?php checked( ! empty( $vacancy_enabled ) ); ?> />
+											<span class="bws_info"> (<?php _e( 'Using', 'job-board' ); ?> <a href="admin.php?page=<?php echo $custom_search_admin_url; ?>">Custom Search by BestWebSoft</a>)</span>
+										<?php } else { ?>
+											<input disabled="disabled" type="checkbox" name="jbbrd_add_to_search" value="1" />
+											<span class="bws_info">(<?php _e( 'Using Custom Search by BestWebSoft', 'job-board' ); ?>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php _e( 'Activate Custom Search', 'job-board' ); ?></a></span>
+										<?php }
+									} else { ?>
+										<input disabled="disabled" type="checkbox" />
+										<span class="bws_info">(<?php _e( 'Using Custom Search by BestWebSoft', 'job-board' ); ?>) <a href="https://bestwebsoft.com/products/wordpress/plugins/custom-search/" target="_blank"><?php _e( 'Download Custom Search', 'job-board' ); ?></a></span>
+									<?php } ?>
+								</td>
+							</tr>
+						</table>
 						<p class="submit_div">
 							<input id="bws-submit-button" type="submit" class="button-primary" value="<?php _e( 'Save Changes', 'job-board' ); ?>" />
 							<input type="hidden" name="jbbrd_form_submit" value="submit" />
@@ -1444,7 +1524,7 @@ if ( ! function_exists( 'jbbrd_admin_notice' ) ) {
 		if ( isset( $typenow ) && 'vacancy' == $typenow ) {
 			/* if no shortcode found*/
 			if ( '' == $jbbrd_options['shortcode_permalink'] ) {
-				echo '<div class="error"><p><strong>' . __( 'WARNING:', 'job-board' ) . '</strong>&nbsp;' . __( 'Shortcode is not found.', 'job-board' ) . '&nbsp;<br />' . sprintf( __( 'Please add jobs shortcode to your page to display content in the frontend using %s button', 'job-board' ), '<span class="bws_code"><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt=""/></span>' ) . '</p></div>';
+				echo '<div class="error"><p><strong>' . __( 'WARNING:', 'job-board' ) . '</strong>&nbsp;' . __( 'Shortcode is not found.', 'job-board' ) . '&nbsp;<br />' . sprintf( __( 'Please add jobs shortcode to your page to display content in the frontend using %s button', 'job-board' ), '<span class="bwsicons bwsicons-shortcode"></span>' ) . '</p></div>';
 			}
 		}
 
@@ -1520,9 +1600,8 @@ if ( ! function_exists( 'jbbrd_save_post' ) ) {
 							$format 			= 'Y-m-d 23:59:59';
 							$value				= date( $format, $date_compl + ( 60 * 60 * 24 * $jbbrd_default_time ) );
 						} else {
-							$date_compl			= explode( "/", $date_compl );
 							$format 			= 'Y-m-d 23:59:59';
-							$value				= date( $format, strtotime( $date_compl[1] . "-" . $date_compl[0] . '-' . $date_compl[2] ) );
+							$value				= date( $format, strtotime( $date_compl ) );
 						}
 					} else {
 						$value = stripslashes( esc_html( ltrim( $_POST[ $key ], '0' ) ) );
@@ -1862,6 +1941,7 @@ if ( ! function_exists( 'jbbrd_add_cv_load_field' ) ) {
 							$jbbrd_current_user_meta_value = $jbbrd_current_user_meta['jbbrd_job_candidate_category_choose'][0];
 						else
 							$jbbrd_current_user_meta_value = '';
+
 						/* Output html for taxonomy dropdown filter. */
 						print( '<select name="jbbrd_job_candidate_category_choose" id=' . $tax_slug . ' class="jbbrd_postform">' );
 						print( '<option value="">' . __( 'Show all', 'job-board' ) . '</option>' );
@@ -1992,7 +2072,7 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_db' ) ) {
 			array( 
 				'subject'		=> $subject, 
 				'body'			=> $body,
-				'date_create'	=> time(),
+				'date_create'	=> date( 'Y-m-d H:i:s', time() + ( ( is_multisite() ) ? get_site_option( 'gmt_offset' ) * 3600 : get_option( 'gmt_offset' ) * 3600) ),
 			)
 		);
 		$last_id = $wpdb->insert_id; /* Get last ID. */
@@ -2005,7 +2085,7 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_db' ) ) {
 		/*Activation Sendmail cron hook. */
 		add_filter( 'cron_schedules', 'sndr_more_reccurences' );
 		if ( ! wp_next_scheduled( 'sndr_mail_hook' ) ) {
-			$check = wp_schedule_event( time(), 'my_period', 'sndr_mail_hook' );
+			$check = wp_schedule_event( time(), 'sndr_mail_run_time_period', 'sndr_mail_hook' );
 		}
 	}
 }
@@ -2024,8 +2104,6 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_pro_db' ) ) {
 		/* Prepare data. */
 		$subject	 	= htmlspecialchars( stripslashes( $subject ) );
 		$subject 		= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $subject ) ) );
-		$body	 		= htmlspecialchars( stripslashes( $body ) );
-		$body 			= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $body ) ) );
 		$employer_id	= htmlspecialchars( stripslashes( $employer_id ) );
 		$employer_id 	= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $employer_id ) ) );
 		$candidate_id	= htmlspecialchars( stripslashes( $candidate_id ) );
@@ -2036,7 +2114,7 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_pro_db' ) ) {
 			array( 
 				'subject'			=> $subject, 
 				'body'				=> $body,
-				'date_create'		=> date( 'Y-m-d H:i:s', time() + get_option('gmt_offset') * 3600 ),
+				'date_create'		=> date( 'Y-m-d H:i:s', time() + ( ( is_multisite() ) ? get_site_option( 'gmt_offset' ) * 3600 : get_option( 'gmt_offset' ) * 3600 ) ),
 				'secret_key'		=> MD5(RAND()),
 			)
 		);
@@ -2050,8 +2128,8 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_pro_db' ) ) {
 				'mail_id'			=> $mail_id,
 				'from_name'			=> get_userdata( $candidate_id )->user_login, 
 				'from_email'		=> get_userdata( $candidate_id )->user_email,
-				'mailout_create'	=> date( 'Y-m-d H:i:s', time() + get_option('gmt_offset') * 3600 ),
-				'mailout_start'		=> date( 'Y-m-d H:i:s', time() + get_option('gmt_offset') * 3600 ),
+				'mailout_create'	=> date( 'Y-m-d H:i:s', time() + ( ( is_multisite() ) ? get_site_option( 'gmt_offset' ) * 3600 : get_option( 'gmt_offset' ) * 3600 ) ),
+				'mailout_start'		=> date( 'Y-m-d H:i:s', time() + ( ( is_multisite() ) ? get_site_option( 'gmt_offset' ) * 3600 : get_option( 'gmt_offset' ) * 3600 ) ),
 			)
 		);
 		/* Get last ID. */
@@ -2065,9 +2143,9 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_pro_db' ) ) {
 			)
 		);
 		/*Activation Sendmail cron hook. */
-		add_filter( 'cron_schedules', 'sndrpr_more_reccurences' );
-		if ( ! wp_next_scheduled( 'sndrpr_mail_hook' ) ) {
-			$check = wp_schedule_event( time(), 'my_period', 'sndrpr_mail_hook' );
+		add_filter( 'cron_schedules', 'sndr_more_reccurences' );
+		if ( ! wp_next_scheduled( 'sndr_mail_hook' ) ) {
+			$check = wp_schedule_event( time(), 'sndr_mail_run_time_period', 'sndr_mail_hook' );
 		}
 	}
 }
@@ -2142,8 +2220,8 @@ if ( ! function_exists( 'jbbrd_register_plugin_links' ) ) {
 		if ( $file == $base ) {
 			if ( ! is_network_admin() )
 				$links[]	=	'<a href="admin.php?page=job-board.php">' . __( 'Settings', 'job-board' ) . '</a>';
-			$links[]	=	'<a href="http://wordpress.org/plugins/job-board/faq/" target="_blank">' . __( 'FAQ', 'job-board' ) . '</a>';
-			$links[]	=	'<a href="http://support.bestwebsoft.com">' . __( 'Support', 'job-board' ) . '</a>';
+			$links[]	=	'<a href="https://support.bestwebsoft.com/hc/en-us/sections/200538769" target="_blank">' . __( 'FAQ', 'job-board' ) . '</a>';
+			$links[]	=	'<a href="https://support.bestwebsoft.com">' . __( 'Support', 'job-board' ) . '</a>';
 		}
 		return $links;
 	}
@@ -2278,7 +2356,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 	function jbbrd_vacancy_shortcode() { 
 		global $wp_query, $jbbrd_options;
 		/* Get sender-pro plugin options. */
-		$sndrpr_options = get_option( 'sndrpr_options' );
+		$sndr_options = get_option( 'sndr_options' );
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		$jbbrd_location_array = jbbrd_find_location_metabox_fields();
 		/* Find maximum and minimum salary. */
@@ -2464,7 +2542,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 					} 
 					/* Forming message. */
 					if ( is_plugin_active( 'sender-pro/sender-pro.php' ) ) {
-						if ( ( isset( $sndrpr_options['html_email'] ) ) && ( 1 == $sndrpr_options['html_email'] ) ) {
+						if ( ( isset( $sndr_options['html_email'] ) ) && ( 1 == $sndr_options['html_email'] ) ) {
 							$jbbrd_message = '<div style="width:600px;padding:20px 30px;border:1px solid #e0e0e0;background:#fff;"><h2 style="color:#6495ED;line-height:11px;">' . __( 'Hello,', 'job-board' ) . '&nbsp;' . get_userdata( $jbbrd_current_employer_id )->user_login . '</h2>'; 
 							$jbbrd_message .= '<h4 style="font-weight:normal;">' . __( 'You receive message for your job offer:', 'job-board' ) . '&nbsp;<strong>' . get_the_title( $jbbrd_current_vacancy_id ) . '</strong><br />';
 							$jbbrd_message .= __ ( 'from candidate:', 'job-board' ) . '&nbsp;<strong>' . get_userdata( $jbbrd_current_candidate )->user_login . '</strong></h4>';
@@ -2476,7 +2554,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 							}
 							$jbbrd_message .= sprintf( '<h4 style="font-weight:normal;">' . __( 'Candidate CV:', 'job-board' ) . '&nbsp;' . ( ( '' != $jbbrd_current_candidate_cv ) ? '<a style="color:#6495ED;text-decoration:none;line-height:11px;" href="' . $jbbrd_current_candidate_cv . '">' . $jbbrd_current_candidate_cv_filename . '</a>' : __( '...sorry, CV not found.', 'job-board' ) ) . '</h4>');
 							$jbbrd_message .= '<hr style="border-width:0;border-bottom:solid 1px #e0e0e0;" />';
-							$jbbrd_message .= sprintf( __( 'This mail was sent by %sJob Board%s plugin by %sBestWebSoft%s from', 'job-board' ) . '&nbsp;<a  href="' . esc_url( get_bloginfo( 'url' ) ) . '">' . get_bloginfo( 'name' ) . '</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/products/wordpress/plugins/job-board/' ) . '">' ),'</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/' ) . '">' ),'</a>' );
+							$jbbrd_message .= sprintf( __( 'This mail was sent by %sJob Board%s plugin by %sBestWebSoft%s from', 'job-board' ) . '&nbsp;<a  href="' . esc_url( get_bloginfo( 'url' ) ) . '">' . get_bloginfo( 'name' ) . '</a>', ( '<a href="' . esc_url( 'https://bestwebsoft.com/products/wordpress/plugins/job-board/' ) . '">' ),'</a>', ( '<a href="' . esc_url( 'https://bestwebsoft.com/' ) . '">' ),'</a>' );
 							$jbbrd_message .= '</div>';
 							$jbbrd_subject = __( 'Reply for', 'job-board' ) . ' ' . get_the_title( $jbbrd_current_vacancy_id ) . ' ' . __( 'job offer.', 'job-board' );
 						} else {
@@ -2488,19 +2566,11 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 							$jbbrd_subject = __( 'Reply for', 'job-board' ) . ' ' . get_the_title( $jbbrd_current_vacancy_id ) . ' ' . __( 'job offer.', 'job-board' );
 						}
 					} else {
-						$jbbrd_message = '<div style="width:600px;padding:20px 30px;border:1px solid #e0e0e0;background:#fff;"><h2 style="color:#6495ED;line-height:11px;">' . __( 'Hello,', 'job-board' ) . '&nbsp;' . get_userdata( $jbbrd_current_employer_id )->user_login . '</h2>'; 
-						$jbbrd_message .= '<h4 style="font-weight:normal;">' . __( 'You receive message for your job offer:', 'job-board' ) . '&nbsp;<strong>' . get_the_title( $jbbrd_current_vacancy_id ) . '</strong><br />';
-						$jbbrd_message .= __ ( 'from candidate:', 'job-board' ) . '&nbsp;<strong>' . get_userdata( $jbbrd_current_candidate )->user_login . '</strong></h4>';
-						if ( isset( $jbbrd_current_candidate_cv ) && ( '' != $jbbrd_current_candidate_cv ) ) {
-							$jbbrd_current_candidate_cv_filename = pathinfo( $jbbrd_current_candidate_cv );
-							$jbbrd_current_candidate_cv_filename = $jbbrd_current_candidate_cv_filename['basename'];
-						} else {
-							$jbbrd_current_candidate_cv = '';
-						}
-						$jbbrd_message .= sprintf( '<h4 style="font-weight:normal;">' . __( 'Candidate CV:', 'job-board' ) . '&nbsp;' . ( ( '' != $jbbrd_current_candidate_cv ) ? '<a style="color:#6495ED;text-decoration:none;line-height:11px;" href="' . $jbbrd_current_candidate_cv . '">' . $jbbrd_current_candidate_cv_filename . '</a>' : __( '...sorry, CV not found.', 'job-board' ) ) . '</h4>');
-						$jbbrd_message .= '<hr style="border-width:0;border-bottom:solid 1px #e0e0e0;" />';
-						$jbbrd_message .= sprintf( __( 'This mail was sent by %sJob Board%s plugin by %sBestWebSoft%s from', 'job-board' ) . '&nbsp;<a  href="' . esc_url( get_bloginfo( 'url' ) ) . '">' . get_bloginfo( 'name' ) . '</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/products/wordpress/plugins/job-board/' ) . '">' ),'</a>', ( '<a href="' . esc_url( 'http://bestwebsoft.com/' ) . '">' ),'</a>' );
-						$jbbrd_message .= '</div>';
+						$jbbrd_message = __( 'Hello,', 'job-board' ) . ' ' . get_userdata( $jbbrd_current_employer_id )->user_login . "\n";
+						$jbbrd_message .= __( 'You receive message for your job offer:', 'job-board' ) . ' ' . get_the_title( $jbbrd_current_vacancy_id ) . "\n";
+						$jbbrd_message .= __ ( 'from candidate:', 'job-board' ) . ' ' . get_userdata( $jbbrd_current_candidate )->user_login . "\n";
+						$jbbrd_message .= __( 'Candidate CV:', 'job-board' ) . ' ' . $jbbrd_current_candidate_cv . "\n";
+						$jbbrd_message .= __( 'This mail was sent by Job Board plugin by BestWebSoft from', 'job-board' ) . ' ' . get_bloginfo( 'name' ) . '.';
 						$jbbrd_subject = __( 'Reply for', 'job-board' ) . ' ' . get_the_title( $jbbrd_current_vacancy_id ) . ' ' . __( 'job offer.', 'job-board' );
 					}
 					/* Sendmail by Email-queue if active. Else use sendmail function due Sender. */
@@ -3109,7 +3179,7 @@ if ( ! function_exists( 'jbbrd_add_error_to_vacancy_CPT_edit' ) ) {
 			/* if no shortcode found*/
 			if ( '' == $jbbrd_options['shortcode_permalink'] ) {
 				$error = '<strong>' . __( 'WARNING:', 'job-board' ) . '</strong>&nbsp;' . __( 'Shortcode is not found.', 'job-board' ) . '&nbsp;<br />' .
-								sprintf( __( 'Please add jobs shortcode to your page to display content in the frontend using %s button', 'job-board' ), '<span class="bws_code"><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt=""/></span>' ) . '.'; ?>
+								sprintf( __( 'Please add jobs shortcode to your page to display content in the frontend using %s button', 'job-board' ), '<span class="bwsicons bwsicons-shortcode"></span>' ) . '.'; ?>
 				<div class="error" ><p><?php echo $error; ?></p></div>
 			<?php }
 		}
