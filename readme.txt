@@ -2,9 +2,9 @@
 Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add job offer, job board, job board plugin, apply for a job, job, cv, manage vacancies, search by salary, job manager, job offer, job offer categories, job offer list
-Requires at least: 3.8
-Tested up to: 4.7.3
-Stable tag: 1.1.4
+Requires at least: 4.0
+Tested up to: 4.8
+Stable tag: 1.1.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,7 +18,7 @@ Connect job seekers with their future employers today!
 
 https://www.youtube.com/watch?v=ox2rMnwxfHs
 
-== Features==
+== Features ==
 
 * Add and manage an unlimited number of:
 	* Jobs
@@ -89,7 +89,7 @@ Some of these translations are not complete. We are constantly adding new featur
 
 == Recommended Plugins ==
 
-* [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=c9514c3366ba95825f1470bfc8d75f4f) - Automatically check and update WordPress core with all installed plugins to the latest versions. Manual mode, email notifications and backups of all your files and database before updating.
+* [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=c9514c3366ba95825f1470bfc8d75f4f) - Automatically check and update WordPress website core with all installed plugins and themes to the latest versions.
 * [Sender](https://bestwebsoft.com/products/wordpress/plugins/sender/?k=ccd218c6d916f9735e3de54ff210e4fe) - Send bulk email messages to WordPress users. Custom templates, advanced settings and detailed reports.
 * [Custom Search](https://bestwebsoft.com/products/wordpress/plugins/custom-search/?k=0320eef03b72c22f7448ab163f612a6d) - Add custom post types to WordPress website search results.
 
@@ -165,6 +165,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Changelog ==
 
+= V1.1.5 - 12.07.2017 =
+* Update : We updated all functionality for wordpress 4.8.
+
 = V1.1.4 - 11.04.2017 =
 * Update : The compatibility with new version of Custom Search plugin has been updated.
 * Bugfix : The compatibility issues with Sender by BestWebSoft were fixed.
@@ -229,6 +232,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.1.5 =
+* The compatibility with new WordPress version updated.
 
 = V1.1.4 =
 * The compatibility with new version of Custom Search updated.

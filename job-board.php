@@ -6,7 +6,7 @@ Description: Create your personal job board and listing WordPress website. Searc
 Author: BestWebSoft
 Text Domain: job-board
 Domain Path: /languages
-Version: 1.1.4
+Version: 1.1.5
 Author URI: https://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -94,7 +94,7 @@ if ( ! function_exists ( 'jbbrd_init' ) ) {
 		}
 
 		/* Function check if plugin is compatible with current WP version  */
-		bws_wp_min_version_check( plugin_basename( __FILE__ ), $jbbrd_plugin_info, '3.8' );
+		bws_wp_min_version_check( plugin_basename( __FILE__ ), $jbbrd_plugin_info, '4.0' );
 
 		/* Session start. */
 		if ( ! @session_id() )
@@ -868,6 +868,8 @@ if ( ! function_exists ( 'jbbrd_load_scripts' ) ) {
 
 		if ( ( ( 'post.php' == $hook_suffix || 'post-new.php' == $hook_suffix ) && isset( $post_type ) && 'vacancy' == $post_type ) || 
 			( isset( $_GET['page'] ) && "job-board.php" == $_GET['page'] ) ) {
+
+			bws_enqueue_settings_scripts();
 
 			wp_enqueue_script( 'jbbrd_script', plugins_url( 'js/script.js', __FILE__ ), array( 'jquery', 'jquery-ui-datepicker' ) );
 
@@ -3275,8 +3277,7 @@ if ( ! function_exists( 'jbbrd_update_permalink_on_post_update' ) ) {
 
 /* add shortcode content  */
 if ( ! function_exists( 'jbbrd_shortcode_button_content' ) ) {
-	function jbbrd_shortcode_button_content( $content ) {
-		global $wp_version; ?>
+	function jbbrd_shortcode_button_content( $content ) { ?>
 		<div id="jbbrd" style="display:none;">
 			<fieldset>
 				<label>
@@ -3296,15 +3297,9 @@ if ( ! function_exists( 'jbbrd_shortcode_button_content' ) ) {
 			<script type="text/javascript">
 				function jbbrd_shortcode_init() {
 					(function($) {	
-						<?php if ( $wp_version < '3.9' ) { ?>	
-							var current_object = '#TB_ajaxContent';
-						<?php } else { ?>
-							var current_object = '.mce-reset';
-						<?php } ?>			
-
-						$( current_object + ' input[name="jbbrd_select"]' ).on( 'change', function() {
-							var shortcode = $( current_object + ' input[name="jbbrd_select"]:checked' ).val();
-							$( current_object + ' #bws_shortcode_display' ).text( '[' + shortcode + ']' );
+						$( '.mce-reset input[name="jbbrd_select"]' ).on( 'change', function() {
+							var shortcode = $( '.mce-reset input[name="jbbrd_select"]:checked' ).val();
+							$( '.mce-reset #bws_shortcode_display' ).text( '[' + shortcode + ']' );
 						});         
 					})(jQuery);
 				}
