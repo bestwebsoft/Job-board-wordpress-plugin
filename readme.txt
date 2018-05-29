@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add job offer, job board, job board plugin, apply for a job, job, cv, manage vacancies, search by salary, job manager, job offer, job offer categories, job offer list
 Requires at least: 4.0
-Tested up to: 4.8
-Stable tag: 1.1.5
+Tested up to: 4.9.6
+Stable tag: 1.1.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -20,6 +20,7 @@ https://www.youtube.com/watch?v=ox2rMnwxfHs
 
 == Features ==
 
+* GDPR Compliant [NEW]
 * Add and manage an unlimited number of:
 	* Jobs
 	* Categories
@@ -165,6 +166,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Changelog ==
 
+= V1.1.6 - 29.05.2018 =
+* NEW : GDPR Compliance has been added.
+
 = V1.1.5 - 12.07.2017 =
 * Update : We updated all functionality for wordpress 4.8.
 
@@ -232,6 +236,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.1.6 =
+* Functionality improved.
 
 = V1.1.5 =
 * The compatibility with new WordPress version updated.

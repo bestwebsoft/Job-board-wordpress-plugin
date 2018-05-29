@@ -6,7 +6,7 @@ Description: Create your personal job board and listing WordPress website. Searc
 Author: BestWebSoft
 Text Domain: job-board
 Domain Path: /languages
-Version: 1.1.5
+Version: 1.1.6
 Author URI: https://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -36,7 +36,7 @@ if ( ! function_exists( 'jbbrd_add_admin_menu' ) ) {
 	function jbbrd_add_admin_menu() {
 		global $submenu;
 		bws_general_menu();
-		$settings = add_submenu_page( 'bws_panel', 'Job Board', 'Job Board', 'manage_options', 'job-board.php', 'jbbrd_settings_page' );	
+		$settings = add_submenu_page( 'bws_panel', 'Job Board', 'Job Board', 'manage_options', 'job-board.php', 'jbbrd_settings_page' );
 		/* Add custom list page to candidate profile menu. */
 		$hook = add_users_page( __( 'New job offers', 'job-board' ), __( 'New job offers', 'job-board' ), 'job_candidate', 'job_candidate', 'jbbrd_candidate_category_custom_search_page' );
 		add_action( "load-$hook", 'jbbrd_screen_options' );
@@ -46,7 +46,7 @@ if ( ! function_exists( 'jbbrd_add_admin_menu' ) ) {
 		add_action( 'load-edit.php', 'jbbrd_add_tabs' );
 		add_action( 'load-post-new.php', 'jbbrd_add_tabs' );
 		add_action( 'load-edit-tags.php', 'jbbrd_add_tabs' );
-		
+
 		if ( isset( $submenu['edit.php?post_type=vacancy'] ) )
 			$submenu['edit.php?post_type=vacancy'][] = array( __( 'Settings', 'job-board' ), 'manage_options', admin_url( 'admin.php?page=job-board.php' ) );
 	}
@@ -83,10 +83,10 @@ if ( ! function_exists( 'jbbrd_plugins_loaded' ) ) {
 if ( ! function_exists ( 'jbbrd_init' ) ) {
 	function jbbrd_init() {
 		global $jbbrd_plugin_info;
-		
+
 		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
 		bws_include_init( plugin_basename( __FILE__ ) );
-		
+
 		if ( empty( $jbbrd_plugin_info ) ) {
 			if ( ! function_exists( 'get_plugin_data' ) )
 				require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -136,10 +136,10 @@ if ( ! function_exists ( 'jbbrd_admin_init' ) ) {
  */
 if ( ! function_exists( 'jbbrd_post_type_vacancy' ) ) {
 	function jbbrd_post_type_vacancy() {
-		/* Register "vacancy" CPT. */ 
+		/* Register "vacancy" CPT. */
 		register_post_type( 'vacancy', array(
 			'labels'			=> array(
-				'name' 						=> __( 'Jobs', 'job-board' ), 
+				'name' 						=> __( 'Jobs', 'job-board' ),
 				'singular_name' 			=> __( 'Job', 'job-board' ),
 				'add_new' 					=> __( 'Add job', 'job-board' ),
 				'add_new_item'				=> __( 'Add new job', 'job-board' ),
@@ -185,9 +185,9 @@ if ( ! function_exists( 'jbbrd_post_type_vacancy' ) ) {
 			'map_meta_cap'    	=> true,
 			'rewrite' 			=> array( "slug" => "vacancies" ), /* Permalinks. */
 			'query_var' 		=> 'vacancy', /* This goes to the WP_Query schema. */
-			'supports' 			=> array( 
-				'title', 
-				'editor', 
+			'supports' 			=> array(
+				'title',
+				'editor',
 				'jbbrd_businesses',
 				'jbbrd_employment',
 				'thumbnail', /* Displays a box for featured image. */
@@ -203,13 +203,13 @@ if ( ! function_exists( 'jbbrd_post_type_vacancy' ) ) {
 if ( ! function_exists( 'jbbrd_taxonomy_vacancy' ) ) {
 	function jbbrd_taxonomy_vacancy() {
 		/* Register jbbrd_businesses taxonomy. */
-		register_taxonomy( 
-			'jbbrd_businesses', 
-			array( 'vacancy' ), 
+		register_taxonomy(
+			'jbbrd_businesses',
+			array( 'vacancy' ),
 			array(
-				'hierarchical' 		=> true, 
+				'hierarchical' 		=> true,
 				'labels'			=> array(
-					'name' 						=> __( 'Job categories', 'job-board' ), 
+					'name' 						=> __( 'Job categories', 'job-board' ),
 					'singular_name' 			=> __( 'Job category', 'job-board' ),
 					'add_new' 					=> __( 'Add job category', 'job-board' ),
 					'add_new_item'				=> __( 'Add new job category', 'job-board' ),
@@ -241,12 +241,12 @@ if ( ! function_exists( 'jbbrd_taxonomy_vacancy' ) ) {
 		);
 		/* Register archive taxonomy. */
 		register_taxonomy(
-			'archive', 
-			array( 'vacancy' ), 
-			array( 
-				'hierarchical' 		=> true, 
+			'archive',
+			array( 'vacancy' ),
+			array(
+				'hierarchical' 		=> true,
 				'labels'			=> array(
-					'name' 						=> __( 'Job archive categories', 'job-board' ), 
+					'name' 						=> __( 'Job archive categories', 'job-board' ),
 					'singular_name' 			=> __( 'Job archive category', 'job-board' ),
 					'add_new' 					=> __( 'Add job archive category', 'job-board' ),
 					'add_new_item'				=> __( 'Add new job archive category', 'job-board' ),
@@ -268,13 +268,13 @@ if ( ! function_exists( 'jbbrd_taxonomy_vacancy' ) ) {
 			)
 		);
 		/* Register jbbrd_employment taxonomy. */
-		register_taxonomy( 
-			'jbbrd_employment', 
-			array( 'vacancy' ), 
-			array( 
-				'hierarchical' 		=> true, 
+		register_taxonomy(
+			'jbbrd_employment',
+			array( 'vacancy' ),
+			array(
+				'hierarchical' 		=> true,
 				'labels'			=> array(
-					'name' 						=> __( 'Employment', 'job-board' ), 
+					'name' 						=> __( 'Employment', 'job-board' ),
 					'singular_name' 			=> __( 'Employment type', 'job-board' ),
 					'add_new' 					=> __( 'Add employment types', 'job-board' ),
 					'add_new_item'				=> __( 'Add employment type', 'job-board' ),
@@ -315,7 +315,7 @@ if ( ! function_exists( 'jbbrd_taxonomy_vacancy_terms' ) ) {
 	function jbbrd_taxonomy_vacancy_terms() {
 		if ( ! term_exists( 'archived', 'archive' ) ) {
 			wp_insert_term(
-				__( 'Archived', 'job-board' ), /* the term. */ 
+				__( 'Archived', 'job-board' ), /* the term. */
 				'archive', /* the taxonomy. */
 				array(
 					'description'	=> __( 'This job is in archive', 'job-board' ),
@@ -344,11 +344,11 @@ if ( ! function_exists( 'jbbrd_taxonomy_employment_terms' ) ) {
 	function jbbrd_taxonomy_employment_terms() {
 		if ( ! term_exists( 'freelance', 'jbbrd_employment' ) ) {
 			wp_insert_term(
-				__( 'Freelance', 'job-board' ), /* the term. */ 
+				__( 'Freelance', 'job-board' ), /* the term. */
 				'jbbrd_employment', /* the taxonomy. */
-				array( 
+				array(
 					'description'	=> '',
-					'slug' 			=> 'freelance', 
+					'slug' 			=> 'freelance',
 				)
 			);
 		}
@@ -356,19 +356,19 @@ if ( ! function_exists( 'jbbrd_taxonomy_employment_terms' ) ) {
 			wp_insert_term(
 				__( 'Full Time', 'job-board' ), /* the term. */
 				'jbbrd_employment', /* the taxonomy. */
-				array( 
+				array(
 					'description'	=> '',
-					'slug' 			=> 'full-time',	
+					'slug' 			=> 'full-time',
 				)
 			);
 		}
 		if ( ! term_exists( 'internship', 'jbbrd_employment' ) ) {
 			wp_insert_term(
-				__( 'Internship', 'job-board' ), /* the term. */ 
+				__( 'Internship', 'job-board' ), /* the term. */
 				'jbbrd_employment', /* the taxonomy. */
-				array( 
+				array(
 					'description'	=> '',
-					'slug' 			=> 'internship', 
+					'slug' 			=> 'internship',
 				)
 			);
 		}
@@ -376,9 +376,9 @@ if ( ! function_exists( 'jbbrd_taxonomy_employment_terms' ) ) {
 			wp_insert_term(
 				__( 'Part Time', 'job-board' ), /* the term. */
 				'jbbrd_employment', /* the taxonomy. */
-				array( 
+				array(
 					'description'	=> '',
-					'slug' 			=> 'part-time', 
+					'slug' 			=> 'part-time',
 				)
 			);
 		}
@@ -386,9 +386,9 @@ if ( ! function_exists( 'jbbrd_taxonomy_employment_terms' ) ) {
 			wp_insert_term(
 				__( 'Temporary', 'job-board' ), /* the term. */
 				'jbbrd_employment', /* the taxonomy. */
-				array( 
+				array(
 					'description'	=> '',
-					'slug' 			=> 'temporary', 
+					'slug' 			=> 'temporary',
 				)
 			);
 		}
@@ -424,7 +424,7 @@ if ( ! function_exists( 'jbbrd_settings' ) ) {
 	function jbbrd_settings() {
 		global $wpdb, $jbbrd_options, $jbbrd_option_defaults, $jbbrd_plugin_info;
 		/* Set defaults array. */
-				
+
 		if ( ! $jbbrd_plugin_info ) {
 			if ( ! function_exists( 'get_plugin_data' ) )
 				require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -437,18 +437,18 @@ if ( ! function_exists( 'jbbrd_settings' ) ) {
 			'post_per_page'						=> 5,
 			'custom_time_hours'					=> 0,
 			'custom_time_min'					=> 0,
-			'money'								=> array( 'AUD', 'BGN', 'CAD', 'CHF', 'CNY', 'CYP', 'CZK', 'DKK', 
+			'money'								=> array( 'AUD', 'BGN', 'CAD', 'CHF', 'CNY', 'CYP', 'CZK', 'DKK',
 				'EEK', 'EUR', 'GBP', 'HKD', 'HRK', 'HUF', 'IDR', 'ISK', 'JPY', 'KPW', 'LTL', 'LVL', 'MTL', 'MYR',
 				'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'RUR', 'SEK', 'SGD', 'SIT', 'SKK', 'THB', 'TRY', 'USD', 'ZAR',
 			),
 			'select_money_unit'					=> 'preset', /* preset or custom */
 			'money_choose'						=> 'USD',
 			'custom_money_unit'					=> '',
-			'time_period'						=> array( 
-				__( 'year', 'job-board' ), 
-				__( 'month', 'job-board' ), 
-				__( 'week', 'job-board' ), 
-				__( 'day', 'job-board' ), 
+			'time_period'						=> array(
+				__( 'year', 'job-board' ),
+				__( 'month', 'job-board' ),
+				__( 'week', 'job-board' ),
+				__( 'day', 'job-board' ),
 				__( 'hour', 'job-board' ),
 			),
 			'time_period_choose'				=> __( 'month', 'job-board' ),
@@ -456,9 +456,13 @@ if ( ! function_exists( 'jbbrd_settings' ) ) {
 			'frontend_form'						=> 1,
 			'frontend_form_non_registered'		=> 0,
 			'location_select'					=> 0,
+			'gdpr'								=> 0,
+			'gdpr_link'							=> '',
+			'gdpr_text'							=> '',
+			'gdpr_cb_name'						=> __( 'I consent to having this site collect my personal data.', 'job-board' ),
 			'vacancy_reply_text'				=> __( 'You replied to job offer.', 'job-board' ),
 			'archieving_period'					=> 30,
-			'shortcode_permalink'				=> ''			
+			'shortcode_permalink'				=> ''
 		);
 		/* Install the option defaults. */
 		if ( ! get_option( 'jbbrd_options' ) ) {
@@ -492,9 +496,9 @@ if ( ! function_exists( 'jbbrd_find_shortcode_page' ) ) {
 		$jbbrd_vacancy = esc_sql( $jbbrd_vacancy );
 		$jbbrd_vacancy = '%' . $jbbrd_vacancy . '%';
 		$jbbrd_shortcode_page_permalink = $wpdb->get_var( "
-			SELECT `ID` 
-			FROM `" . $wpdb->prefix . "posts` 
-			WHERE `post_content` LIKE '" . $jbbrd_vacancy . "' 
+			SELECT `ID`
+			FROM `" . $wpdb->prefix . "posts`
+			WHERE `post_content` LIKE '" . $jbbrd_vacancy . "'
 			AND `post_status` = 'publish'"
 		);
 		if ( empty( $jbbrd_shortcode_page_permalink ) ) {
@@ -557,11 +561,11 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 		/* Save data for settings page. */
 		if ( isset( $_POST['jbbrd_form_submit'] ) && check_admin_referer( $plugin_basename, 'jbbrd_nonce_name' ) ) {
 			/* Check if start shedule time changed. */
-			if ( ( $_POST['jbbrd_custom_time_hours'] != $jbbrd_options['custom_time_hours'] ) || ( $_POST['jbbrd_custom_time_min'] != $jbbrd_options['custom_time_min'] ) ) 
+			if ( ( $_POST['jbbrd_custom_time_hours'] != $jbbrd_options['custom_time_hours'] ) || ( $_POST['jbbrd_custom_time_min'] != $jbbrd_options['custom_time_min'] ) )
 				$jbbrd_reset_shedule_time = true;
 			else
 				$jbbrd_reset_shedule_time = false;
-			
+
 			if ( ( isset( $_POST['jbbrd_post_per_page'] ) ) && ( '' != $_POST['jbbrd_post_per_page'] ) && ( 0 < $_POST['jbbrd_post_per_page'] ) && ( is_numeric( $_POST['jbbrd_post_per_page'] ) ) ) {
 				$jbbrd_options['post_per_page'] = esc_html( ltrim( $_POST['jbbrd_post_per_page'], '0' ) );
 			} elseif ( '-1' == $_POST['jbbrd_post_per_page'] ) {
@@ -619,47 +623,25 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 				$jbbrd_options['custom_time_min'] = 59 < $_POST['jbbrd_custom_time_min'] ? 59 : esc_html( ltrim( $_POST['jbbrd_custom_time_min'], '0' ) );
 			}
 
+			$jbbrd_options['gdpr_cb_name']			= isset( $_POST['jbbrd_gdpr_cb_name'] ) ? esc_html( $_POST['jbbrd_gdpr_cb_name'] ) : __( 'I consent to having this site collect my personal data.', 'job-board' );
+			$jbbrd_options['gdpr_text']				= isset( $_POST['jbbrd_gdpr_text'] ) ? esc_html( $_POST['jbbrd_gdpr_text'] ) : '';
+			$jbbrd_options['gdpr_link']				= isset( $_POST['jbbrd_gdpr_link'] ) ? esc_html( $_POST['jbbrd_gdpr_link'] ) : '';
+			$jbbrd_options['gdpr']					= isset( $_POST['jbbrd_gdpr'] ) ? 1 : 0;
+
 			if ( $cstmsrch_options ) {
 
-				/**
-				 * @deprecated
-				 * @since 1.32
-				 * @todo remove after 01.06.2017
-				 */
-
-				if ( isset( $cstmsrch_options['plugin_option_version'] ) && version_compare( str_replace( 'pro-', '', $cstmsrch_options['plugin_option_version'] ), '1.35', '<' ) ) {
-
-					if ( isset( $_REQUEST['jbbrd_add_to_search'] ) && "" != $cstmsrch_options ) {
-						if ( isset( $cstmsrch_options['post_types'] ) ) {
-							if ( ! in_array( 'vacancy', $cstmsrch_options['post_types'] ) )
-							$cstmsrch_options['post_types'][] = 'vacancy';
-						}
-					} else {
-						if ( isset( $cstmsrch_options['post_types'] ) ) {
-							$key = array_search( 'vacancy', $cstmsrch_options['post_types'] );
-							unset( $cstmsrch_options['post_types'][ $key ] );
-						}
-					}
-
-					$vacancy_enabled = ( ! empty( $_REQUEST['jbbrd_add_to_search'] ) ) ? 1 : 0;
-
-				} else {
-				/* @todo end */					
-
-					$vacancy_enabled = ( ! empty( $_REQUEST['jbbrd_add_to_search'] ) ) ? 1 : 0;
+				$vacancy_enabled = ( ! empty( $_REQUEST['jbbrd_add_to_search'] ) ) ? 1 : 0;
 
 
-					foreach( $cstmsrch_options["output_order"] as $key => $search_item ) {
-						if ( isset( $search_item['name'] ) && 'vacancy' == $search_item['name'] ) {
-							$cstmsrch_options["output_order"][ $key ]['enabled'] = $vacancy_enabled;
-							$vacancy_exist = true;
-						}
-					}
-					if ( ! isset( $vacancy_exist ) ) {
-						$cstmsrch_options["output_order"][] = array( 'name' => 'vacancy', 'type' => 'post_type', 'enabled' => $vacancy_enabled );
+				foreach( $cstmsrch_options["output_order"] as $key => $search_item ) {
+					if ( isset( $search_item['name'] ) && 'vacancy' == $search_item['name'] ) {
+						$cstmsrch_options["output_order"][ $key ]['enabled'] = $vacancy_enabled;
+						$vacancy_exist = true;
 					}
 				}
-
+				if ( ! isset( $vacancy_exist ) ) {
+					$cstmsrch_options["output_order"][] = array( 'name' => 'vacancy', 'type' => 'post_type', 'enabled' => $vacancy_enabled );
+				}
 				update_option( 'cstmsrch_options', $cstmsrch_options );
 			}
 
@@ -669,7 +651,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 				$message = __( "Settings saved.", 'job-board' );
 				/* Set new time for sendmail shedule, if time is changed. */
 				if ( true == $jbbrd_reset_shedule_time ) {
-					/* Set GMT timezone. */ 
+					/* Set GMT timezone. */
 					$jbbrd_GMT = get_option('gmt_offset');
 					/* Set new time. */
 					$jbbrd_shedule_time = ( $jbbrd_options['custom_time_hours'] * 3600 ) + ( $jbbrd_GMT * 3600 ) + ( $jbbrd_options['custom_time_min'] * 60 );
@@ -677,7 +659,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 					wp_clear_scheduled_hook( 'jbbrd_move_vacancies_to_archive_dayly_function' );
 					/* Set new schedule hook. */
 					jbbrd_move_to_archive_schedule( $jbbrd_shedule_time );
-				}				
+				}
 			} else {
 				$error .= __( 'Settings are not saved.', 'job-board' );
 			}
@@ -685,7 +667,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 
 		/* Warning if not found shortcode. */
 		if ( '' == $jbbrd_options['shortcode_permalink'] ) {
-			$warning .= '<strong>' . __( 'Warning:', 'job-board' ) . '</strong>&nbsp;' . __( 'Shortcode is not found.', 'job-board' ) . '&nbsp;<br />' . 
+			$warning .= '<strong>' . __( 'Warning:', 'job-board' ) . '</strong>&nbsp;' . __( 'Shortcode is not found.', 'job-board' ) . '&nbsp;<br />' .
 				sprintf( __( 'Please add jobs shortcode to your page to display content in the frontend using %s button', 'job-board' ), '<span class="bwsicons bwsicons-shortcode"></span>' ) . '.<br />';
 		}
 		/* Warning if not found sender plugin. */
@@ -694,7 +676,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 		}
 		if ( ! empty( $jbbrd_sender_not_active ) ) {
 			$warning .= '<strong>' . __( 'Warning:', 'job-board' ) . '</strong>&nbsp;' . $jbbrd_sender_not_active . '<br />';
-		} 
+		}
 
 		if ( isset( $_REQUEST['bws_restore_confirm'] ) && check_admin_referer( $plugin_basename, 'bws_settings_nonce_name' ) ) {
 			$jbbrd_options = $jbbrd_option_defaults;
@@ -718,11 +700,11 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 				} else { ?>
 					<div class="update-nag" style="margin: 5px 0px; <?php if ( '' == $warning ) echo ' display:none; '; ?>"><?php echo $warning; ?></div>
 					<br/>
-					<div><?php printf( 
-						__( "If you would like to display jobs or registration form in your page, please use %s button", 'job-board' ), 
+					<div><?php printf(
+						__( "If you would like to display jobs or registration form in your page, please use %s button", 'job-board' ),
 						'<span class="bwsicons bwsicons-shortcode"></span>' );
-						echo bws_add_help_box( sprintf( 
-							__( "You can add jobs list or registration form to your page by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s to display jobs or the shortcode %s to display registration form", 'job-board' ), 
+						echo bws_add_help_box( sprintf(
+							__( "You can add jobs list or registration form to your page by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s to display jobs or the shortcode %s to display registration form", 'job-board' ),
 							'<code><span class="bwsicons bwsicons-shortcode"></span></code>',
 							'<code>[jbbrd_vacancy]</code>',
 							'<code>[jbbrd_registration]</code>'
@@ -748,7 +730,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 											echo '">' . $money_unit . '</option>';
 										} ?>
 									</select><br/>
-									<input type="radio" id="custom_money_unit_select" name="jbbrd_select_money_unit" value="custom" <?php if ( 'custom' == $jbbrd_options['select_money_unit'] ) echo "checked=\"checked\" "; ?>/> 
+									<input type="radio" id="custom_money_unit_select" name="jbbrd_select_money_unit" value="custom" <?php if ( 'custom' == $jbbrd_options['select_money_unit'] ) echo "checked=\"checked\" "; ?>/>
 									<input type="text" name="jbbrd_custom_money_unit" value="<?php echo $jbbrd_options['custom_money_unit']; ?>" maxlength="100" />
 									<span class="bws_info">(<?php _e( "Custom monetary unit", 'job-board' ); ?>)</span>
 								</td>
@@ -785,9 +767,9 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 								<th><?php _e( 'Display frontend form', 'job-board' ); ?></th>
 								<td>
 									<fieldset>
-										<label><input type="checkbox" name="jbbrd_frontend_form" value="1" <?php if ( 1 == $jbbrd_options['frontend_form'] ) echo ' checked="checked"'; ?> /> 
+										<label><input type="checkbox" name="jbbrd_frontend_form" value="1" <?php if ( 1 == $jbbrd_options['frontend_form'] ) echo ' checked="checked"'; ?> />
 										<?php _e( 'Display job filtering form in frontend.' , 'job-board' ); ?></label><br />
-										<label><input type="checkbox" name="jbbrd_frontend_form_non_registered" value="1" <?php if ( 1 == $jbbrd_options['frontend_form_non_registered'] ) echo ' checked="checked"'; ?> /> 
+										<label><input type="checkbox" name="jbbrd_frontend_form_non_registered" value="1" <?php if ( 1 == $jbbrd_options['frontend_form_non_registered'] ) echo ' checked="checked"'; ?> />
 										<?php _e( 'Display job filtering form in frontend for non-registered users' , 'job-board' ); ?></label>
 									</fieldset>
 								</td>
@@ -795,7 +777,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 							<tr valign="top">
 								<th><?php _e( 'Location field type', 'job-board' ); ?></th>
 								<td>
-									<input type="checkbox" name="jbbrd_location_select" value="1" <?php if ( 1 == $jbbrd_options['location_select'] ) echo ' checked="checked"'; ?> /> 
+									<input type="checkbox" name="jbbrd_location_select" value="1" <?php if ( 1 == $jbbrd_options['location_select'] ) echo ' checked="checked"'; ?> />
 									<span class="bws_info"><?php _e( 'Change location field in frontens sorting form to select box of all locations which already add to jobs base.' , 'job-board' ); ?></span>
 								</td>
 							</tr>
@@ -825,7 +807,7 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 								<th><?php _e( 'Add jobs to the search', 'job-board' ); ?></th>
 								<td>
 									<?php if ( array_key_exists( 'custom-search-plugin/custom-search-plugin.php', $all_plugins ) || array_key_exists( 'custom-search-pro/custom-search-pro.php', $all_plugins ) ) {
-										if ( is_plugin_active( 'custom-search-plugin/custom-search-plugin.php' ) || is_plugin_active( 'custom-search-pro/custom-search-pro.php' ) ) { 
+										if ( is_plugin_active( 'custom-search-plugin/custom-search-plugin.php' ) || is_plugin_active( 'custom-search-pro/custom-search-pro.php' ) ) {
 											$custom_search_admin_url = ( is_plugin_active( 'custom-search-plugin/custom-search-plugin.php' ) ) ? 'custom_search.php' : 'custom_search_pro.php'; ?>
 											<input type="checkbox" name="jbbrd_add_to_search" value="1" <?php checked( ! empty( $vacancy_enabled ) ); ?> />
 											<span class="bws_info"> (<?php _e( 'Using', 'job-board' ); ?> <a href="admin.php?page=<?php echo $custom_search_admin_url; ?>">Custom Search by BestWebSoft</a>)</span>
@@ -839,21 +821,43 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 									<?php } ?>
 								</td>
 							</tr>
+							<tr>
+								<th>
+									<label for="jbbrd_gdpr"><?php _e( 'GDPR Compliance', 'job-board' ); ?></label>
+								</th>
+								<td>
+									<input type="checkbox" id="jbbrd_gdpr" name="jbbrd_gdpr" value="1" <?php checked( '1', $jbbrd_options['gdpr'] ); ?> />
+									<div id="jbbrd_gdpr_link_options" >
+										<label class="jbbrd_privacy_policy_text" >
+											<?php _e( 'Checkbox label', 'job-board' ); ?>
+											<input type="text" id="jbbrd_gdpr_cb_name" size="29" name="jbbrd_gdpr_cb_name" value="<?php echo $jbbrd_options['gdpr_cb_name']; ?>"/>
+										</label>
+										<label class="jbbrd_privacy_policy_text" >
+											<?php _e( "Link to Privacy Policy Page", 'job-board' ); ?>
+											<input type="url" id="jbbrd_gdpr_link" placeholder="http://" name="jbbrd_gdpr_link" value="<?php echo $jbbrd_options['gdpr_link']; ?>" />
+										</label>
+										<label class="jbbrd_privacy_policy_text" >
+											<?php _e( "Text for Privacy Policy Link", 'job-board' ); ?>
+											<input type="text" id="jbbrd_gdpr_text" name="jbbrd_gdpr_text" value="<?php echo $jbbrd_options['gdpr_text']; ?>" />
+										</label>
+									</div>
+								</td>
+							</tr>
 						</table>
 						<p class="submit_div">
 							<input id="bws-submit-button" type="submit" class="button-primary" value="<?php _e( 'Save Changes', 'job-board' ); ?>" />
 							<input type="hidden" name="jbbrd_form_submit" value="submit" />
 							<?php wp_nonce_field( $plugin_basename, 'jbbrd_nonce_name' ); ?>
-						</p>					
+						</p>
 					</form>
 					<?php bws_form_restore_default_settings( $plugin_basename );
-				}				
+				}
 			} elseif ( 'custom_code' == $_GET['action'] ) {
-				bws_custom_code_tab();				
+				bws_custom_code_tab();
 			}
 			bws_plugin_reviews_block( $jbbrd_plugin_info['Name'], 'job-board' );  ?>
 		</div>
-	<?php } 
+	<?php }
 }
 
 /**
@@ -866,7 +870,7 @@ if ( ! function_exists ( 'jbbrd_load_scripts' ) ) {
 		/* Add main styles. */
 		wp_enqueue_style( 'jbbrd_stylesheet', plugins_url( 'css/style.css', __FILE__ ) );
 
-		if ( ( ( 'post.php' == $hook_suffix || 'post-new.php' == $hook_suffix ) && isset( $post_type ) && 'vacancy' == $post_type ) || 
+		if ( ( ( 'post.php' == $hook_suffix || 'post-new.php' == $hook_suffix ) && isset( $post_type ) && 'vacancy' == $post_type ) ||
 			( isset( $_GET['page'] ) && "job-board.php" == $_GET['page'] ) ) {
 
 			bws_enqueue_settings_scripts();
@@ -1061,7 +1065,7 @@ if ( ! function_exists( 'jbbrd_roles_create' ) ) {
  */
 if ( ! function_exists( 'jbbrd_change_title_row_actions' ) ) {
 	function jbbrd_change_title_row_actions( $actions ) {
-		global $jbbrd_options;		
+		global $jbbrd_options;
 		if ( get_post_type() === 'vacancy' ) {
 			if ( '' == $jbbrd_options['shortcode_permalink'] ) {
 				$actions['view'] = __( 'Link is not found!', 'job-board' );
@@ -1344,7 +1348,7 @@ if ( ! function_exists( 'jbbrd_meta_personal' ) ) {
 		} else if ( 'custom' == $jbbrd_options['select_money_unit'] ) {
 			$money_choose = $jbbrd_options['custom_money_unit'];
 		}
-	
+
 		$jbbrd_custom = get_post_custom( $post->ID );
 		/* Set values. */
 		$demands = ( isset( $jbbrd_custom["demands"][0] ) ) ? $jbbrd_custom["demands"][0] : '';
@@ -1431,7 +1435,7 @@ if ( ! function_exists( 'jbbrd_find_location_metabox_fields' ) ) {
 			WHERE pm.`meta_key` = 'jbbrd_location'
 		";
 		/* Set order. */
-		$jbbrd_location_metabox_fields = $wpdb->get_results( $sql_query, ARRAY_A ); 
+		$jbbrd_location_metabox_fields = $wpdb->get_results( $sql_query, ARRAY_A );
 		if ( is_array( $jbbrd_location_metabox_fields ) ) {
 			foreach ( $jbbrd_location_metabox_fields as $key => $value ) {
 				foreach ( $value as $key_id => $value_id ) {
@@ -1520,7 +1524,7 @@ if ( ! function_exists( 'jbbrd_admin_notice' ) ) {
 		}
 		if ( isset( $_GET['page'] ) && $_GET['page'] == 'job-board.php' ) {
 			bws_plugin_suggest_feature_banner( $jbbrd_plugin_info, 'jbbrd_options', 'job-board' );
-		}		
+		}
 
 		/* if we on vacancy edit page */
 		if ( isset( $typenow ) && 'vacancy' == $typenow ) {
@@ -1530,7 +1534,7 @@ if ( ! function_exists( 'jbbrd_admin_notice' ) ) {
 			}
 		}
 
-		/* Print the message. */		
+		/* Print the message. */
 		$notice = get_option( 'jbbrd_custom_metafield_error_notice' );
 		if ( empty( $notice ) ) {
 			return '';
@@ -1570,7 +1574,7 @@ if ( ! function_exists( 'jbbrd_save_post' ) ) {
 		if ( ! wp_verify_nonce( $_POST['jbbrd_noncename'], plugin_basename( __FILE__ ) ) ) {
 			return $post_id;
 		}
-		/* Verify if this is an auto save. */ 
+		/* Verify if this is an auto save. */
 		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 			return $post_id;
 		}
@@ -1635,7 +1639,7 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 		class jbbrd_Backend_Manager extends WP_List_Table {
 
 			/**
-			 * Constructor of class 
+			 * Constructor of class
 			 */
 			function __construct() {
 				global $status, $page;
@@ -1648,7 +1652,7 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 			}
 
 			/**
-			 * Function to prepare data before display 
+			 * Function to prepare data before display
 			 * @return void
 			 */
 			function prepare_items() {
@@ -1729,8 +1733,8 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 			function job_list() {
 				global $wpdb, $jbbrd_options;
 				$i = 0;
-				$job_list       = array();  
-				$jbbrd_search_category = get_user_meta( get_current_user_id(), 'jbbrd_job_candidate_category_choose', true ); 
+				$job_list       = array();
+				$jbbrd_search_category = get_user_meta( get_current_user_id(), 'jbbrd_job_candidate_category_choose', true );
 				$jbbrd_term_id = term_exists( $jbbrd_search_category, 'jbbrd_businesses' );
 				$jbbrd_term_id = $jbbrd_term_id['term_id'];
 				/* get the value of currency */
@@ -1763,9 +1767,9 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 					$jbbrd_order = $_GET['order'];
 				else
 					$jbbrd_order = 'desc';
-				
+
 				/* Prepare sql_query. */
-				$sql_query = "SELECT DISTINCT wpp.`ID`, wpp.`post_title`, wpp.`post_modified`, pm.`meta_value` 
+				$sql_query = "SELECT DISTINCT wpp.`ID`, wpp.`post_title`, wpp.`post_modified`, pm.`meta_value`
 					FROM `" . $posts_table . "` AS wpp
 					JOIN `" . $term_relationships_table . "` AS tr ON wpp.`ID` = tr.`object_id` ";
 				if ( ! empty( $jbbrd_term_id ) )
@@ -1784,7 +1788,7 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 				/* Set output ordering. */
 				$sql_query .= " ORDER BY wpp.`" . $jbbrd_orderby . "` " . $jbbrd_order;
 				$job_data = $wpdb->get_results( $sql_query, ARRAY_A );
-				
+
 				foreach ( $job_data as $job ) {
 					$job_list[$i]			= array();
 					$job_list[$i]['id']		= $job['ID'];
@@ -1802,7 +1806,7 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 			 */
 			public function items_count() {
 				global $wpdb;
-				$jbbrd_search_category = get_user_meta( get_current_user_id(), 'jbbrd_job_candidate_category_choose', true ); 
+				$jbbrd_search_category = get_user_meta( get_current_user_id(), 'jbbrd_job_candidate_category_choose', true );
 				$jbbrd_term_id = term_exists( $jbbrd_search_category, 'jbbrd_businesses' );
 				$jbbrd_term_id = $jbbrd_term_id['term_id'];
 				/* Set tables names. */
@@ -1811,7 +1815,7 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 				$term_taxonomy_table 		= $wpdb->prefix . "term_taxonomy";
 				$terms_table 				= $wpdb->prefix . "terms";
 				/* Prepare sql_query. */
-				$sql_query = "SELECT COUNT(wpp.`id`) 
+				$sql_query = "SELECT COUNT(wpp.`id`)
 					FROM `" . $posts_table . "` AS wpp
 					JOIN `" . $term_relationships_table . "` AS tr ON wpp.`ID` = tr.`object_id` ";
 				if ( ! empty( $jbbrd_term_id ) )
@@ -1849,7 +1853,7 @@ if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) ) {
 
 /**
  * Add screen options of class jbbrd_Backend_Manager
- * @return void 
+ * @return void
  */
 if ( ! function_exists( 'jbbrd_screen_options' ) ) {
 	function jbbrd_screen_options() {
@@ -1865,7 +1869,7 @@ if ( ! function_exists( 'jbbrd_screen_options' ) ) {
 
 /**
  * Function to save and load settings from screen options
- * @return void 
+ * @return void
  */
 if ( ! function_exists( 'jbbrd_candidate_table_set_option' ) ) {
 	function jbbrd_candidate_table_set_option( $status, $option, $value ) {
@@ -1899,7 +1903,7 @@ if ( ! function_exists( 'jbbrd_candidate_category_custom_search_page' ) ) {
  * @return void
  */
 if ( ! function_exists( 'jbbrd_add_cv_load_field' ) ) {
-	function jbbrd_add_cv_load_field( $user ) { 
+	function jbbrd_add_cv_load_field( $user ) {
 		/* Set variables for choosing job  category. */
 		global $jbbrd_choose_term_id, $jbbrd_options;
 		$tax_slug 	= 'jbbrd_businesses';
@@ -1908,7 +1912,7 @@ if ( ! function_exists( 'jbbrd_add_cv_load_field' ) ) {
 		/* Retrieve array of term objects per taxonomy. */
 		$terms 		= get_terms( $tax_slug );
 		/* Upload CV form. */
-		$jbbrd_cv = get_user_meta( $user->ID, 'jbbrd_user_cv', true ); 
+		$jbbrd_cv = get_user_meta( $user->ID, 'jbbrd_user_cv', true );
 		if ( ( true === jbbrd_vacansy_response() ) || ( current_user_can( 'activate_plugins', get_current_user_id() ) ) ) { ?>
 			<!-- Job candidate CV. -->
 			<h2><?php _e( "Job candidate options", 'job-board' ); ?></h2>
@@ -1936,7 +1940,7 @@ if ( ! function_exists( 'jbbrd_add_cv_load_field' ) ) {
 			<table class="form-table">
 				<tr>
 					<th scope="row"><?php _e( 'Set job search category', 'job-board' ); ?></th>
-					<td><?php 
+					<td><?php
 						/* Retrieve the current object. */
 						$jbbrd_current_user_meta = get_user_meta( $user->ID );
 						if ( isset( $jbbrd_current_user_meta['jbbrd_job_candidate_category_choose'] ) )
@@ -1968,14 +1972,14 @@ if ( ! function_exists( 'jbbrd_add_cv_load_field' ) ) {
 			<table class="form-table">
 				<tr>
 					<th scope="row"><?php _e( 'Candidate saved search', 'job-board' ); ?></th>
-					<td><?php 
+					<td><?php
 						/* Retrieve the current object. */
 						if ( ( isset( $jbbrd_current_user_meta['job_candidate_saved_search'] ) ) && ( '' != ( $jbbrd_current_user_meta['job_candidate_saved_search'][0] ) ) ) {
 							$jbbrd_current_user_saved_search = $jbbrd_current_user_meta['job_candidate_saved_search'][0];
 							$jbbrd_candidate_saved_search = array();
 							$jbbrd_candidate_saved_search = unserialize( $jbbrd_current_user_saved_search );
 							unset( $jbbrd_candidate_saved_search[0] );
-							$jbbrd_candidate_saved_search_transformed = array(); 
+							$jbbrd_candidate_saved_search_transformed = array();
 							foreach ( $jbbrd_candidate_saved_search as $key => $value ) {
 								$jbbrd_candidate_saved_search_transformed[] = $key . '=' . $value;
 							}
@@ -2070,17 +2074,17 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_db' ) ) {
 		global $wpdb;
 		/* Save mail into database. */
 		$prefix = is_multisite() ? $wpdb->base_prefix : $wpdb->prefix;
-		$wpdb->insert( $prefix . 'sndr_mail_send', 
-			array( 
-				'subject'		=> $subject, 
+		$wpdb->insert( $prefix . 'sndr_mail_send',
+			array(
+				'subject'		=> $subject,
 				'body'			=> $body,
 				'date_create'	=> date( 'Y-m-d H:i:s', time() + ( ( is_multisite() ) ? get_site_option( 'gmt_offset' ) * 3600 : get_option( 'gmt_offset' ) * 3600) ),
 			)
 		);
 		$last_id = $wpdb->insert_id; /* Get last ID. */
-		$wpdb->insert( $prefix . 'sndr_users', 
-			array( 
-				'id_user'		=> $employer_id, 
+		$wpdb->insert( $prefix . 'sndr_users',
+			array(
+				'id_user'		=> $employer_id,
 				'id_mail'		=> $last_id,
 			)
 		);
@@ -2112,23 +2116,23 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_pro_db' ) ) {
 		$candidate_id 	= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $candidate_id ) ) );
 		/* Save mail into database. */
 		$prefix = is_multisite() ? $wpdb->base_prefix : $wpdb->prefix;
-		$wpdb->insert( $prefix . 'sndr_mail_send', 
-			array( 
-				'subject'			=> $subject, 
+		$wpdb->insert( $prefix . 'sndr_mail_send',
+			array(
+				'subject'			=> $subject,
 				'body'				=> $body,
 				'date_create'		=> date( 'Y-m-d H:i:s', time() + ( ( is_multisite() ) ? get_site_option( 'gmt_offset' ) * 3600 : get_option( 'gmt_offset' ) * 3600 ) ),
 				'secret_key'		=> MD5(RAND()),
 			)
 		);
 		/* Get last ID. */
-		$mail_id = $wpdb->insert_id; 
+		$mail_id = $wpdb->insert_id;
 		/* Get user into database. */
-		$user_id = $employer_id; 
+		$user_id = $employer_id;
 		/* Save user into database. */
-		$wpdb->insert( $prefix . 'sndr_mailout', 
-			array( 
+		$wpdb->insert( $prefix . 'sndr_mailout',
+			array(
 				'mail_id'			=> $mail_id,
-				'from_name'			=> get_userdata( $candidate_id )->user_login, 
+				'from_name'			=> get_userdata( $candidate_id )->user_login,
 				'from_email'		=> get_userdata( $candidate_id )->user_email,
 				'mailout_create'	=> date( 'Y-m-d H:i:s', time() + ( ( is_multisite() ) ? get_site_option( 'gmt_offset' ) * 3600 : get_option( 'gmt_offset' ) * 3600 ) ),
 				'mailout_start'		=> date( 'Y-m-d H:i:s', time() + ( ( is_multisite() ) ? get_site_option( 'gmt_offset' ) * 3600 : get_option( 'gmt_offset' ) * 3600 ) ),
@@ -2137,8 +2141,8 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_pro_db' ) ) {
 		/* Get last ID. */
 		$mailout_id = $wpdb->insert_id;
 		/* Save user into database. */
-		$wpdb->insert( $prefix . 'sndr_users', 
-			array( 
+		$wpdb->insert( $prefix . 'sndr_users',
+			array(
 				'id_user'			=> $user_id,
 				'id_mail'			=> $mail_id,
 				'id_mailout'		=> $mailout_id,
@@ -2157,7 +2161,7 @@ if ( ! function_exists( 'jbbrd_save_letter_to_sender_pro_db' ) ) {
  * @return $terms array() objects jbbrd_businesses per taxonomy.
  */
 if ( ! function_exists( 'jbbrd_restrict_manage_posts_frontend' ) ) {
-	function jbbrd_restrict_manage_posts_frontend() { 
+	function jbbrd_restrict_manage_posts_frontend() {
 		$filters = array( 'jbbrd_businesses' );
 		foreach ( $filters as $tax_slug ) {
 			/* Retrieve the taxonomy object. */
@@ -2175,7 +2179,7 @@ if ( ! function_exists( 'jbbrd_restrict_manage_posts_frontend' ) ) {
  * @return $terms array() objects jbbrd_employment per taxonomy.
  */
 if ( ! function_exists( 'jbbrd_employment_restrict_manage_posts_frontend' ) ) {
-	function jbbrd_employment_restrict_manage_posts_frontend() { 
+	function jbbrd_employment_restrict_manage_posts_frontend() {
 		$filters = array( 'jbbrd_employment' );
 		foreach ( $filters as $tax_slug ) {
 			/* Retrieve the taxonomy object. */
@@ -2234,7 +2238,7 @@ if ( ! function_exists( 'jbbrd_register_plugin_links' ) ) {
  * @return bool
  */
 if ( ! function_exists( 'jbbrd_vacansy_response' ) ) {
-	function jbbrd_vacansy_response() { 
+	function jbbrd_vacansy_response() {
 		global $wpdb;
 		$user = get_current_user_id();
 		if ( method_exists( 'wpdb' , 'esc_like' ) ) {
@@ -2265,7 +2269,7 @@ if ( ! function_exists( 'jbbrd_vacansy_response' ) ) {
  * @return $jbbrd_salary_find_modified array() salary array.
  */
 if ( ! function_exists( 'jbbrd_salary_find' ) ) {
-	function jbbrd_salary_find() { 
+	function jbbrd_salary_find() {
 		global $wpdb;
 		$postmeta_table 			= $wpdb->prefix . "postmeta" ;
 		$post_table 				= $wpdb->prefix . "posts" ;
@@ -2318,7 +2322,7 @@ function jbbrd_logo_search_hide() {
 	if ( ! ( is_admin() ) && ( isset( $_GET['s'] ) ) ) { ?>
 		<style type="text/css">
 			.vacancy img { /* Set custom header background */
-				display: none !important; 
+				display: none !important;
 			}
 		</style>
 	<?php }
@@ -2330,7 +2334,7 @@ function jbbrd_logo_search_hide() {
  * @return string maximum digit in salary
  */
 if ( ! function_exists( 'jbbrd_get_salary' ) ) {
-	function jbbrd_get_salary( $jbbrd_salary_string ) { 
+	function jbbrd_get_salary( $jbbrd_salary_string ) {
 		$jbbrd_salary_string = esc_html( $jbbrd_salary_string );
 		$pattern = '[\D+]';
 		$jbbrd_nums_array = preg_split( $pattern , $jbbrd_salary_string );
@@ -2339,7 +2343,7 @@ if ( ! function_exists( 'jbbrd_get_salary' ) ) {
 }
 
 if ( ! function_exists( 'jbbrd_sendmail_session_check' ) ) {
-	function jbbrd_sendmail_session_check() { 
+	function jbbrd_sendmail_session_check() {
 		if ( isset( $_POST['jbbrd_frontend_sendmail_submit'] ) ) {
 			$_SESSION['jbbrd_send_cv'] = 1;
 			return 1;
@@ -2355,7 +2359,7 @@ if ( ! function_exists( 'jbbrd_sendmail_session_check' ) ) {
  * @return shortcode frontend content string
  */
 if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
-	function jbbrd_vacancy_shortcode() { 
+	function jbbrd_vacancy_shortcode() {
 		global $wp_query, $jbbrd_options;
 		/* Get sender-pro plugin options. */
 		$sndr_options = get_option( 'sndr_options' );
@@ -2374,7 +2378,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 		$jbbrd_get_category 			= isset( $_GET['category'] ) ? htmlspecialchars( stripslashes( $_GET['category'] ) ) : "";
 		$jbbrd_get_employment_category 	= isset( $_GET['employment_category'] ) ? htmlspecialchars( stripslashes( $_GET['employment_category'] ) ) : "";
 		$jbbrd_get_location	 			= isset( $_GET['jbbrd_location'] ) ? htmlspecialchars( stripslashes( $_GET['jbbrd_location'] ) ) : "";
-		$jbbrd_get_keyword	 			= isset( $_GET['jbbrd_keyword'] ) ? htmlspecialchars( stripslashes( $_GET['jbbrd_keyword'] ) ) : "";		
+		$jbbrd_get_keyword	 			= isset( $_GET['jbbrd_keyword'] ) ? htmlspecialchars( stripslashes( $_GET['jbbrd_keyword'] ) ) : "";
 		$jbbrd_get_organization	 		= isset( $_GET['jbbrd_organization'] ) ? htmlspecialchars( stripslashes( $_GET['jbbrd_organization'] ) ) : "";
 		$jbbrd_get_salary_from	 		= isset( $_GET['jbbrd_salary_from'] ) ? htmlspecialchars( stripslashes( $_GET['jbbrd_salary_from'] ) ) : "";
 		$jbbrd_get_salary_to	 		= isset( $_GET['jbbrd_salary_to'] ) ? htmlspecialchars( stripslashes( $_GET['jbbrd_salary_to'] ) ) : "";
@@ -2390,7 +2394,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 		$jbbrd_get_salary_to			= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $jbbrd_get_salary_to ) ) );
 		$jbbrd_get_vacancy_id			= strip_tags( preg_replace( '/<[^>]*>/', '', preg_replace( '/<script.*<\/[^>]*>/', '', $jbbrd_get_vacancy_id ) ) );
 		/* Set array of search time select. */
-		$jbbrd_vacancy_search_period = array( 
+		$jbbrd_vacancy_search_period = array(
 			3		=> __( 'Last 3 days', 'job-board' ),
 			7 		=> __( 'Last week', 'job-board' ),
 			30		=> __( 'Last month', 'job-board' ),
@@ -2403,7 +2407,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 			$jbbrd_search_period_cond = array(
 				'column' => 'post_modified_gmt',
 				'after'  => $jbbrd_get_search_period . ' day ago',
-			);	
+			);
 		/* If category exist set search by this category. */
 		if ( ! empty( $jbbrd_get_category ) )
 			$jbbrd_businesses_search_categories = array(
@@ -2419,32 +2423,32 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 				'field'		=> 'slug',
 				'terms'		=> $jbbrd_get_employment_category,
 			);
-		
+
 		$jbbrd_search_categories = array(
 			$jbbrd_businesses_search_categories,
 			$jbbrd_employment_search_categories
 		);
 
-		/* Set wp_query conditions for frontend form search. */		
+		/* Set wp_query conditions for frontend form search. */
 		if ( ! empty( $jbbrd_get_location ) )
-			$jbbrd_location_cond = array( 
-				'key'		=> 'jbbrd_location', 
-				'value'		=> $jbbrd_get_location, 
-				'compare'	=> 'LIKE', 
+			$jbbrd_location_cond = array(
+				'key'		=> 'jbbrd_location',
+				'value'		=> $jbbrd_get_location,
+				'compare'	=> 'LIKE',
 			);
 
-		if ( ! empty( $jbbrd_get_organization ) ) 
-			$jbbrd_organization_cond = array( 
-				'key'		=> 'jbbrd_organization', 
+		if ( ! empty( $jbbrd_get_organization ) )
+			$jbbrd_organization_cond = array(
+				'key'		=> 'jbbrd_organization',
 				'value'		=> $jbbrd_get_organization,
-				'compare'	=> 'LIKE', 
+				'compare'	=> 'LIKE',
 			);
-		
+
 		if ( ! empty( $jbbrd_get_salary_from ) || ! empty( $jbbrd_get_salary_to ) ) {
 			$jbbrd_salary_cond = array(
 				'relation' => 'OR',
 				array(
-					'key' 		=> 'salary', 
+					'key' 		=> 'salary',
 					'compare' 	=> 'NOT EXISTS',
 				)
 			);
@@ -2453,31 +2457,31 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 			if ( ! empty( $jbbrd_get_salary_from ) && ! empty( $jbbrd_get_salary_to ) ) {
 				$jbbrd_salary_cond[] = array(
 					'relation' => 'AND',
-					array( 
-						'key' 		=> 'salary', 
+					array(
+						'key' 		=> 'salary',
 						'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_from ),
-						'compare' 	=> '>=', 
+						'compare' 	=> '>=',
 						'type' 		=> 'numeric'
 					),
-					array( 
-						'key' 		=> 'salary', 
-						'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_to ), 
-						'compare' 	=> '<=', 
+					array(
+						'key' 		=> 'salary',
+						'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_to ),
+						'compare' 	=> '<=',
 						'type' 		=> 'numeric'
 					),
 				);
 			} elseif ( ! empty( $jbbrd_get_salary_from ) ) {
-				$jbbrd_salary_cond[] = array( 
-					'key' 		=> 'salary', 
+				$jbbrd_salary_cond[] = array(
+					'key' 		=> 'salary',
 					'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_from ),
-					'compare' 	=> '>=', 
+					'compare' 	=> '>=',
 					'type' 		=> 'numeric'
 				);
 			} else {
-				$jbbrd_salary_cond[] = array( 
-					'key' 		=> 'salary', 
-					'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_to ), 
-					'compare' 	=> '<=', 
+				$jbbrd_salary_cond[] = array(
+					'key' 		=> 'salary',
+					'value' 	=> jbbrd_get_salary( $jbbrd_get_salary_to ),
+					'compare' 	=> '<=',
 					'type' 		=> 'numeric'
 				);
 			}
@@ -2508,7 +2512,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 			'order'					=> 'DESC',
 			/* Forming meta querry. */
 			'meta_query'			=>	array(
-				'relation' 	=> 'AND', 
+				'relation' 	=> 'AND',
 				$jbbrd_location_cond,
 				$jbbrd_organization_cond,
 				$jbbrd_salary_cond
@@ -2524,7 +2528,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 
 		$jbbrd_content = '';
 		/* Print form fo sorting jobs in frontend if user logged. */
-		if ( is_user_logged_in() && ( current_user_can( 'read_private_vacancies', get_current_user_id() ) ) ) { 
+		if ( is_user_logged_in() && ( current_user_can( 'read_private_vacancies', get_current_user_id() ) ) ) {
 			/* Add to table of response if submit. */
 			if ( isset( $_POST['jbbrd_frontend_sendmail_submit'] ) ) {
 				/* Move mail from job candidate to Sender plugin DB. */
@@ -2535,17 +2539,17 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 				}
 				if ( '' == $jbbrd_sendmail_error ) {
 					$jbbrd_current_employer_email 	= get_userdata( $jbbrd_current_employer_id );
-					$jbbrd_current_employer_email 	= $jbbrd_current_employer_email->user_email; 
+					$jbbrd_current_employer_email 	= $jbbrd_current_employer_email->user_email;
 					$jbbrd_current_vacancy_id		= esc_html( $_POST['jbbrd_frontend_submit_post_id'] );
 					$jbbrd_current_candidate 		= get_current_user_id();
-					$jbbrd_current_candidate_cv 	= get_user_meta( $jbbrd_current_candidate, 'jbbrd_user_cv', true ); 
+					$jbbrd_current_candidate_cv 	= get_user_meta( $jbbrd_current_candidate, 'jbbrd_user_cv', true );
 					if ( isset( $jbbrd_current_candidate_cv['url'] ) ) {
 						$jbbrd_current_candidate_cv = $jbbrd_current_candidate_cv['url'];
-					} 
+					}
 					/* Forming message. */
 					if ( is_plugin_active( 'sender-pro/sender-pro.php' ) ) {
 						if ( ( isset( $sndr_options['html_email'] ) ) && ( 1 == $sndr_options['html_email'] ) ) {
-							$jbbrd_message = '<div style="width:600px;padding:20px 30px;border:1px solid #e0e0e0;background:#fff;"><h2 style="color:#6495ED;line-height:11px;">' . __( 'Hello,', 'job-board' ) . '&nbsp;' . get_userdata( $jbbrd_current_employer_id )->user_login . '</h2>'; 
+							$jbbrd_message = '<div style="width:600px;padding:20px 30px;border:1px solid #e0e0e0;background:#fff;"><h2 style="color:#6495ED;line-height:11px;">' . __( 'Hello,', 'job-board' ) . '&nbsp;' . get_userdata( $jbbrd_current_employer_id )->user_login . '</h2>';
 							$jbbrd_message .= '<h4 style="font-weight:normal;">' . __( 'You receive message for your job offer:', 'job-board' ) . '&nbsp;<strong>' . get_the_title( $jbbrd_current_vacancy_id ) . '</strong><br />';
 							$jbbrd_message .= __ ( 'from candidate:', 'job-board' ) . '&nbsp;<strong>' . get_userdata( $jbbrd_current_candidate )->user_login . '</strong></h4>';
 							if ( isset( $jbbrd_current_candidate_cv ) && ( '' != $jbbrd_current_candidate_cv ) ) {
@@ -2581,7 +2585,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 						$_SESSION['jbbrd_send_cv'] = 1;
 						if ( is_plugin_active( 'email-queue/email-queue.php' ) || is_plugin_active( 'email-queue-pro/email-queue-pro.php' ) ) {
 							mlq_add_extra_plugin_to_mail_queue( array(
-								'plugin_name'			=> 'Job Board', 
+								'plugin_name'			=> 'Job Board',
 								'plugin_slug' 			=> 'job-board',
 								'plugin_link'			=> plugin_basename( __FILE__ ),
 								'install_link'			=> '/wp-admin/plugin-install.php?tab=search&s=Job+Board+Bestwebsoft&plugin-search-input=Search+Plugins',
@@ -2628,7 +2632,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 			if ( ! isset( $_GET['vacancy_id'] ) || ( isset( $_GET['vacancy_id'] ) && ! $second_query->have_posts() ) ) {
 				/* Print form fo sorting jobs in frontend. */
 				if ( ( isset( $jbbrd_options['frontend_form'] ) && 1 == $jbbrd_options['frontend_form'] && is_user_logged_in() && current_user_can( 'read_private_vacancies', get_current_user_id() ) ) ||
-					( isset( $jbbrd_options['frontend_form_non_registered'] ) && 1 == $jbbrd_options['frontend_form_non_registered'] ) ) { 
+					( isset( $jbbrd_options['frontend_form_non_registered'] ) && 1 == $jbbrd_options['frontend_form_non_registered'] ) ) {
 					$jbbrd_content .= '<hr />
 					<h3>' . __( 'Add parameters to sorting jobs', 'job-board' ) . '</h3>';
 				}
@@ -2660,8 +2664,8 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 				}
 				/* Frontend sorting form. */
 				if ( ( isset( $jbbrd_options['frontend_form'] ) && 1 == $jbbrd_options['frontend_form'] && is_user_logged_in() && current_user_can( 'read_private_vacancies', get_current_user_id() ) ) ||
-					( isset( $jbbrd_options['frontend_form_non_registered'] ) && 1 == $jbbrd_options['frontend_form_non_registered'] ) ) { 
-				
+					( isset( $jbbrd_options['frontend_form_non_registered'] ) && 1 == $jbbrd_options['frontend_form_non_registered'] ) ) {
+
 					$jbbrd_content .= '<form id="jbbrd_frontend_form" method="get" action="';
 					if ( isset(	$jbbrd_options['shortcode_permalink'] ) )
 						$jbbrd_content .= $jbbrd_options['shortcode_permalink'];
@@ -2682,7 +2686,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 															if ( isset( $jbbrd_get_location ) ) {
 																if ( $current_location == $jbbrd_get_location ) {
 																	$jbbrd_content .= ' selected="selected"';
-																} 
+																}
 															}
 														$jbbrd_content .= '">' . $current_location . '</option>';
 													}
@@ -2690,7 +2694,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 											} else {
 												$jbbrd_content .=	'<input type="text" class="jbbrd_frontend_input" name="jbbrd_location" value="';
 													if ( isset( $jbbrd_get_location ) ) {
-														$jbbrd_content .= $jbbrd_get_location; 
+														$jbbrd_content .= $jbbrd_get_location;
 													}
 												$jbbrd_content .= '" />';
 											}
@@ -2704,7 +2708,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 												/* Output html for taxonomy dropdown filter. */
 												$jbbrd_content .= '<input type="text" class="jbbrd_frontend_input" name="jbbrd_keyword" value="';
 													if ( isset( $jbbrd_get_keyword ) ) {
-														$jbbrd_content .= $jbbrd_get_keyword; 
+														$jbbrd_content .= $jbbrd_get_keyword;
 													}
 												$jbbrd_content .= '" />
 											</div>
@@ -2879,9 +2883,9 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 			if ( ! $second_query->have_posts() ) {
 				$jbbrd_content .= '<br /><h3>' . __( 'Nothing found.', 'job-board' ) . '</h3>';
 			}
-		}		
+		}
 		if ( $second_query->have_posts() && ( ! isset( $_POST['jbbrd_frontend_sendmail_submit'] ) ) ) :
-			/* check for existing posts with specified parameters*/ 
+			/* check for existing posts with specified parameters*/
 			$vacancy_id_slug = ( ! get_option('permalink_structure') && ( trim( $jbbrd_options['shortcode_permalink'], '/' ) != get_option('home') ) ) ? '&vacancy_id=' : '?vacancy_id=';
 			/* get the value of currency */
 			if ( 'preset' == $jbbrd_options['select_money_unit'] ) {
@@ -2889,10 +2893,10 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 			} else if ( 'custom' == $jbbrd_options['select_money_unit'] ) {
 				$money_choose = $jbbrd_options['custom_money_unit'];
 			}
-	
-			while ( $second_query->have_posts() ) : 
-				$second_query->the_post(); 
-				
+
+			while ( $second_query->have_posts() ) :
+				$second_query->the_post();
+
 				$jbbrd_custom = get_post_custom();
 				/* Common vacation page view.  */
 				$jbbrd_content .= '
@@ -2922,7 +2926,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 								if ( isset( $_GET['vacancy_id'] ) && isset( $jbbrd_custom["jbbrd_location"][0] ) && ( '' != $jbbrd_custom["jbbrd_location"][0] ) ) {
 									$jbbrd_content .= '<p style="margin-top:0;margin-bottom:0;"><strong>' . __( 'Location:', 'job-board' ) . '</strong>&nbsp;' . $jbbrd_custom["jbbrd_location"][0] . '</p>';
 								}
-								if ( isset( $_GET['vacancy_id'] ) && isset( $jbbrd_custom["salary"][0] ) && ( '' != $jbbrd_custom["salary"][0] ) ) { 
+								if ( isset( $_GET['vacancy_id'] ) && isset( $jbbrd_custom["salary"][0] ) && ( '' != $jbbrd_custom["salary"][0] ) ) {
 									$jbbrd_content .= '<p style="margin-top:0;margin-bottom:0;"><strong>' . __( 'Salary:', 'job-board') . '</strong>&nbsp;' . $jbbrd_custom["salary"][0] . '&nbsp;' . $money_choose . '/' . $jbbrd_options['time_period_choose'] . '</p>';
 								}
 								$jbbrd_content .= '</div>
@@ -2930,7 +2934,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 						</div><!-- .jbbrd_logo -->';
 					}
 					/* Logo on right side. */
-					if ( 'right' == $jbbrd_options['logo_position'] ) { 
+					if ( 'right' == $jbbrd_options['logo_position'] ) {
 						$jbbrd_content .= '
 						<div class="jbbrd_logo" style="float:left;width:100%;">
 							<div class="jbbrd_logo" style="float:left;">
@@ -2946,8 +2950,8 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 								if ( isset( $_GET['vacancy_id'] ) && isset( $jbbrd_custom["jbbrd_location"][0] ) && ( '' != $jbbrd_custom["jbbrd_location"][0] ) ) {
 									$jbbrd_content .= '<p style="margin-top:0;margin-bottom:0;"><strong>' . __( 'Location:', 'job-board' ) . '</strong>&nbsp;' . $jbbrd_custom["jbbrd_location"][0] . '</p>';
 								}
-								if ( isset( $_GET['vacancy_id'] ) && isset( $jbbrd_custom["salary"][0] ) && ( '' != $jbbrd_custom["salary"][0] ) ) { 
-									$jbbrd_content .= '<p style="margin-top:0;margin-bottom:0;"><strong>' . __( 'Salary:', 'job-board') . '</strong>&nbsp;' . $jbbrd_custom["salary"][0] . '&nbsp;' . $money_choose . '/' . $jbbrd_options['time_period_choose'] . '</p>'; 
+								if ( isset( $_GET['vacancy_id'] ) && isset( $jbbrd_custom["salary"][0] ) && ( '' != $jbbrd_custom["salary"][0] ) ) {
+									$jbbrd_content .= '<p style="margin-top:0;margin-bottom:0;"><strong>' . __( 'Salary:', 'job-board') . '</strong>&nbsp;' . $jbbrd_custom["salary"][0] . '&nbsp;' . $money_choose . '/' . $jbbrd_options['time_period_choose'] . '</p>';
 								}
 								$jbbrd_content .= '
 							</div><!-- .jbbrd_logo -->';
@@ -2964,11 +2968,11 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 						if ( function_exists( 'mltlngg_the_content_filter' ) )
 							$content = mltlngg_the_content_filter( $content );
 						$jbbrd_content .= '<p>' . $content . '</p>';
-					} else { 
+					} else {
 						/* Replaces the excerpt "more" text by a link. */
 						add_filter( 'excerpt_more', 'jbbrd_excerpt_more_link' );
 						$jbbrd_content .= '<p>' . get_the_excerpt() . '</p>';
-					} 
+					}
 					$jbbrd_content .= '</div><!-- .jbbrd_content -->';
 					if ( isset( $_GET['vacancy_id'] ) && isset( $jbbrd_custom["employment"][0] ) && ( '' != $jbbrd_custom["employment"][0] ) ) {
 						$jbbrd_content .= '<p style="margin-top:0;margin-bottom:0;"><strong>' . __( 'Employment:', 'job-board' ) . '</strong>&nbsp;' . $jbbrd_custom["employment"][0] . '</p>';
@@ -2976,7 +2980,7 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 					if ( isset( $_GET['vacancy_id'] ) && isset( $jbbrd_custom["demands"][0] ) && ( '' != $jbbrd_custom["demands"][0] ) ) {
 						$jbbrd_content .= '<p style="margin-top:0;margin-bottom:0;"><strong>' . __( 'Requirements:', 'job-board' ) . '</strong>&nbsp;' . $jbbrd_custom["demands"][0] . '</p>';
 					}
-					if ( is_user_logged_in() && ( ( false != jbbrd_vacansy_response() ) || ( current_user_can( 'activate_plugins', get_current_user_id() ) ) ) && ( is_plugin_active( 'sender/sender.php' ) || is_plugin_active( 'sender-pro/sender-pro.php' ) ) ) { 
+					if ( is_user_logged_in() && ( ( false != jbbrd_vacansy_response() ) || ( current_user_can( 'activate_plugins', get_current_user_id() ) ) ) && ( is_plugin_active( 'sender/sender.php' ) || is_plugin_active( 'sender-pro/sender-pro.php' ) ) ) {
 						if ( '' != $jbbrd_options['shortcode_permalink'] ) {
 							$jbbrd_content .= '
 							<form method="post" action="">
@@ -3006,23 +3010,23 @@ if ( ! function_exists( 'jbbrd_vacancy_shortcode' ) ) {
 					/* How many pages before and after current page. */
 					'mid_size' 	=> 2,
 					/* How many pages at start and at the end. */
-					'end_size' 	=> 0, 
-					'prev_text' => '&laquo;', 
+					'end_size' 	=> 0,
+					'prev_text' => '&laquo;',
 					'next_text' => '&raquo;',
 				);
-			
+
 				$jbbrd_content .= '<div class="page-navigation page-links">' . paginate_links( $pages_array ) . '</div>';
 				if ( function_exists( 'pgntn_nav_display' ) ) {
-					ob_start();				
+					ob_start();
 					pgntn_nav_display( 'custom', 'bottom', $second_query );
 					$jbbrd_content .= ob_get_clean();
 				}
 			}
 		endif;
-	
+
 		/* Reset main query object */
 		wp_reset_query();
-		
+
 		return $jbbrd_content;
 	}
 }
@@ -3041,7 +3045,7 @@ if ( ! function_exists( 'jbbrd_registration_shortcode' ) ) {
 				/* Arguments for login form. */
 				$args = array(
 					'echo'				=> false,
-					'redirect'			=> site_url( $_SERVER['REQUEST_URI'] ), 
+					'redirect'			=> site_url( $_SERVER['REQUEST_URI'] ),
 					'form_id'			=> 'jbbrd_loginform',
 					'label_username'	=> __( 'Username', 'job-board' ),
 					'label_password'	=> __( 'Password', 'job-board' ),
@@ -3056,7 +3060,7 @@ if ( ! function_exists( 'jbbrd_registration_shortcode' ) ) {
 					'value_remember'	=> false
 				);
 				$jbbrd_register_form_content .= wp_login_form( $args );
-				$jbbrd_register_form_content .= 
+				$jbbrd_register_form_content .=
 				'<form id="jbbrd_registration_request" method="POST">
 					<input type="hidden" name="jbbrd_registration_request" value="submit" />
 					<input type="submit" class="button-primary" value="' . __( 'Registration', 'job-board' ) . '" />
@@ -3080,6 +3084,20 @@ if ( ! function_exists( 'jbbrd_registration_shortcode' ) ) {
 										</td>
 									</tr>
 								</table><!-- #jbbrd_frontend_table -->
+								<div class="jbbrd_gdpr_block">';
+									if( ! empty( $jbbrd_options['gdpr'] ) ) {
+										$jbbrd_register_form_content .= '<p class="jbbrd-GDPR-wrap">
+											<label for="jbbrd-GDPR-checkbox">
+												<input id="jbbrd-GDPR-checkbox" required type="checkbox" name="jbbrd_GDPR" style="vertical-align: middle;"/>' . $jbbrd_options['gdpr_cb_name'] . ' ';
+												if( ! empty( $jbbrd_options['gdpr_link'] ) ) {
+													$jbbrd_register_form_content .= '<a target="_blank" href="' . $jbbrd_options['gdpr_link'] . '">' . $jbbrd_options['gdpr_text'] . '</a>';
+												} else {
+													$jbbrd_register_form_content .= '<span>' . $jbbrd_options['gdpr_text'] . '</span>';
+												}
+											$jbbrd_register_form_content .= '</label>
+										</p>';
+									}
+								$jbbrd_register_form_content .= '</div>
 							</div><!-- .jbbrd_frontend_table_div -->
 							<div class="jbbrd_frontend_table_div">
 								<table class="jbbrd_frontend_table_sendmail">
@@ -3164,7 +3182,7 @@ if ( ! function_exists( 'jbbrd_excerpt_more_link' ) ) {
 			$jbbrd_exerpt_more .= $jbbrd_options['shortcode_permalink'];
 		}
 		$vacancy_id_slug = ( ! get_option('permalink_structure') && ( trim( $jbbrd_options['shortcode_permalink'], '/' ) != get_option('home') ) ) ? '&vacancy_id=' : '?vacancy_id=';
-		$jbbrd_exerpt_more .= $vacancy_id_slug . get_the_ID() . '">' . __( 'Read more...', 'job-board' ) . '</a>'; 
+		$jbbrd_exerpt_more .= $vacancy_id_slug . get_the_ID() . '">' . __( 'Read more...', 'job-board' ) . '</a>';
 		return $jbbrd_exerpt_more;
 	}
 }
@@ -3281,26 +3299,26 @@ if ( ! function_exists( 'jbbrd_shortcode_button_content' ) ) {
 		<div id="jbbrd" style="display:none;">
 			<fieldset>
 				<label>
-					<input checked="checked" type="radio" name="jbbrd_select" value="jbbrd_vacancy" /> 
-					<span class="checkbox-title">	
+					<input checked="checked" type="radio" name="jbbrd_select" value="jbbrd_vacancy" />
+					<span class="checkbox-title">
 						<?php _e( 'Display jobs', 'job-board' ); ?>
-					</span>	
+					</span>
 				</label><br/>
 				<label>
-					<input type="radio" name="jbbrd_select" value="jbbrd_registration" /> 
-					<span class="checkbox-title">	
+					<input type="radio" name="jbbrd_select" value="jbbrd_registration" />
+					<span class="checkbox-title">
 						<?php _e( 'Display registration form', 'job-board' ); ?>
-					</span>	
+					</span>
 				</label>
 			</fieldset>
 			<input class="bws_default_shortcode" type="hidden" name="default" value="[jbbrd_vacancy]" />
 			<script type="text/javascript">
 				function jbbrd_shortcode_init() {
-					(function($) {	
+					(function($) {
 						$( '.mce-reset input[name="jbbrd_select"]' ).on( 'change', function() {
 							var shortcode = $( '.mce-reset input[name="jbbrd_select"]:checked' ).val();
 							$( '.mce-reset #bws_shortcode_display' ).text( '[' + shortcode + ']' );
-						});         
+						});
 					})(jQuery);
 				}
 			</script>
@@ -3433,4 +3451,4 @@ add_filter( 'post_type_link', 'jbbrd_append_vacancy_permalink', 10, 2 );
 add_filter( 'plugin_action_links', 'jbbrd_plugin_action_links', 10, 2 );
 add_filter( 'plugin_row_meta', 'jbbrd_register_plugin_links', 10, 2 );
 /* Uninstall plugin. Drop tables, delete options. */
-register_uninstall_hook( __FILE__, 'jbbrd_plugin_uninstall' ); 
+register_uninstall_hook( __FILE__, 'jbbrd_plugin_uninstall' );

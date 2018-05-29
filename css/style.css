@@ -19,7 +19,7 @@
 	margin-right: 20px;
 }
 .jbbrd_frontend_input {
-	width: 200px !important;
+	width: 218px !important;
 }
 th#jbbrd_location,
 th#jbbrd_organization,
@@ -400,6 +400,21 @@ input#jbbrd_salary_input {
 	color: #222;
 	font-weight: bold;
 }
+#jbbrd_gdpr_link_options {
+	border: 1px solid #e0e0e0;
+	max-width: 390px;
+	margin: 5px 0;
+	padding: 3px;
+}
+
+#jbbrd_gdpr_link::placeholder {
+	color: #cdcdcd;
+}
+
+#jbbrd_gdpr_link_options label {
+	display: block;
+}
+
 /* Make admin table responsive */
 @media screen and ( max-width: 1300px ) {
 	#jbbrd_requirements {
@@ -458,6 +473,20 @@ input#jbbrd_salary_input {
 		width: 10%;
 	}
 }
+
+@media screen and ( max-width: 782px ) {
+	#jbbrd_gdpr_link_options {
+		padding: 8px;
+	}
+	#jbbrd_gdpr_link_options label input {
+		margin: 5px 0;
+		width: 100% !important;
+	}
+	#jbbrd_gdpr_link {
+		height: 40px;
+	}
+}
+
 @media screen and ( max-width: 768px ) {
 	th#jbbrd_location,
 	td.column-jbbrd_location,

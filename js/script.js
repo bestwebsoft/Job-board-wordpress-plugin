@@ -1,5 +1,12 @@
 ( function( $ ) {
 	$( document ).ready( function() {
+		$( '#jbbrd_gdpr' ).on( 'change', function() {
+			if( $( this).is( ':checked' ) ) {
+				$( '#jbbrd_gdpr_link_options' ).show();
+			} else {
+				$( '#jbbrd_gdpr_link_options' ).hide();
+			}
+		} ).trigger( 'change' );
 		/* Change radio button of currency unit chosen*/
 		$( 'select[name="jbbrd_money_choose"]' ).focus( function() {
 			$( '#preset_money_unit_select' ).attr( 'checked', 'checked' );
