@@ -19,10 +19,20 @@
 	margin-right: 20px;
 }
 .jbbrd_frontend_input {
-	width: 218px !important;
+	width: 200px !important;
 }
-th#jbbrd_location,
-th#jbbrd_organization,
+th#title{
+	width: 13%;
+}
+th#jbbrd_location {
+	width: 12%;
+}
+th#jbbrd_organization {
+	width: 16%;
+}
+th#jbbrd_employment-categorie {
+	width: 14%;
+}
 th#jbbrd_employment,
 td.column-jbbrd_employment,
 th.column-jbbrd_employment,
@@ -33,17 +43,27 @@ th#jbbrd_vacancy-categorie {
 	width: 15%;
 }
 th#jbbrd_archive {
-	width: 7%;
+	width: 10%;
+}
+th#date {
+	width: 12% !important;
+}
+.sorting-indicator{
+	width: 7px !important;
+}
+th.sortable a, th.sorted a {
+	padding: 5px !important;
 }
 /* Add new vacancy styles*/
 #jbbrd_requirements {
 	width: 58%;
-	float: left;
 	margin-right: 2%;
 }
 #jbbrd_metaboxes {
 	width: 300px;
-	float: left;
+}
+#jbbrd_metaboxes>table.widefat {
+	border: none;
 }
 #jbbrd_requirements_metaboxes_clear {
 	clear: both;
@@ -60,6 +80,7 @@ th#jbbrd_archive {
 }
 .jbbrd_personal_input input,
 .jbbrd_demand_input textarea {
+	max-width: 100%;
 	border: 1px solid #e2e2e2;
 	border-radius: 3px;
 	padding: 2px;
@@ -95,25 +116,24 @@ input#jbbrd_salary_input {
 #jbbrd_registration_form .jbbrd_frontend_table_sendmail,
 #jbbrd_registration_form .jbbrd_frontend_table_sendmail td,
 #jbbrd_registration_form .jbbrd_frontend_table_sendmail tr {
-    border: 0px !important;
-    text-align: left;
-    margin-bottom: 0px;
+	border: 0px !important;
+	margin-bottom: 0px;
 }
 #jbbrd_frontend_form .jbbrd_frontend_table_sendmail {
 	table-layout: auto;
 }
-#jbbrd_frontend_form .jbbrd_frontend_table_sendmail,
-#jbbrd_frontend_form .jbbrd_frontend_table_sendmail td {
-    width: 50%;
+.jbbrd_frontend_table_div .jbbrd_frontend_table_sendmail,
+.jbbrd_frontend_table_div .jbbrd_frontend_table_sendmail td {
+	width: 50%;
 }
 #jbbrd_frontend_form .jbbrd_frontend_table_sendmail tr {
 	border: 0px !important;
 }
 #jbbrd_frontend_form .jbbrd_frontend_table_div,
 #jbbrd_registration_form .jbbrd_frontend_table_div {
-	float: left;
 	width: 49%;
-	min-width: 200px !important;
+	float: left;
+	min-width: 240px !important;
 }
 #jbbrd_loginform {
 	width: 49%;
@@ -134,7 +154,7 @@ input#jbbrd_salary_input {
 #jbbrd_frontend_form .jbbrd_frontend_table_sendmail td,
 #jbbrd_frontend_form .jbbrd_frontend_table_sendmail_box tr,
 #jbbrd_frontend_form .jbbrd_frontend_table_sendmail_box td {
-	max-width: 240px !important;
+	max-width: 239px !important;
 }
 #jbbrd_frontend_form hr,
 .jbbrd_frontend_table_div hr {
@@ -199,7 +219,6 @@ input#jbbrd_salary_input {
 /* slider width */
 #jbbrd_frontend_salary #jbbrd_slider {
 	width: 160px;
-	float: left;
 	margin-top: 15px;
 }
 /* slider container */
@@ -394,6 +413,9 @@ input#jbbrd_salary_input {
 	text-align: right;
 	text-decoration: none;
 }
+td.jbbrd_demand_field {
+	display: block;
+}
 .post-type-vacancy .ui-widget-header {
 	background: #CCC;
 	border: 1px solid #AAA;
@@ -419,12 +441,10 @@ input#jbbrd_salary_input {
 @media screen and ( max-width: 1300px ) {
 	#jbbrd_requirements {
 		width: 98%;
-		float: left;
 		margin-right: 2%;
 	}
 	#jbbrd_metaboxes {
-		width: 300px;
-		float: left;
+		width: 100%;
 	}
 	#jbbrd_requirements_metaboxes_clear {
 		clear: both;
@@ -515,7 +535,7 @@ input#jbbrd_salary_input {
 		height: 20px
 	}
 }
-@media screen and ( max-width: 360px ) {
+@media screen and ( max-width: 380px ) {
 	th#jbbrd_location,
 	td.column-jbbrd_location {
 		opacity: 0;
@@ -539,5 +559,9 @@ input#jbbrd_salary_input {
 		opacity: 0;
 		max-width: 0px;
 		width: 0px;
+	}
+	#jbbrd_frontend_input_salary_from,
+	#jbbrd_frontend_input_salary_to {
+		width: 59px !important;
 	}
 }

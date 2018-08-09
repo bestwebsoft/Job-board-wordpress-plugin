@@ -6,7 +6,7 @@
 <p><span class="embed-youtube" style="text-align:center; display: block;"></span></p>
 <h3>Features</h3>
 <ul>
-<li>GDPR Compliant [NEW]</li>
+<li>GDPR Compliant</li>
 <li>Add and manage an unlimited number of:
 <ul>
 <li>Jobs</li>
