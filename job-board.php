@@ -6,7 +6,7 @@ Description: Create your personal job board and listing WordPress website. Searc
 Author: BestWebSoft
 Text Domain: job-board
 Domain Path: /languages
-Version: 1.1.7
+Version: 1.1.8
 Author URI: https://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -700,6 +700,13 @@ if ( ! function_exists( 'jbbrd_settings_page' ) ) {
 		} ?>
 		<div class="wrap">
 			<h1><?php _e( 'Job Board settings', 'job-board' ); ?></h1>
+			<noscript>
+            	<div class="error below-h2">
+                	<p><strong><?php _e( 'WARNING', 'job-board' ); ?>
+                    	    :</strong> <?php _e( 'The plugin works correctly only if JavaScript is enabled.', 'job-board' ); ?>
+                	</p>
+            	</div>
+        	</noscript>
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>" href="admin.php?page=job-board.php"><?php _e( 'Settings', 'job-board' ); ?></a>
 				<a class="nav-tab <?php if ( isset( $_GET['action'] ) && 'custom_code' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=job-board.php&amp;action=custom_code"><?php _e( 'Custom code', 'job-board' ); ?></a>
