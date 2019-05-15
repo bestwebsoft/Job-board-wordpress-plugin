@@ -6,13 +6,13 @@ Description: Create your personal job board and listing WordPress website. Searc
 Author: BestWebSoft
 Text Domain: job-board
 Domain Path: /languages
-Version: 1.1.8
+Version: 1.1.9
 Author URI: https://bestwebsoft.com/
 License: GPLv3 or later
 */
 
 /*
-	@ Copyright 2018 BestWebSoft ( https://support.bestwebsoft.com )
+	@ Copyright 2019 BestWebSoft ( https://support.bestwebsoft.com )
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
@@ -3442,6 +3442,169 @@ if ( ! function_exists( 'jbbrd_plugin_uninstall' ) ) {
 		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
 		bws_include_init( plugin_basename( __FILE__ ) );
 		bws_delete_plugin( plugin_basename( __FILE__ ) );
+	}
+}
+
+/**
+ * Get Job-board data objects
+ * @param     array     $jbbrd_args          Arguments to retrieve jobs. See $defaults for all available arguments.
+ * @return    array     $job_board_objects   Formed array with Job-board data objects
+ */
+if ( ! function_exists( 'jbbrd_get_job_board_data' ) ) {
+	function jbbrd_get_job_board_data( $jbbrd_args = array() ) {
+		global $jbbrd_options;
+
+		$defaults = array(
+			'id' => '',
+			'category' => '',
+            'employment_category' => '',
+			'location' => '',
+            'organization' => '',
+			'salary_from' => '',
+			'salary_to' => '',
+			'paged' => '',
+            'post_per_page' => '',
+            'search_period' => '',
+		);
+        /* Compare incoming parameters with basic */
+		$jbbrd_args = wp_parse_args( $jbbrd_args, $defaults );
+		$jbbrd_employment_search_categories = $jbbrd_search_period_cond = $jbbrd_businesses_search_categories = $jbbrd_location_cond = $jbbrd_organization_cond = $jbbrd_salary_cond = '';
+
+		/* If time period exist set time period query. */
+		if ( ! empty( $jbbrd_args['search_period'] ) ) {
+			$jbbrd_search_period_cond = array(
+				'column' => 'post_modified_gmt',
+				'after' => $jbbrd_args['search_period'] . ' day ago',
+			);
+		}
+		/* If category exist set search by this category. */
+		if ( ! empty( $jbbrd_args['category'] ) ) {
+			$jbbrd_businesses_search_categories = array(
+				'taxonomy'	=> 'jbbrd_businesses',
+				'field'		=> 'slug',
+				'terms'		=> $jbbrd_args['category'],
+			);
+		}
+		/* If employment category exist set search by this category. */
+		if ( ! empty( $jbbrd_args['employment_category'] ) ) {
+			$jbbrd_employment_search_categories = array(
+				'taxonomy'	=> 'jbbrd_employment',
+				'field'		=> 'slug',
+				'terms'		=> $jbbrd_args['employment_category'],
+			);
+		}
+		$jbbrd_search_categories = array(
+			$jbbrd_businesses_search_categories,
+			$jbbrd_employment_search_categories
+		);
+		/* Set wp_query conditions for frontend form search. */
+		if ( ! empty( $jbbrd_args['location'] ) ) {
+			$jbbrd_location_cond = array(
+				'key'		=> 'jbbrd_location',
+				'value'		=> $jbbrd_args['location'],
+				'compare'	=> 'LIKE',
+			);
+		}
+		if ( ! empty( $jbbrd_args['organization'] ) ) {
+			$jbbrd_organization_cond = array(
+				'key'		=> 'jbbrd_organization',
+				'value'		=> $jbbrd_args['organization'],
+				'compare'	=> 'LIKE',
+			);
+		}
+		if ( ! empty( $jbbrd_args['salary_from'] ) || ! empty( $jbbrd_args['salary_to'] ) ) {
+			$jbbrd_salary_cond = array(
+				'relation' => 'OR',
+				array(
+					'key' 		=> 'salary',
+					'compare' 	=> 'NOT EXISTS',
+				)
+			);
+			if ( ! empty(  $jbbrd_args['salary_from'] ) && ! empty( $jbbrd_args['salary_to'] ) ) {
+				$jbbrd_salary_cond[] = array(
+					'relation' => 'AND',
+					array(
+						'key' 		=> 'salary',
+						'value' 	=> jbbrd_get_salary( $jbbrd_args['salary_from'] ),
+						'compare' 	=> '>=',
+						'type' 		=> 'numeric'
+					),
+					array(
+						'key' 		=> 'salary',
+						'value' 	=> jbbrd_get_salary( $jbbrd_args['salary_to'] ),
+						'compare' 	=> '<=',
+						'type' 		=> 'numeric'
+					),
+				);
+			} elseif ( ! empty(  $jbbrd_args['salary_from'] ) ) {
+				$jbbrd_salary_cond[] = array(
+					'key' 		=> 'salary',
+					'value' 	=> jbbrd_get_salary(  $jbbrd_args['salary_from'] ),
+					'compare' 	=> '>=',
+					'type' 		=> 'numeric'
+				);
+			} else {
+				$jbbrd_salary_cond[] = array(
+					'key' 		=> 'salary',
+					'value' 	=> jbbrd_get_salary( $jbbrd_args['salary_to'] ),
+					'compare' 	=> '<=',
+					'type' 		=> 'numeric'
+				);
+			}
+		}
+
+		/* If get ID - set id search condition. */
+		$jbbrd_title_search_cond = ! empty(  $jbbrd_args['id'] ) ?  $jbbrd_args['id'] : '';
+
+		/* Add parameters for output posts. */
+		if ( empty( $jbbrd_options ) )
+			$jbbrd_options = get_option( 'jbbrd_options' );
+
+		$args = array(
+		    'post_type'				=> 'vacancy',
+			'post_status'			=> 'publish',
+			'p'						=> $jbbrd_title_search_cond,
+			'tax_query' 			=> $jbbrd_search_categories,
+			'ignore_sticky_posts'	=> true,
+			'paged' 				=>  $jbbrd_args['paged'],
+			'posts_per_page'		=>  $jbbrd_args['post_per_page'],
+			'archive' 				=> 'Posted',
+			'orderby'				=> 'post_date',
+			'order'					=> 'DESC',
+			/* Forming meta querry. */
+			'meta_query'			=>	array(
+				'relation' 	=> 'AND',
+				$jbbrd_location_cond,
+				$jbbrd_organization_cond,
+				$jbbrd_salary_cond
+			),
+			'date_query' => array(
+				$jbbrd_search_period_cond,
+			)
+		);
+
+		$job_board_posts = get_posts( $args );
+
+		/* return false if there are no records */
+		if ( ! $job_board_posts ) {
+			return false;
+		}
+
+		foreach ( (array)$job_board_posts as $job_board_post ) {
+
+			/* add  data to resulting array from wp_posts */
+			$job_board_objects[ $job_board_post->ID ]['job_wp_post'] = $job_board_post;
+
+			$job_post_meta = get_post_meta( $job_board_post->ID, '', true );
+			foreach ( $job_post_meta as $key => $value ) {
+				$job_post_meta_item = get_post_meta( $job_board_post->ID, $key, true );
+				$job_post_meta_key[$key] = $job_post_meta_item;
+			}
+			$job_board_objects[ $job_board_post->ID ]['job_post_meta'] = $job_post_meta_key;
+			$job_board_objects[ $job_board_post->ID ]['job_category'] = get_the_terms( $job_board_post->ID , 'jbbrd_businesses' );
+			$job_board_objects[ $job_board_post->ID ]['job_employment'] = get_the_terms( $job_board_post->ID , 'jbbrd_employment' );
+		}
+		return $job_board_objects;
 	}
 }
 
