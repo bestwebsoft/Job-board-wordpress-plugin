@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add job offer, job board, job board plugin, apply for a job, job, cv, manage vacancies, search by salary, job manager, job offer, job offer categories, job offer list
 Requires at least: 4.0
-Tested up to: 5.1.1
-Stable tag: 1.1.9
+Tested up to: 5.2.2
+Stable tag: 1.2.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -166,6 +166,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Changelog ==
 
+= V1.2.0 - 04.09.2019 =
+* Update: The deactivation feedback has been changed. Misleading buttons have been removed.
+
 = V1.1.9 - 15.05.2018 =
 * Update : BWS menu has been updated.
 * Update : The function for returning an array of objects has been added.
@@ -246,6 +249,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.2.0 = 
+* Usability improved
 
 = V1.1.9 = 
 * Functionality improved.

@@ -6,7 +6,7 @@ Description: Create your personal job board and listing WordPress website. Searc
 Author: BestWebSoft
 Text Domain: job-board
 Domain Path: /languages
-Version: 1.1.9
+Version: 1.2.0
 Author URI: https://bestwebsoft.com/
 License: GPLv3 or later
 */
