@@ -20,24 +20,9 @@
 			$( '#jbbrd_expiry_date' ).datepicker( {
 				dateFormat : 'dd-mm-yy',
 				isRTL : is_rtl
+			} ).on( 'keydown', function () {
+				return false;
 			} );
 		}
-		/* Change form settings */
-		if ( ! $( 'input[name="jbbrd_frontend_form"]' ).is( ":checked" ) ) {
-			$( 'input[name="jbbrd_frontend_form_non_registered"]' ).hide();
-			$( 'input[name="jbbrd_frontend_form_non_registered"]' ).next( 'span' ).hide();
-		} else {
-			$( 'input[name="jbbrd_frontend_form_non_registered"]' ).show();
-			$( 'input[name="jbbrd_frontend_form_non_registered"]' ).next( 'span' ).show();
-		}
-		$( $( 'input[name="jbbrd_frontend_form"]' ) ).on( 'change', function() {
-			if ( ! $( this ).is( ":checked" ) ) {
-				$( 'input[name="jbbrd_frontend_form_non_registered"]' ).hide();
-				$( 'input[name="jbbrd_frontend_form_non_registered"]' ).next( 'span' ).hide();
-			} else {
-				$( 'input[name="jbbrd_frontend_form_non_registered"]' ).show();
-				$( 'input[name="jbbrd_frontend_form_non_registered"]' ).next( 'span' ).show();
-			}
-		} );
 	} );
 } )( jQuery );

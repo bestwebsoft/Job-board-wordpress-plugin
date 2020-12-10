@@ -2,9 +2,9 @@
 Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add job offer, job board, job board plugin, apply for a job, job, cv, manage vacancies, search by salary, job manager, job offer, job offer categories, job offer list
-Requires at least: 4.0
-Tested up to: 5.2.2
-Stable tag: 1.2.0
+Requires at least: 4.5
+Tested up to: 5.6
+Stable tag: 1.2.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -20,11 +20,10 @@ https://www.youtube.com/watch?v=ox2rMnwxfHs
 
 == Features ==
 
-* GDPR Compliant
 * Add and manage an unlimited number of:
 	* Jobs
 	* Categories
-	* Employment
+	* Types
 * Use shortcode to add:
 	* Job board
 	* Registration form
@@ -41,30 +40,19 @@ https://www.youtube.com/watch?v=ox2rMnwxfHs
 	* Part time
 	* Temporary
 	* Custom
-		* Name
-		* Slug
-		* Parent
-		* Description
-* Choose currency:
-	* From the list
-	* Custom
+* Choose currency
 * Choose salary per:
 	* Hour
 	* Day
 	* Week
 	* Month
 	* Year
-* Choose job featured image position:
-	* Left
-	* Right
-* Change location field in the frontend sorting form
 * Customize text after CV sending
-* Set the job offers default expiry time
-* Set daily archiving time
 * Job candidates can customize their account:
 	* Upload resume/CV file
 	* Set the job search category
 * Search and view a list with job offers
+* GDPR Compliant
 * Add custom code via plugin settings page
 * Compatible with latest WordPress version
 * Incredibly simple settings for fast setup without modifying code
@@ -98,7 +86,7 @@ Some of these translations are not complete. We are constantly adding new featur
 
 1. Upload the `job-board` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
-3. You can adjust the necessary settings using your WordPress admin panel in "BWS Panel" > "Job Board".
+3. You can adjust the necessary settings using your WordPress admin panel in "Job Board".
 4. Create a page or a post and insert the shortcode [jbbrd_vacancy] into the text.
 
 [View a PDF version of Step-by-step Instruction on Job Board Installation](https://docs.google.com/document/d/1-hvn6WRvWnOqj5v5pLUk7Awyu87lq5B_dO-Tv-MC9JQ/)
@@ -162,9 +150,13 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 7. Adding new employment type display.
 8. Plugin settings in WordPress admin panel with additional fields.
 9. Job candidate settings on profile page.
-10. Job offers for chosen category on a profile page.
 
 == Changelog ==
+
+= V1.2.1 - 10.12.2020 =
+* Update : The plugin settings page was changed.
+* Update : Job Board section was updated.
+* Update : All functionality was updated for WordPress 5.6
 
 = V1.2.0 - 04.09.2019 =
 * Update: The deactivation feedback has been changed. Misleading buttons have been removed.
@@ -249,6 +241,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * Bugfix : Session bugs were fixed.
 
 == Upgrade Notice ==
+
+= V1.2.1 =
+* Plugin optimization completed.
 
 = V1.2.0 = 
 * Usability improved

@@ -10,7 +10,6 @@
 	vertical-align: top;
 	width: 200px;
 }
-.jbbrd_demand_field,
 .jbbrd_personal_field {
 	font-size: 14px;
 }
@@ -55,18 +54,11 @@ th.sortable a, th.sorted a {
 	padding: 5px !important;
 }
 /* Add new vacancy styles*/
-#jbbrd_requirements {
-	width: 58%;
-	margin-right: 2%;
-}
 #jbbrd_metaboxes {
-	width: 300px;
+	width: 100%;
 }
 #jbbrd_metaboxes>table.widefat {
 	border: none;
-}
-#jbbrd_requirements_metaboxes_clear {
-	clear: both;
 }
 .jbbrd_table_demand {
 	width: 70%;
@@ -74,26 +66,21 @@ th.sortable a, th.sorted a {
 .jbbrd_table_data {
 	width: 30%;
 }
-.jbbrd_table_inside,
-.jbbrd_demand_input {
-	width: 100%;
-}
-.jbbrd_personal_input input,
-.jbbrd_demand_input textarea {
+.jbbrd_personal_input input,textarea {
 	max-width: 100%;
 	border: 1px solid #e2e2e2;
 	border-radius: 3px;
 	padding: 2px;
 	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.07) inset;
 }
-.jbbrd_demand_input textarea {
+.jbbrd_personal_input textarea {
 	min-width: 100%;
 	max-width: 100%;
 	height: 180px;
 }
 input#jbbrd_salary_input {
 	width: 75px;
-	margin-right: 5px;
+	margin-right: 3px;
 }
 .jbbrd_input_number {
 	width: 50px;
@@ -189,10 +176,13 @@ input#jbbrd_salary_input {
 	padding-top: 0px !important;
 	padding-bottom: 0px !important;
 }
+.jbbrd_twentynineteen .jbbrd_logo> h2:before {
+	display: none;
+}
 #jbbrd_frontend_input_salary_from,
 #jbbrd_frontend_input_salary_to {
-	width: 68px !important;
-	margin-right: 10px !important;
+	width: 75px !important;
+	margin-right: 5px !important;
 }
 #jbbrd_frontend_submit {
 	display: inline-block !important;
@@ -218,8 +208,34 @@ input#jbbrd_salary_input {
 }
 /* slider width */
 #jbbrd_frontend_salary #jbbrd_slider {
-	width: 160px;
 	margin-top: 15px;
+}
+.jbbrd_twentytwenty #jbbrd_frontend_salary #jbbrd_slider {
+	position: relative !important;
+	top: 62px !important;
+	width: 94% !important;
+	margin-left: 3% !important;
+}
+.rtl.jbbrd_twentytwenty  #jbbrd_frontend_salary #jbbrd_slider {
+	position: relative;
+	top: 62px;
+	width: 93%;
+	margin-right: 3%;
+}
+.jbbrd_twentytwenty #jbbrd-GDPR-checkbox {
+	margin-right: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+.jbbrd_twentytwenty #jbbrd-GDPR-label {
+	margin-left: 0.84rem;
+}
+
+.rtl.jbbrd_twentytwenty #jbbrd-GDPR-checkbox {
+	margin-left: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+.rtl.jbbrd_twentytwenty #jbbrd-GDPR-label {
+	margin-right: 0.4rem;
 }
 /* slider container */
 #jbbrd_frontend_salary .ui-slider {
@@ -413,9 +429,6 @@ input#jbbrd_salary_input {
 	text-align: right;
 	text-decoration: none;
 }
-td.jbbrd_demand_field {
-	display: block;
-}
 .post-type-vacancy .ui-widget-header {
 	background: #CCC;
 	border: 1px solid #AAA;
@@ -439,15 +452,8 @@ td.jbbrd_demand_field {
 
 /* Make admin table responsive */
 @media screen and ( max-width: 1300px ) {
-	#jbbrd_requirements {
-		width: 98%;
-		margin-right: 2%;
-	}
 	#jbbrd_metaboxes {
 		width: 100%;
-	}
-	#jbbrd_requirements_metaboxes_clear {
-		clear: both;
 	}
 }
 @media screen and ( max-width: 980px ) {
@@ -535,13 +541,24 @@ td.jbbrd_demand_field {
 		height: 20px
 	}
 }
-@media screen and ( max-width: 380px ) {
+@media screen and ( max-width: 390px ) {
+	#jbbrd_metaboxes {
+		width: 100%;
+	}
+	.jbbrd_personal_input input,
+	.jbbrd_personal_input span,
+	.jbbrd_personal_input textarea {
+		width: 80%;
+	}
 	th#jbbrd_location,
 	td.column-jbbrd_location {
 		opacity: 0;
 		width: 0%;
 		white-space: nowrap; 
 		height: 20px
+	}
+	.jbbrd_twentytwenty #jbbrd_registration_request .button-primary {
+		margin: auto;
 	}
 	th#jbbrd_vacancy-categorie,
 	td.column-jbbrd_vacancy-categorie {
@@ -554,8 +571,7 @@ td.jbbrd_demand_field {
 		white-space: nowrap; 
 		height: 20px
 	}
-	td.jbbrd_personal_field,
-	td.jbbrd_demand_field {
+	td.jbbrd_personal_field {
 		opacity: 0;
 		max-width: 0px;
 		width: 0px;

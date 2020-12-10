@@ -1,0 +1,8 @@
+/* Job-Board icon */
+#menu-posts-vacancy .wp-menu-image {
+	font-family: 'bwsicons' !important;
+}
+#menu-posts-vacancy .wp-menu-image:before {
+	content: "\e918";
+	font-family: 'bwsicons' !important;
+}
