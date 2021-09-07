@@ -70,6 +70,8 @@
 </ul>
 <h4>Help &amp; Support</h4>
 <p>Visit our Help Center if you have any questions, our friendly Support Team is happy to help — <a href="https://support.bestwebsoft.com/" rel="nofollow ugc">https://support.bestwebsoft.com/</a></p>
+<h4>Affiliate Program</h4>
+<p>Earn 20% commission by selling the premium WordPress plugins and themes by BestWebSoft — <a href="https://bestwebsoft.com/affiliate/" rel="nofollow">https://bestwebsoft.com/affiliate/</a></p>
 <h3>Translation</h3>
 <ul>
 <li>Russian (ru_RU)</li>
